@@ -1,4 +1,6 @@
-# Day 7: Vectors and Lexical Semantics
+# Week 5: Vectors and Lexical Semantics
+
+**NB: This is an old assignment. It hasn't yet been updated for this year's course!**
 
 Carry out all the exercises below
 and submit your answers on

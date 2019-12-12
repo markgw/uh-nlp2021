@@ -1,4 +1,6 @@
-# Day 6: NLG and Dialogue
+# Week 6: NLG and Dialogue
+
+**NB: This is an old assignment. It hasn't yet been updated for this year's course!**
 
 Carry out all the exercises below and submit your answers on Moodle. Also submit a single Python file containing your full implementation.
 
@@ -72,7 +74,7 @@ As an example, your output could look like "*The Golden Palace is a Chinese coff
 
 **Don't get too stuck with this assignment, it's fine to do something simple.** Consider doing the following assignments first.
 
-> **Submit to Moodle** examples of output from your (hopefully) improved system together with the scores obtained using the `score` method. It's perfectly OK if you can't get the scores to go up as long as you tried something out. 
+> **Submit to Moodle** examples of output from your (hopefully) improved system together with the scores obtained using the `score` method. It's perfectly OK if you can't get the scores to go up as long as you tried something out.
 
 ## Exercise 5: Reflect on the complexity
 

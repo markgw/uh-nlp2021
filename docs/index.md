@@ -1,19 +1,18 @@
-Introduction to NLP 2019
+Introduction to NLP 2020
 ========================
 
-Intensive course at the University of Helsinki
+Masters course at the University of Helsinki
 Department of Computer Science.
 
-On this site, you will find all the assignments. These
-are carried out in daily practical sessions, every afternoon.
+On this site, you will find all the assignments. Note that
+the content of each assignment may change up until the lecture
+(Monday of each week) when it is released.
 
-Assignments for each day:
- - [Day 1](day1/)
- - [Day 2](day2/)
- - [Day 3](day3/)
- - [Day 4](day4/)
- - [Day 5](day5/)
- - [Day 6](day6/)
- - [Day 7](day7/)
- - [Day 8](day8/)
- - [Day 10](day10/)
+Assignments for each week:
+ - [Week 1](week1/)
+ - [Week 2](week2/)
+ - [Week 3](week3/)
+ - [Week 4](week4/)
+ - [Week 5](week5/)
+ - [Week 6](week6/)
+ - [Week 7](week7/)

@@ -1,5 +1,8 @@
-Day 1: Introduction to NLP
-==========================
+# Week 1: Introduction to NLP
+
+**NB: This is an old assignment. It hasn't yet been updated for this year's course!**
+
+----
 
 Each day, your task is to work through
 all the exercises on the page and submit your answers
@@ -62,7 +65,7 @@ print(2)  # This line prints "2"
 There is no multiline comment, but multiline strings can be sometimes used for the same purpose:
 
 ```python
-def double(number)
+def double(number):
     """
     This is a method that doubles the argument.
 

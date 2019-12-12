@@ -1,4 +1,6 @@
-# Day 4: Syntax and Parsing
+# Week 4: Syntax and Parsing
+
+**NB: This is an old assignment. It hasn't yet been updated for this year's course!**
 
 Carry out all the exercises below and submit your answers
 [on Moodle](https://moodle.helsinki.fi/course/view.php?id=33565#section-4).

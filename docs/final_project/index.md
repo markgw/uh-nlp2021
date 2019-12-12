@@ -1,4 +1,10 @@
-# Day 10: Putting it all together
+# Final project: extending a system
+
+**NB: This is an old assignment. It hasn't yet been updated for this year's course!**
+
+    These were final projects for last year's course. Some
+    of them might be good ideas for extensions of this year's
+    assignments into a final project.
 
 Today it's time to put together various components of an NLP pipeline that
 we've seen in the course and build a bigger system that does something
