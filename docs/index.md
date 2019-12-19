@@ -12,11 +12,11 @@ when it is released** (Monday of each week).
 so all you see here is a copy of some assignments from last year.**
 
 Assignments for each week:
- - [Week 1](week1/)
- - [Week 2](week2/)
- - [Week 3](week3/)
- - [Week 4](week4/)
- - [Week 5](week5/)
- - [Week 6](week6/)
- - [Week 7](week7/)
+ - [Week 1 – Python intro, pipeline & toolkits](week1/)
+ - [Week 2 – Full pipeline & evaluation](week2/)
+ - [Week 3 – Finite-state methods and statistical NLP](week3/)
+ - [Week 4 – Syntax & parsing](week4/)
+ - [Week 5 – Vectors & lexical semantics](week5/)
+ - [Week 6 – NLG, dialogue &discourse](week6/)
+ - [Week 7 – Temporal IE](week7/)
  - [Final project](final_project/)
