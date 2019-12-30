@@ -10,7 +10,8 @@ The second part is about installing some required third party libraries and veri
 
 > Sections that look like this designate assignments. While it's advisable to try out all examples, at the minimum work through these. This week only, assignments that look like this are not returned to Moodle.
 
-> #### MARKED ASSIGNMENT
+> **MARKED ASSIGNMENT**
+>
 > This week only, the page also contains assignments with the above notice. Any such assignenments are graded and count towards your course outcome. In the following weeks, all assignments are marked and as such the above notice will not be given.
 
 Note that the following is not a complete description of the Python programming language. You are expected to consult additional resources during the course. The official Python documentation is an excellent starting point. In addition, you might wish to consult the ebook [A whirlwind tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/), from which this document borrows heavily. In addition, you'll want to consult the NLTK book and NLTK documentation during the latter days.
@@ -29,7 +30,7 @@ There are a few different ways to run Python code, the simplest of which is usin
 
 > Start your Python REPL by typing `python3` in the terminal. Then type in `import this`, press enter and read the Zen of Python which describes "good Python" in a poetic format. You can quit the REPL by either typing `quit()` or pressing Ctrl-D.
 
-The second way of running Python is by writing Python into a file and running the file through the intepreter.  
+The second way of running Python is by writing Python into a file and running the file through the intepreter. 
 
 > Create a new file named `zen.py`, write the `import this` statement into it and save it. Run the file in the terminal via `python3 zen.py` and verify the input matches your expectations.
 
@@ -930,7 +931,8 @@ We can then use the `max` function and it's `key` argument to find the tuple wit
 
 Call `' '.join(longest[1])` (note the space inside quotes) to get a slightly nicer looking string representation of the longest sentence of any US presidential inaugural speech. Also check `longest[0]` for which speech this sentence is from.
 
-> #### MARKED ASSINGMENT
+> **MARKED ASSIGNMENT**
+>
 > Submit to Moodle who's speech contained the longest sentence, when the speech was given and what the longest sentence was.
 
 ## Simple NLP stuff
@@ -955,7 +957,8 @@ Use the `most_common(n)` method of the `Counter` you just constructed to determi
 
 > Install the NLTK module "tagsets" and read the output of `nltk.help.upenn_tagset()` to determine what the top-3 tags mean. Don't worry if you don't understand them completely, but try to get some idea by looking at the examples.
 
->#### MARKED ASSIGNMENT
+>**MARKED ASSIGNMENT**
+>
 >Return to Moodle the 3 most common POS tags, their counts, their meanings and the code you used to obtain the result.
 
 ## SpaCy and entity recognition
@@ -966,5 +969,6 @@ In Python, import `spacy` and then load up a module containing English language 
 
 Try out SpaCy's default **entity recognition moule** by writing up some sentence with a few entities (people, places, organizations) and storing it in a variable `sent`. Then call `nlp(sent).ents` and observe the detected entities. Try out a few variations of inputs.
 
->#### MARKED ASSIGNEMNT
+>**MARKED ASSIGNMENT**
+>
 > What entities does SpaCy's `en` module detect from the sentence `"President Obama said to reporters from the Washington Post that the Federal Reserve had overstepped in its decision to decrease the margins on inter-bank loans last Wednesday"`? What about if you remove the first word?
