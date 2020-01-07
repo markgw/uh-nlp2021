@@ -1,4 +1,4 @@
-# Day 1: Python for Java programmers, installing stuff and simple NLP
+# Week 1: Python for Java programmers, installing stuff and simple NLP
 
 **NB: The contents, including the assignments, on this page can change up until the end of the first lecture.**
 
