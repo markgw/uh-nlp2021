@@ -1,6 +1,6 @@
 # Day 1: Python for Java programmers, installing stuff and simple NLP
 
-**NB: This page is still Work-In-Progress. The final version will be available before the first lecture.**
+**NB: The contents, including the assignments, on this page can change up until the end of the first lecture.**
 
 This day has two parts. The first is a short introduction to the Python 3 programming language. We assume a good general programmin knowledge. This mean e.g. background in the Java programming language, on the level of Introduction to Programming (Ohjelmoinnin perusteet) and Advanced Programming (Ohjelmoinnin jatkokurssi) as taught at the department. For those who are already familiar with Python, this part serves as a refresher.
 
@@ -10,9 +10,11 @@ The second part is about installing some required third party libraries and veri
 
 > Sections that look like this designate assignments. While it's advisable to try out all examples, at the minimum work through these. This week only, assignments that look like this are not returned to Moodle.
 
+This week only, the page also contains assignments that look like shown below. Any such assignments are graded and count towards your course outcome. In the following weeks, all assignments are marked and as such the above notice will not be given.
+
 > **MARKED ASSIGNMENT**
 >
-> This week only, the page also contains assignments with the above notice. Any such assignenments are graded and count towards your course outcome. In the following weeks, all assignments are marked and as such the above notice will not be given.
+>This is an example of an assignment you are expected to return to Moodle for grading. 
 
 Note that the following is not a complete description of the Python programming language. You are expected to consult additional resources during the course. The official Python documentation is an excellent starting point. In addition, you might wish to consult the ebook [A whirlwind tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/), from which this document borrows heavily. In addition, you'll want to consult the NLTK book and NLTK documentation during the latter days.
 
@@ -23,6 +25,34 @@ Python currently exists in two different flavors, Python 2 and Python 3. For all
 Also more specifically for NLP purposes, Python 3 simplifies the handling of non-ASCII characters singificantly by making UTF-8 strings the default. In Python 2, you must take special care when handling any language that is not expressed solely using ASCII characters.
 
 All examples hereafter are in Python 3 unless otherwise denoted. Any mentions of "Python" in the material will, by default, refer to Python 3. Any code you return on this day or any later day will be ran using Python 3.
+
+## Installing Python
+
+Python 3 comes in multiple versions, the latest of which is Python 3.8.1. However, as most Linux distributions lag a bit behind in the Python 3 version they provide, Python 3.5 is currently a *de facto* "minimum version". This holds true for this course as well: the tools we are installing assume that you have at least Python 3.5.
+
+###  If you are using a university-provided computer with Cubbli Linux
+If you are working on either a Freshmen laptop with Linux or a computer lab desktop that has Linux, your computer should have Python 3.6.9 (or later) installed on it by default. Check by running `python3 -V` (note capital V). You should be good to go.
+
+Computer labs with Linux computers can be found in Exactum, for example in the rooms B221 and BK107. 
+
+### If you are using your own computer with Windows
+The course staff is not well versed in getting Python working with Windows, so you are on your own in terms of installing Python and additional dependencies. If you want to do things easy, just use computer labs in Exactum. If you are sure you want to install Python on your own computer, read on for some options.
+
+You can find instructions for installing Python 3 on your Windows computer at https://installpython3.com/windows/. You can also try out using [Anaconda](https://www.anaconda.com/), which is a relatively popular wrapper around Python. Note, however, that Anaconda's package manager `conda` sometimes lags a bit behind `pip`, meaning that the latest versions of all libraries might not be available. We suggest using `pip` where possible.
+
+You can also try out the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about), which allows you to run Linux within Windows. It should come preinstalled with a sufficiently up-to-date version of Python 3. 
+
+Finally, you can use the university's VDI version of the Cubbli Linux. This enables you to run a Linux either via the VMWare Horizon client as a "program" within Windows, or as a tab in your browser. See [instructions for VDI](https://helpdesk.it.helsinki.fi/en/instructions/computer-and-printing/workstation-service/virtual-desktops-vdi).
+
+### If you are using your own computer with Linux
+You probably have at least python 3.5 installed, unless you are on a **very** old installation. Check by running `python3 -V` (note capital V). Version 3.5 and newer are all good.
+
+If your Python 3 is older than 3.5, or is not installed at all, you can install it using your Linux distribution's package manager, such as `apt` for Ubuntu. The details of upgrading your Python 3 installation are left as an exercise for the reader.
+
+### If you are using your own computer with MacOs
+Your Mac probably has Python 2.7 installed by default. This is **not** sufficient and you should install at least Python 3.5. For instructions on how to install Python 3, see e.g. the website https://installpython3.com/mac/.
+
+**Note:** If you are using the instructions from the linked website, the section "Virtual Environments" uses a method different from the method used in this guide. Your options are to ignore that part of the linked guide or to "translate" the `pip` commands used in the course material to `pipenv` commands yourself.
 
 ## Running Python
 
@@ -348,8 +378,7 @@ This is useful in cases where you want to count the number of `True`s in some co
 
 Empty strings, empty lists (rather, collections), zeros and `None` are all falsey. You can use them in `if`s directly:
 ```python
-x = ""
-if x:
+if "" or 0 or [] or None:
     print('This statement is not reached')
 ```
 
@@ -569,6 +598,20 @@ while i < 10:
 
 ### `break` and `continue`
 These work as you'd expect from Java. In other words, `continue` jumps to the next iteration of the loop and `break` ends the loop.
+```python
+>>> for i in range (100):
+...   if i % 2 == 0:
+...     continue
+...   if i >= 10:
+...     break
+...   print(i)
+... 
+1
+3
+5
+7
+9
+```
 
 ### `for .. else`
 
@@ -607,8 +650,8 @@ Note how the methods do not have attached type information. This enables you to 
 >>> def print_box(content: Any, box_char: str = '#') -> None:
 ...     # Note the combination of a type hint and a default value
 ...     # Also note how the type of the return value is specified.
-...     # The return type is None because we return nothing.
-...     content = str(content) # We said content can be Any, so let's make it a string first
+...     # Here, the return type is None because we return nothing.
+...     content = str(content) # We said content can be Any, so let's cast it into a string first
 ...     width = 4 + len(content)
 ...     print(box_char * width)
 ...     print(box_char, content, box_char)
@@ -633,7 +676,17 @@ Functions can also be declared anonymously as *lambda functions*.
 3
 ```
 
-This is mostly relevant when you want to supply a function as an argument to another function but don't really care about the function otherwise. For example, you might use it to sort a list of dictionaries by a specific value using the built-in function `sorted` and its optional argument `key`:
+This is mostly relevant when you want to supply a one-off function as an argument to another function but don't really care about the function otherwise. For example, you could sort a list of numbers by their absolute values:
+```python
+>>> x = list(range(-5, 5))
+>>> x
+[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4]
+>>> x.sort(key=lambda x: abs(x)) # Key is called for each item and sorting is done based on the outputs of key.
+>>> x
+[0, -1, 1, -2, 2, -3, 3, -4, 4, -5]
+```
+
+As a slightly more complex example, you might use it to sort a list of dictionaries by a specific value using the built-in function `sorted` (which returns a new sorted copy rather than sorting in place):
 ```python
 >>> data = [{'first':'Guido', 'last':'Van Rossum', 'YOB':1956},
 ...         {'first':'Grace', 'last':'Hopper',     'YOB':1906},
@@ -659,7 +712,7 @@ The `enumerate()` iterator allows us to iterate over both the indices and values
 2 c
 ```
 
-Note how we modify the `for in` loop to ingest two values at a time. In reality, the `enumerate` method is returning a tuple of values:
+Note how we modify the `for in` loop to set two variables at the same time. In reality, the `enumerate` method is returning a tuple of values:
 ```python
 >>> x = next(enumerate(my_list))
 >>> x
@@ -705,7 +758,7 @@ Let us consider for example the following list comprehension:
 [0, 1, 4, 9, 16]
 ```
 
-The comprehension describes the idea of iterating over `range(5)`, observing each value `n` of it in turn and squaring them. The values produced in this way are then used to populate a list. This in an example of describing *what we want* rather than how to accomplish some task.
+The comprehension describes the idea of iterating over `range(5)`, observing each value `i` of it in turn and squaring them. The values produced in this way are then used to populate a list. This in an example of describing *what we want* rather than how to accomplish some task.
 
 The syntax here is `<expr> for <value> in <iterable>`. In addition, the syntax allows us to include an optional `if` statement following the iterable, for example like this:
 
@@ -730,7 +783,7 @@ and a dictionary
 'Mark'
 ```
 
-Finally, comprehensions can be used to produce *generators* using the `()` braces. Generators produce their values lazily, meaning that values are produced as-needed, rather than all at once when the generator is defined.
+Finally, comprehensions can be used to produce *generators* using the `()` braces. Generators produce their values lazily, meaning that values are produced as-needed, rather than all at once when the generator is defined. This can potentially save enormous amounts of memory.
 
 Standard function syntax can also be used to produce more complex generators. The main difference is that the `return` statement is replaced by `yield`:
 
@@ -939,7 +992,7 @@ Call `' '.join(longest[1])` (note the space inside quotes) to get a slightly nic
 
 Next up, let's use NLTK to determine for each word which part of speech it is. 
 
-> Do this by passing the longest sentence (as list of words) to `nltk.pos_tag()` and storing the result.
+> Do this by passing the longest sentence (as list of words) to `nltk.pos_tag()` and storing the result. The result should look something like `[..., ('without', 'IN'), ('effect', 'NN'), ('.', '.')] `.
 
 Let's figure out the distribution of the various POS tags. To do this easily, we can use the `Counter` class provided in the built-in package `collections`.
 
@@ -947,27 +1000,37 @@ Let's figure out the distribution of the various POS tags. To do this easily, we
 
 `Counter`, as the name implies, is used to count things. We want to count the POS tags, so we need to obtain a copy of the list of the tagged tokens with **only** the POS tags. That is, instead of `[..., ('without', 'IN'), ('effect', 'NN'), ('.', '.')]` we want `[..., 'IN', 'NN', '.']`.
 
-> Construct the above list using, e.g., a list comprehension.
+> Construct the tag-only list using, e.g., a list comprehension.
 
 We can now use `Counter` to determine the distribution of the POS tags. Note that `Counter` is an object and not a function, so we need to construct an instance.
 
-> Call the constructor of `Counter` to obtain a new instance. Feed in the above list as an argument to the constructor. Store the returned object in a variable.
+> Call the constructor of `Counter` to obtain a new instance, passing the tags-only list as an argument to the constructor. Store the returned object in a variable.
 
-Use the `most_common(n)` method of the `Counter` you just constructed to determine the 3 most common POS tags and their counts.
+Use the `most_common(n)` method of the object you just constructed to determine the 3 most common POS tags and their counts.
 
-> Install the NLTK module "tagsets" and read the output of `nltk.help.upenn_tagset()` to determine what the top-3 tags mean. Don't worry if you don't understand them completely, but try to get some idea by looking at the examples.
-
->**MARKED ASSIGNMENT**
->
+> **MARKED ASSIGNMENT**
 >Return to Moodle the 3 most common POS tags, their counts, their meanings and the code you used to obtain the result.
+>
+> To find out what the tags mean, install the NLTK module "tagsets" and read the output of `nltk.help.upenn_tagset()`. Don't worry if you don't understand them completely, but try to get some idea by looking at the examples.
+
 
 ## SpaCy and entity recognition
 
 Let us also set up another NLP library, SpaCy. Start by installing **inside your virtual environment** the `pip` package `spacy`. Recall how you installed NLTK above.
 
+Next up, we need to install some pretrained models: training one ourselves would take large amounts of time, computation power and data, none of which we have. Also, the SpaCy default models are relatively good for our purposes here.
+
+To install the English language default models, write `python -m spacy download en` in your terminal. **Note:** if you opened a new terminal, remember to source your virtual environment first!
+
+The above should have downloaded a model called `en_core_web_sm` and constructed a shortcut called `en`. SpaCy also allows you to define in more details which models, exactly, you want to download and use. Optionally see the SpaCy's [documentation](https://spacy.io/usage/models#download) for more details.
+
+>**MARKED ASSIGNMENT**
+>
+> Go to https://spacy.io/models/en and observe the three different English language model sets available. How much larger is `en_core_web_lg` compared to `en_core_web_sm` in terms of megabytes taken up by the model? Observe the accuracy scores reported for named entity recognition task (the rows in "NER accuracy"). An accuracy of 1 means that the model was correct in all test cases, whereas an accuracy of 0 would mean that it was wrong in all test cases. How much accuracy did the larger model gain for how many fold increase in model size?
+
 In Python, import `spacy` and then load up a module containing English language models by calling `nlp = spacy.load('en')`.
 
-Try out SpaCy's default **entity recognition moule** by writing up some sentence with a few entities (people, places, organizations) and storing it in a variable `sent`. Then call `nlp(sent).ents` and observe the detected entities. Try out a few variations of inputs.
+Next, try out SpaCy's default **entity recognition model** by writing up a sentence with a few entities (people, places, organizations) and storing it in a variable `sent`. Then call `nlp(sent).ents` and observe the detected entities. Try out a few variations of inputs.
 
 >**MARKED ASSIGNMENT**
 >
