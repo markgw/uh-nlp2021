@@ -2,23 +2,27 @@
 
 **NB: The contents, including the assignments, on this page can change up until the end of the first lecture.**
 
-This day has two parts. The first is a short introduction to the Python 3 programming language. We assume a good general programmin knowledge. This mean e.g. background in the Java programming language, on the level of Introduction to Programming (Ohjelmoinnin perusteet) and Advanced Programming (Ohjelmoinnin jatkokurssi) as taught at the department. For those who are already familiar with Python, this part serves as a refresher.
+This day has two parts. The first is a short introduction to the Python 3 programming language. We assume a good general programming knowledge. This mean e.g. background in the Java programming language, on the level of Introduction to Programming (Ohjelmoinnin perusteet) and Advanced Programming (Ohjelmoinnin jatkokurssi) as taught at the department. For those who are already familiar with Python, this part serves as a refresher.
 
 The second part is about installing some required third party libraries and verifying they work by doing some simple NLP tasks that are common as the initial stages in NLP pipelines.
 
 **Even if you are very familiar with Python, you should read everything onwards from the section "Installing stuff" since the following sections contain the marked assignments of this week**. At the same time, skimming through the document might be useful even if you've used Python before.
 
-> Sections that look like this designate assignments. While it's advisable to try out all examples, at the minimum work through these. This week only, assignments that look like this are not returned to Moodle.
+> Sections that look like this designate assignments. While it's advisable to try out all examples, at the minimum work through these. This week only, some assignments that look like this are not returned to Moodle.
 
-This week only, the page also contains assignments that look like shown below. Any such assignments are graded and count towards your course outcome. In the following weeks, all assignments are marked and as such the above notice will not be given.
+This week only, the page also contains assignments that look like shown below. Any such assignments are graded and count towards your course outcome. In the following weeks, all assignments are marked and no distinction is made in the instructions between marked (submitted) and unmarked assignments.
 
 > **MARKED ASSIGNMENT**
 >
->This is an example of an assignment you are expected to return to Moodle for grading. 
+>This is an example of an assignment you are expected to return to Moodle for grading.
+
+{:toc}
+
+## Part 1: Introduction to Python
 
 Note that the following is not a complete description of the Python programming language. You are expected to consult additional resources during the course. The official Python documentation is an excellent starting point. In addition, you might wish to consult the ebook [A whirlwind tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/), from which this document borrows heavily. In addition, you'll want to consult the NLTK book and NLTK documentation during the latter days.
 
-## On Python 2 and Python 3
+### On Python 2 and Python 3
 
 Python currently exists in two different flavors, Python 2 and Python 3. For all relevant purposes, **you should only be writing Python 3** unless you find yourself in exceptional circumstances. Python 2 will only receive one final update in the Summer of 2020, after which not even security patches will be released.
 
@@ -26,41 +30,41 @@ Also more specifically for NLP purposes, Python 3 simplifies the handling of non
 
 All examples hereafter are in Python 3 unless otherwise denoted. Any mentions of "Python" in the material will, by default, refer to Python 3. Any code you return on this day or any later day will be ran using Python 3.
 
-## Installing Python
+### Installing Python
 
 Python 3 comes in multiple versions, the latest of which is Python 3.8.1. However, as most Linux distributions lag a bit behind in the Python 3 version they provide, Python 3.5 is currently a *de facto* "minimum version". This holds true for this course as well: the tools we are installing assume that you have at least Python 3.5.
 
-###  If you are using a university-provided computer with Cubbli Linux
+####  If you are using a university-provided computer with Cubbli Linux
 If you are working on either a Freshmen laptop with Linux or a computer lab desktop that has Linux, your computer should have Python 3.6.9 (or later) installed on it by default. Check by running `python3 -V` (note capital V). You should be good to go.
 
-Computer labs with Linux computers can be found in Exactum, for example in the rooms B221 and BK107. 
+Computer labs with Linux computers can be found in Exactum, for example in the rooms B221 and BK107.
 
-### If you are using your own computer with Windows
+#### If you are using your own computer with Windows
 The course staff is not well versed in getting Python working with Windows, so you are on your own in terms of installing Python and additional dependencies. If you want to do things easy, just use computer labs in Exactum. If you are sure you want to install Python on your own computer, read on for some options.
 
 You can find instructions for installing Python 3 on your Windows computer at https://installpython3.com/windows/. You can also try out using [Anaconda](https://www.anaconda.com/), which is a relatively popular wrapper around Python. Note, however, that Anaconda's package manager `conda` sometimes lags a bit behind `pip`, meaning that the latest versions of all libraries might not be available. We suggest using `pip` where possible.
 
-You can also try out the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about), which allows you to run Linux within Windows. It should come preinstalled with a sufficiently up-to-date version of Python 3. 
+You can also try out the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about), which allows you to run Linux within Windows. It should come preinstalled with a sufficiently up-to-date version of Python 3.
 
 Finally, you can use the university's VDI version of the Cubbli Linux. This enables you to run a Linux either via the VMWare Horizon client as a "program" within Windows, or as a tab in your browser. See [instructions for VDI](https://helpdesk.it.helsinki.fi/en/instructions/computer-and-printing/workstation-service/virtual-desktops-vdi).
 
-### If you are using your own computer with Linux
+#### If you are using your own computer with Linux
 You probably have at least python 3.5 installed, unless you are on a **very** old installation. Check by running `python3 -V` (note capital V). Version 3.5 and newer are all good.
 
 If your Python 3 is older than 3.5, or is not installed at all, you can install it using your Linux distribution's package manager, such as `apt` for Ubuntu. The details of upgrading your Python 3 installation are left as an exercise for the reader.
 
-### If you are using your own computer with MacOs
+#### If you are using your own computer with MacOs
 Your Mac probably has Python 2.7 installed by default. This is **not** sufficient and you should install at least Python 3.5. For instructions on how to install Python 3, see e.g. the website https://installpython3.com/mac/.
 
 **Note:** If you are using the instructions from the linked website, the section "Virtual Environments" uses a method different from the method used in this guide. Your options are to ignore that part of the linked guide or to "translate" the `pip` commands used in the course material to `pipenv` commands yourself.
 
-## Running Python
+### Running Python
 
 There are a few different ways to run Python code, the simplest of which is using the Python REPL. REPL is short for Read Evaluate Print Loop; the REPL reads your input, evaluates it, prints the output and then repeats the same in a loop.
 
 > Start your Python REPL by typing `python3` in the terminal. Then type in `import this`, press enter and read the Zen of Python which describes "good Python" in a poetic format. You can quit the REPL by either typing `quit()` or pressing Ctrl-D.
 
-The second way of running Python is by writing Python into a file and running the file through the intepreter. 
+The second way of running Python is by writing Python into a file and running the file through the intepreter.
 
 > Create a new file named `zen.py`, write the `import this` statement into it and save it. Run the file in the terminal via `python3 zen.py` and verify the input matches your expectations.
 
@@ -70,7 +74,7 @@ The statement `import this` above is a special case. Normally to output from a .
 > ```python
 > "this is a string outside of print()"
 > print("this is a string inside a print()")
-> ``` 
+> ```
 > Did the output match your expectations? Determine what happens when you run the same two lines in the REPL.
 
 More experience Python users, especially in the scientific community, often write in Python "notebooks". These are something of a middle-ground between the two previous methods, also allowing the author to embed markdown and LaTeX math. Notebooks, however, have several non-obvious "footguns" that are likely to bite even experienced developers now and then. This is not to say that Notebooks are *bad*, merely that they are not a silver bullet. I suggest that you, especially if you are beginner, work with the REPL and a standard editor like VSCode or PyCharm instead of using notebooks for now. If you are interested to learn more about the footguns in notebooks, see Joel Grus' talk ["I don't like notebooks"](https://www.youtube.com/watch?v=7jiPeIFXb6U) after working through the rest of these assignments.
@@ -87,14 +91,14 @@ There is no multiline comment, but multiline strings can be sometimes used for t
 ```python
 def double(number):
     """
-    This is a method that doubles the argument. 
-    
-    This text here is really a multiline string that just isn't 
-    assigned to any variable or used in any other way. Strings 
-    like this at the start of a function/method or class are 
-    called "docstrings" and can be used to describe what the 
-    method does, just like Java's JavaDoc comments. Many IDEs 
-    extract and show these just as they'd do with Java's JavaDoc 
+    This is a method that doubles the argument.
+
+    This text here is really a multiline string that just isn't
+    assigned to any variable or used in any other way. Strings
+    like this at the start of a function/method or class are
+    called "docstrings" and can be used to describe what the
+    method does, just like Java's JavaDoc comments. Many IDEs
+    extract and show these just as they'd do with Java's JavaDoc
     comments.
     """
     return 2 * number
@@ -129,7 +133,7 @@ x, y = y, x  # swap x and y without an additional variable
 > Try the last example out in REPL and verify it works.
 
 
-## Whitespace
+### Whitespace
 
 Python uses *significant whitespace*. In other words, the indentations rules of Java, which are merely a convention, are actually enforced in Python. Where as you are technically allowed to write the following piece of Java
 ```java
@@ -142,7 +146,7 @@ the equivalent Python snippet
 for i in some_list:
 print(i)
 ```
-would crash with an `IndentationError`. 
+would crash with an `IndentationError`.
 
 This enforcement of indentation also allows Python to get rid of the braces used in Java. The correct way to implement the above Python snippet is as
 ```python
@@ -183,7 +187,7 @@ Calling `print()` with multiple arguments prints them all on a single line with 
 print("this", "is", "my", "string", 1)  # prints "this is my string 1"
 ```
 
-## Variables and types
+### Variables and types
 
 Python variables are assigned using the `=` operator.
 
@@ -203,7 +207,7 @@ my_variable = 2 # this is a number
 
 Note the "snake_casing": by convention, only class names are in CamelCase.
 
-### Objects
+#### Objects
 
 Everything in Python is an object.
 
@@ -236,15 +240,15 @@ The methods/members that start with two underscores are "magic methods" that def
 
 > Explore the methods of a string using, e.g. `dir("some string")`.
 
-## Arithmetic operations.
+### Arithmetic operations.
 
 Math is largely the same as with Java. The most notable difference is in that integers are automatically translated to floats as needed. This is mostly relevant for division. Whereas in Java `1 / 2` is zero (`0.5` rounded down), in Python it is `0.5`. To get the same result as Java's integer division produces, you'll need to use the `1 // 2` operator.
 
-Exponentiation is done as `a ** b`. 
+Exponentiation is done as `a ** b`.
 
 There is no `++` operator, but you can combine assignment with the arithmetical operations for the same effect: `a += 1` is the same as `a = a + 1`. The `+` can be substituted with any other arithmetical operator, meaning `a %= 2` is the same as `a = a % 2`.
 
-## Comparisons
+### Comparisons
 
 Comparisons are similar to Java and use the operators `==`, `<`, `<=`, `>`, `>=` and `!=`. The primary difference is that, for the purposes of determining whether some value is between two others, the following expression can be used:
 ```python
@@ -257,7 +261,7 @@ False
 
 > Convince yourself that this works as you'd expect
 
-## Boolean Operators
+### Boolean Operators
 
 Boolean operators are `and`, `or` and `not`:
 ```python
@@ -268,9 +272,9 @@ True
 True
 >>> (x < 10) or (x > 100)
 True
-``` 
+```
 
-## Lists, Indentity and Membership
+### Lists, Indentity and Membership
 
 Python lists are constructed using the bracket syntax:
 ```python
@@ -303,11 +307,11 @@ True
 False
 ```
 
-## Basic Types
+### Basic Types
 
 The basic Python types are `int` for integers, `float` for floating point numbers, `complex` for complex numbers, `bool` for Boolean values and `str` for strings. Finally, there is the `NoneType` which is the type of `None`, Python's equivalent for `null`.
 
-### Integers
+#### Integers
 ```python
 >>> x = 1
 >>> type(x)  # A number without a decimal is an integer
@@ -320,13 +324,13 @@ The basic Python types are `int` for integers, `float` for floating point number
 2
 ```
 
-### Floats
+#### Floats
 ```python
 >>> x = 0.5  # Floats can be defined by adding a decimal
 >>> x = 5e-6  # You can also use the exponential notation
 >>> 0.1 + 0.2 == 0.3 # Floats suffer from precision issues, just like in Java
 False
->>> 0.1 + 0.2  # This is because floats can't represent all numbers. 
+>>> 0.1 + 0.2  # This is because floats can't represent all numbers.
 0.30000000000000004
 >>> 0.3  # Python does things to hide this from you
 0.3
@@ -334,7 +338,7 @@ False
 '0.29999999999999998890'
 ```
 
-### Strings
+#### Strings
 ```python
 >>> x = "string"  # Strings are delimited by double quotation marks "
 >>> x = 'string'  # or by single quotation marks '
@@ -353,7 +357,7 @@ False
 'A string'
 ```
 
-### None
+#### None
 
 `NoneType` has a single possible value, `None`, which is equivalent to Java's `null`.
 
@@ -364,7 +368,7 @@ None
 ```
 
 
-### Booleans
+#### Booleans
 
 The possible boolean values are `True` and `False`. `True` is equivalent to the integer `1` and `False` is equivalent to the integer `0`. This means you can do arithmetic with booleans:
 ```python
@@ -382,7 +386,7 @@ if "" or 0 or [] or None:
     print('This statement is not reached')
 ```
 
-### Casting between types
+#### Casting between types
 
 You can cast between types using the types as methods:
 ```python
@@ -394,11 +398,11 @@ You can cast between types using the types as methods:
 <class 'str'>
 ```
 
-## Data Structures
+### Data Structures
 
 Python has four primary built-in data structures: lists, tuples, dictionaries and sets.
 
-### Lists
+#### Lists
 
 Lists are ordered, mutable, variable length collections. You can think of them as equivalent to Java's `ArrayList`.
 ```python
@@ -447,7 +451,7 @@ Lists can be **sliced** using the indexing syntax, retrieving a sublist
 
 > Play around with the indexing until you can determine why the last example behaves as it does.
 
-### Tuples
+#### Tuples
 
 Tuples are mostly like lists, but are immutable.
 ```python
@@ -470,7 +474,7 @@ Traceback (most recent call last):
 TypeError: 'tuple' object does not support item assignment
 ```
 
-### Dictionaries
+#### Dictionaries
 
 Dictionaries are largely analoguous to Java's `Map` structure. They are a mutable key-value storage.
 ```python
@@ -503,7 +507,7 @@ False
 {'a': 4, 'b': 2, 'c': 3, 1: 'a'}
 ```
 
-### Sets
+#### Sets
 
 Sets are like lists, but are unordered and cannot contain duplicates.
 
@@ -525,9 +529,9 @@ Traceback (most recent call last):
 TypeError: unhashable type: 'set'
 ```
 
-### Empty collections, converting between collections.
+#### Empty collections, converting between collections.
 
-Notice how both the set and the dictionary use the `{}` delimiters. This means that the statement `x = {}` is ambiguous. 
+Notice how both the set and the dictionary use the `{}` delimiters. This means that the statement `x = {}` is ambiguous.
 
 > Use the `type()` method to determine what is created by calling `x = {}`
 
@@ -544,11 +548,11 @@ This is especially useful when you want to get the unique elements of a list:
 [0, 1, 2]
 ```
 
-## Control Flow
+### Control Flow
 
 Python has three primary control flow statements: `if`, `for` and `while`.
 
-### If
+#### If
 ```python
 a = 1
 if a == 2:
@@ -556,10 +560,10 @@ if a == 2:
 elif a > 2:
     print('a is bigger than 2')
 else:
-    print('a is less than 2') 
+    print('a is less than 2')
 ```
 
-### For
+#### For
 `for` loops are like Java's "for each" loops.
 
 ```python
@@ -587,7 +591,7 @@ for i in range(10, 20, 2):
 
 > What happens if you iterate over a `some_dict.items()`?
 
-### While
+#### While
 While loops are exactly like in Java:
 ```python
 i = 0
@@ -596,7 +600,7 @@ while i < 10:
     i += 1
 ```
 
-### `break` and `continue`
+#### `break` and `continue`
 These work as you'd expect from Java. In other words, `continue` jumps to the next iteration of the loop and `break` ends the loop.
 ```python
 >>> for i in range (100):
@@ -605,7 +609,7 @@ These work as you'd expect from Java. In other words, `continue` jumps to the ne
 ...   if i >= 10:
 ...     break
 ...   print(i)
-... 
+...
 1
 3
 5
@@ -613,7 +617,7 @@ These work as you'd expect from Java. In other words, `continue` jumps to the ne
 9
 ```
 
-### `for .. else`
+#### `for .. else`
 
 You can add an `else` statement to a `for` or a `while`. Code in the `else` is ran if the loop ends withouth encountering a `break` statement. This is useful e.g. when trying to find a suitable value from collection.
 ```python
@@ -624,7 +628,7 @@ else:
     print("Never reached the break statement")
 ```
 
-## Defining methods
+### Defining methods
 
 Methods are defined using the keyword `def`. By convention, methods are named using snake_casing.
 ```python
@@ -656,7 +660,7 @@ Note how the methods do not have attached type information. This enables you to 
 ...     print(box_char * width)
 ...     print(box_char, content, box_char)
 ...     print(box_char * width)
-... 
+...
 >>> print_box('Hi!')
 #######
 # Hi! #
@@ -667,7 +671,7 @@ Note how the methods do not have attached type information. This enables you to 
 ****************
 ```
 
-## Lambda functions
+### Lambda functions
 
 Functions can also be declared anonymously as *lambda functions*.
 ```python
@@ -697,7 +701,7 @@ As a slightly more complex example, you might use it to sort a list of dictionar
 
 Note how it's allowed to split the declaration of the collection over multiple lines even without using the `\` characters.
 
-## Iterators
+### Iterators
 
 We've previously seen how we can iterate over a range using `range` or iterate over a collection using the `for` loop. There are a few other iterators that are very useful:
 
@@ -706,7 +710,7 @@ The `enumerate()` iterator allows us to iterate over both the indices and values
 >>> my_list = ['a', 'b', 'c']
 >>> for index, value in enumerate(my_list):
 ...     print(index, value)
-... 
+...
 0 a
 1 b
 2 c
@@ -725,7 +729,7 @@ The for loop just automatically unpacks the tuple for us, so that we don't have 
 ...     index = index_value_tuple[0]
 ...     value = index_value_tuple[1]
 ...     print(index, value)
-... 
+...
 0 a
 1 b
 2 c
@@ -737,7 +741,7 @@ The `zip` iterator iterates over multiple lists at once:
 >>> list_b = ['A', 'B', 'C']
 >>> for a, b in zip(list_a, list_b):
 ...     print(a, b)
-... 
+...
 a A
 b B
 c C
@@ -747,7 +751,7 @@ c C
 
 See the `itertools` package in the Python documentation for additional iterators that are occasionally useful.
 
-## Comprehensions
+### Comprehensions
 
 One of the most beautiful Python concepts, in the opinion the author, are *list comprehensions*, or just *comprehensions* in general. They can be used to succintly describe very complex patterns.
 
@@ -793,7 +797,7 @@ Standard function syntax can also be used to produce more complex generators. Th
 ...     while True:
 ...         yield a
 ...         a, b  = b, a + b
-... 
+...
 >>> fibo = fibonacci()
 >>> next(fibo)
 0
@@ -811,9 +815,9 @@ Standard function syntax can also be used to produce more complex generators. Th
 8
 ```
 
-To produce values, the code in the generator is ran until a `yield` statement is encountered. The yielded value is then returned to the caller. When the next value is requested, the generator continues from where it stopped (with the same state) and runs until it hits `yield` again. Notice how we used the `while True` loop to ensure an infinite amount of fibonacci numbers. 
+To produce values, the code in the generator is ran until a `yield` statement is encountered. The yielded value is then returned to the caller. When the next value is requested, the generator continues from where it stopped (with the same state) and runs until it hits `yield` again. Notice how we used the `while True` loop to ensure an infinite amount of fibonacci numbers.
 
-## Classes and objects
+### Classes and objects
 
 Classes are defined using the `class` keyword. The constructor(s) are defined by the "magic method" `__init__()`:
 ```python
@@ -834,7 +838,7 @@ class Person:
 
     def __repr__(self):
         return "<Person: " + self.__str__() + ">"
-    
+
     def __eq__(self, other):
         if type(other) != Person:
             return false
@@ -861,16 +865,18 @@ You would then use the class thus:
 Per Example (deceased)
 ```
 
-## Installing stuff and NLTK
+## Part II: Installing stuff, NLTK and SpaCy
 
 While Python has a good standard library, we are going to need specialized tools like the Natural Language Tool Kit (NLTK). Let's first install NLTK.
+
+### Virtual environments
 
 Installing a huge number of dependencies globally is a bad idea for a multitude of reasons. We'll want to set up a *virtual environment*, which is like a sandbox where we can play: Python modules you install in the virtual environment are not visible to other virtual environments. At the same time, the venv is not a virtual machine or a real sandbox: malicious code can do whatever it pleases.
 
 In your shell, run the following command to set up a new virtual environment, replacing `<venv_path>` with some directory:
 ```shell
 $ python3 -m venv <venv_path>
-``` 
+```
 This part only needs to be ran once.
 
 Next, we want to activate the virtual environment.
@@ -879,14 +885,16 @@ $ source <venv_path>/bin/activate
 ```
 This command needs to be run again every time you start a new shell.
 
-You can now start a Python interpreter by tying in 
+You can now start a Python interpreter by tying in
 ```shell
 (venv) $ python
-``` 
+```
 
 Note how you no longer need to type in `python3`, as in the first example of this page.
 
 > Verify that the Python interpreter that started is running Python 3 by checking the version information on the first line printed. It should start with "Python 3.x.y" for some values of "x" and "y".
+
+### Installing NLTK
 
 Exit the Python interpreter. We'll next install some useful dependencies using PIP, the Python package manager.
 ```shell
@@ -898,13 +906,16 @@ The first line asks pip to upgrade itself. This does not need to be run every ti
 Open up the Python interpreter again, and run the command `import nltk`:
  ```shell
  (venv) $ python
-Python 3.6.7 (default, Oct 22 2018, 11:32:17) 
+Python 3.6.7 (default, Oct 22 2018, 11:32:17)
 [GCC 8.2.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import nltk
->>> 
+>>>
 ```
 This loads the nltk module. If you got an error message, something went wrong in a previous step.
+
+
+### Basic use of NLTK
 
 Next up, we'll download a corpus that comes with the NTLK. In your Python interpreter, write `nltk.download()`. A window should pop up. Select the tab "Corpora", select the corpus "*inaugural*" and press "download". The status should switch from "not installed" to "installed". We've now downloaded a corpus of the inaugural speeches of US presidents. Close the window.
 
@@ -935,7 +946,7 @@ Next up, let's take a close look at Kennedy's speech in 1961 by loading it up as
 >>> sents = nltk.corpus.inaugural.sents('1961-Kennedy.txt')
 ```
 
-Observe the data loaded into the variable `sents`. It should contain a list of lists. The inner lists are sentences, where each element of the list is a token like a word or punctuation. 
+Observe the data loaded into the variable `sents`. It should contain a list of lists. The inner lists are sentences, where each element of the list is a token like a word or punctuation.
 
 We can use the built-in `max` function to find the longest sentence:
 ```python
@@ -968,7 +979,7 @@ As the first graded assignment, let's find the very longest sentence in the whol
 First, we'll use a list comprehension to iterate over the individual speeches. The comprehension will, for each speach, add to the list a tuple containing the file of the speech and the longest sentence:
 
 ```python
->>> longest_sents = [(speech, max(corpus.sents(speech), key=len)) for speech in corpus.fileids()] 
+>>> longest_sents = [(speech, max(corpus.sents(speech), key=len)) for speech in corpus.fileids()]
 >>> longest_sents[0]
 ('1789-Washington.txt', ['I', 'dwell', 'on', 'this', 'prospect', 'with', 'every', 'satisfaction', ...])
 ```
@@ -988,9 +999,9 @@ Call `' '.join(longest[1])` (note the space inside quotes) to get a slightly nic
 >
 > Submit to Moodle who's speech contained the longest sentence, when the speech was given and what the longest sentence was.
 
-## Simple NLP stuff
+### Simple NLP stuff
 
-Next up, let's use NLTK to determine for each word which part of speech it is. 
+Next up, let's use NLTK to determine for each word which part of speech it is.
 
 > Do this by passing the longest sentence (as list of words) to `nltk.pos_tag()` and storing the result. The result should look something like `[..., ('without', 'IN'), ('effect', 'NN'), ('.', '.')] `.
 
@@ -1014,7 +1025,7 @@ Use the `most_common(n)` method of the object you just constructed to determine 
 > To find out what the tags mean, install the NLTK module "tagsets" and read the output of `nltk.help.upenn_tagset()`. Don't worry if you don't understand them completely, but try to get some idea by looking at the examples.
 
 
-## SpaCy and entity recognition
+### SpaCy and entity recognition
 
 Let us also set up another NLP library, SpaCy. Start by installing **inside your virtual environment** the `pip` package `spacy`. Recall how you installed NLTK above.
 
