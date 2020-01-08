@@ -16,8 +16,6 @@ This week only, the page also contains assignments that look like shown below. A
 >
 >This is an example of an assignment you are expected to return to Moodle for grading.
 
-{% include toc.html html=content sanitize=true h_min=2 h_max=3 %}
-
 ## Part 1: Introduction to Python
 
 Note that the following is not a complete description of the Python programming language. You are expected to consult additional resources during the course. The official Python documentation is an excellent starting point. In addition, you might wish to consult the ebook [A whirlwind tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/), from which this document borrows heavily. In addition, you'll want to consult the NLTK book and NLTK documentation during the latter days.
