@@ -1035,7 +1035,7 @@ The above should have downloaded a model called `en_core_web_sm` and constructed
 
 >**MARKED ASSIGNMENT**
 >
-> Go to https://spacy.io/models/en and observe the three different English language model sets available. How much larger is `en_core_web_lg` compared to `en_core_web_sm` in terms of megabytes taken up by the model? Observe the accuracy scores reported for named entity recognition task (the rows in "NER accuracy"). An accuracy of 1 means that the model was correct in all test cases, whereas an accuracy of 0 would mean that it was wrong in all test cases. How much accuracy did the larger model gain for how many fold increase in model size?
+> Go to https://spacy.io/models/en and observe the three different English language model sets available. How much larger is `en_core_web_lg` compared to `en_core_web_sm` in terms of megabytes taken up by the model? Observe the NER F scores reported for named entity recognition task (the rows in "NER accuracy"). A score of 100 on this row would mean that the model was correct in all test cases, whereas a score of 0 would mean that it was wrong in all test cases. How much performance did the larger model gain for how many fold increase in model size when compared to the smallest model?
 
 In Python, import `spacy` and then load up a module containing English language models by calling `nlp = spacy.load('en')`.
 
