@@ -133,7 +133,7 @@ x, y = y, x  # swap x and y without an additional variable
 
 ### Whitespace
 
-Python uses *significant whitespace*. In other words, the indentations rules of Java, which are merely a convention, are actually enforced in Python. Where as you are technically allowed to write the following piece of Java
+Python uses *significant whitespace*. In other words, the indentation rules of Java, which are merely a convention, are actually enforced in Python. Where as you are technically allowed to write the following piece of Java
 ```java
 for(int i : someList) {
 System.out.println(i);    
@@ -180,7 +180,7 @@ Printing is done using the `print` function:
 print("some string")  # outputs "some string"
 ```
 
-Calling `print()` with multiple arguments prints them all on a single line with spaces as the separator. You are free to mix different types of arguments
+Calling `print()` with multiple arguments prints them all on a single line with spaces as the separator. You are free to mix different types of arguments:
 ```python
 print("this", "is", "my", "string", 1)  # prints "this is my string 1"
 ```
@@ -189,7 +189,7 @@ print("this", "is", "my", "string", 1)  # prints "this is my string 1"
 
 Python variables are assigned using the `=` operator.
 
-Perhaps the most obvious difference between Java and Python is the typing. Like Java, Python is *strongly* typed. That is, it a Python string consisting of only numbers can **not** be treated implicitly as a number:
+Perhaps the most obvious difference between Java and Python is the typing. Like Java, Python is *strongly* typed. That is, a Python string consisting of only numbers can **not** be treated implicitly as a number:
 ```python
 some_number = "1"
 print(2 * some_number) # Does NOT print "2"
@@ -201,7 +201,7 @@ my_variable = "1" # this is a string
 my_variable = 2 # this is a number
 ```
 
-> Determine what using the multiplication operator between a string and a number does. What if the number a non-positive integer? What if the number is a decimal, such as `2.5`?
+> Determine what happens when you multiple a string with a positive whole number. What if the number is a non-positive integer? What if the number is a decimal, such as `2.5`?
 
 Note the "snake_casing": by convention, only class names are in CamelCase.
 
@@ -234,17 +234,17 @@ You can also inspect an object using `dir()`:
 ['__abs__', '__add__', '__bool__', '__class__', '__delattr__', '__dir__', '__divmod__', '__doc__', '__eq__', '__float__', '__floordiv__', '__format__', '__ge__', '__getattribute__', '__getformat__', '__getnewargs__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__int__', '__le__', '__lt__', '__mod__', '__mul__', '__ne__', '__neg__', '__new__', '__pos__', '__pow__', '__radd__', '__rdivmod__', '__reduce__', '__reduce_ex__', '__repr__', '__rfloordiv__', '__rmod__', '__rmul__', '__round__', '__rpow__', '__rsub__', '__rtruediv__', '__setattr__', '__setformat__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__truediv__', '__trunc__', 'as_integer_ratio', 'conjugate', 'fromhex', 'hex', 'imag', 'is_integer', 'real']
 ```
 
-The methods/members that start with two underscores are "magic methods" that define things such as "what does addition using `+` mean for this object" (`__add__`). Normally you are not expected to call them directly.
+The methods/members that start with two underscores are "magic methods" that define things such as "what does addition using `+` mean for this object" (in the case of `__add__`). Normally you are not expected to call them directly.
 
 > Explore the methods of a string using, e.g. `dir("some string")`.
 
 ### Arithmetic operations.
 
-Math is largely the same as with Java. The most notable difference is in that integers are automatically translated to floats as needed. This is mostly relevant for division. Whereas in Java `1 / 2` is zero (`0.5` rounded down), in Python it is `0.5`. To get the same result as Java's integer division produces, you'll need to use the `1 // 2` operator.
+Math is largely the same as with Java. The most notable difference is that integers are automatically translated to floats as needed. This is mostly relevant for division. Whereas in Java `1 / 2` is zero (`0.5` rounded down), in Python it is `0.5`. To get the same result as Java's integer division produces, you'll need to use the `1 // 2` operator.
 
 Exponentiation is done as `a ** b`.
 
-There is no `++` operator, but you can combine assignment with the arithmetical operations for the same effect: `a += 1` is the same as `a = a + 1`. The `+` can be substituted with any other arithmetical operator, meaning `a %= 2` is the same as `a = a % 2`.
+There is no `++` operator, but you can combine assignment with the arithmetic operations for the same effect: `a += 1` is the same as `a = a + 1`. The `+` can be substituted with any other arithmetic operator, meaning `a %= 2` is the same as `a = a % 2`.
 
 ### Comparisons
 
@@ -257,7 +257,7 @@ True
 False
 ```
 
-> Convince yourself that this works as you'd expect
+> Convince yourself that this works as you'd expect.
 
 ### Boolean Operators
 
@@ -272,7 +272,7 @@ True
 True
 ```
 
-### Lists, Indentity and Membership
+### Lists, Identity and Membership
 
 Python lists are constructed using the bracket syntax:
 ```python
@@ -299,11 +299,43 @@ You can also check whether two objects are identical using `is` and `is not`:
 ```python
 >>> a = [1, 2]
 >>> b = [1, 2]
->>> a == b  # "equal": same list contents in same order
+>>> a == b  # "equal": same (identical) contents in same order
 True
 >>> a is b  # "identical": exact same object
 False
 ```
+
+You should by default use equality checks (`==`) with the exception being that it's [preferable](https://stackoverflow.com/questions/3257919/what-is-the-difference-between-is-none-and-none/3257957#3257957) to check whether some value is `None` using `is`:
+```python
+>>> x = None
+>>> x is None # Preferred
+True
+>>> x == None # Works but not preferred
+True
+```
+Similarly, prefer `x is not None` to `x != None`.
+
+>**Extra reading, can be skipped:**
+>
+>As to why `==` is preferred over `is`, there are various complicated behaviours with identity (`is`) and numbers and strings, as demonstrated here:
+>```python
+>>>> a = 256
+>>>> b = 256
+>>>> a is b, a == b
+>(True, True)
+>>>> a = 257
+>>>> b = 257
+>>>> a is b, a == b
+>(False, True)
+>>>> a, b = 257, 257
+>>>> a is b, a == b
+>(True, True)
+>```
+>The cause of the above weird behaviour is in how Python *interns* numbers and string. For example, the [documentation](https://docs.python.org/3/c-api/long.html) of the default Python implementation says this:
+>>The current implementation keeps an array of integer objects for all integers between -5 and 256, when you create an int in that range you actually just get back a reference to the existing object.
+> 
+> This gets even more complicated with strings. The takehome here is that `is` might behave weird and the weirdness is not quaranteed to be consistent across various installations of Python.
+
 
 ### Basic Types
 
@@ -550,7 +582,9 @@ This is especially useful when you want to get the unique elements of a list:
 
 Python has three primary control flow statements: `if`, `for` and `while`.
 
-#### If
+#### `if .. elif .. else`
+These work as you'd expect, with the notable difference that instead of Java's `else if`, Python uses `elif`.
+
 ```python
 a = 1
 if a == 2:
@@ -561,7 +595,7 @@ else:
     print('a is less than 2')
 ```
 
-#### For
+#### `for .. in`
 `for` loops are like Java's "for each" loops.
 
 ```python
@@ -589,7 +623,7 @@ for i in range(10, 20, 2):
 
 > What happens if you iterate over a `some_dict.items()`?
 
-#### While
+#### `while`
 While loops are exactly like in Java:
 ```python
 i = 0
