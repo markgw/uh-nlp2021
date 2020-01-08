@@ -16,7 +16,7 @@ This week only, the page also contains assignments that look like shown below. A
 >
 >This is an example of an assignment you are expected to return to Moodle for grading.
 
-{:toc}
+{% include toc.html html=content sanitize=true h_min=2 h_max=3 %}
 
 ## Part 1: Introduction to Python
 
