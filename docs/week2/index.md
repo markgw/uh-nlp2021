@@ -3,7 +3,7 @@
 **NB: This is an old assignment. It hasn't yet been updated for this year's course!**
 
 Carry out all the exercises below and submit your answers
-[on Moodle](https://moodle.helsinki.fi/mod/assign/view.php?id=1593564).
+[on Moodle](https://moodle.helsinki.fi/course/view.php?id=36809).
 Also submit a single Python file containing your full
 implementation.
 
@@ -47,12 +47,17 @@ stopWords = set(stopwords.words('english'))
 print(stopWords)
 ````
 
-* What is sentence tokenization?
-* What is word tokenization?
-* What is POS tagging and why is it useful?
-* What is lemmatization and why is it useful?
-* What kind of words were in `stopWords`? What is the purpose of defining a set of such words?
-* Build your own NLP pipeline (a function named `process_text(text)`) that takes a paragraph as input, and splits the paragraph into sentences, applies word tokenization, POS tagging and lemmatization on all words. The function should return a list containing the processed sentences. The format of the returned processed text could be something like this
+> What is sentence tokenization?
+>
+> What is word tokenization?
+>
+> What is POS tagging and why is it useful?
+>
+> What is lemmatization and why is it useful?
+>
+> What kind of words were in `stopWords`? What is the purpose of defining a set of such words?
+>
+> Build your own NLP pipeline (a function named `process_text(text)`) that takes a paragraph as input, and splits the paragraph into sentences, applies word tokenization, POS tagging and lemmatization on all words. The function should return a list containing the processed sentences. The format of the returned processed text could be something like this
 ````python
 [ # sentences
 	[ # sentence 0, contains words
@@ -62,8 +67,9 @@ print(stopWords)
   ...
 ]
 ````
-* Implement a function (`filter_text(text)`) that uses `process_text(text)` to process a paragraph and then removes stop words and words that are not verbs, adjectives or nouns (for descriptions of POS tags, [read this](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html)).
-* **Submit your answers**
+> Implement a function (`filter_text(text)`) that uses `process_text(text)` to process a paragraph and then removes stop words and words that are not verbs, adjectives or nouns (for descriptions of POS tags, [read this](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html)).
+>
+> **Submit your answers**
 
 ###  Exercise 1.2: Using spaCy
 In this exercise, you will install and use an a Natural Language Processing (NLP) tool other than NLTK, namely [*spaCy*](https://spacy.io/).
@@ -104,11 +110,15 @@ for chunk in doc.noun_chunks: # for iterating over noun chunks
           chunk.root.head.text)
 ````
 
-* What is dependency parsing and how is it different than POS tagging?
-* What is the difference between `token.pos_` and `token.tag_`?
-* What is noun phrase chunking?
-* What is named entity recognition? Describe any two types of entities that spaCy can recognize.
-* **Submit your answers**
+> What is dependency parsing and how is it different than POS tagging?
+>
+> What is the difference between `token.pos_` and `token.tag_`?
+>
+> What is noun phrase chunking?
+>
+> What is named entity recognition? Describe any two types of entities that spaCy can recognize.
+>
+> **Submit your answers**
 
 
 For additional reading regarding spaCy (optional):
@@ -127,8 +137,10 @@ The goal of this exercise is to experiment with different NLP tools, know what t
 
 Try parsing a simple sentence (e.g. "I have a dog.") using the tools. Now, parse the text given in the first exercise. Do the same for "Finger Lickin' Good.", "Finger licking good.", "Think Different." and "Think different.". Compare the results by the tools.
 
-* From your observations, any differences between the results (e.g. parsed trees, POS tags, ... etc) of spaCy and CoreNLP? Briefly discuss the difference and any missing/correct/wrong results by the tools.
-* **Submit your answers**
+> From your observations, any differences between the results (e.g. parsed trees, POS tags, ... etc) of spaCy and CoreNLP? Briefly discuss the difference and any missing/correct/wrong results by the tools.
+>
+> **Submit your answers**
+
 
 #### Other NLP tools (Optional)
 In case you'd like to try out other NLP tools, here are some more:
@@ -194,8 +206,9 @@ distance = editdistance.eval(pronounce('pi'), pronounce('pie')) # 0 == identical
 Using the given code snippets, implement `make_punny(text)`. Feel free to add any custom improvements/measures to enhance the quality of puns (e.g. considering multiple punny words and presenting them to user, using the weights provided by Thesaurus Rex, ... etc).
 
 
-* What are the punny expressions for "Jurassic Park" and "Life of Pi" produced by your method. Choose two custom movie titles and report the output of your method.
-* **Submit your answers**
+> What are the punny expressions for "Jurassic Park" and "Life of Pi" produced by your method. Choose two custom movie titles and report the output of your method.
+>
+> **Submit your answers**
 
 
 
@@ -229,15 +242,17 @@ false negatives. Then, compute the values of the following metrics (round the va
 * Recall
 * F-score with &beta; = 1 (also known as *F1-score*)
 * Accuracy
-* **Submit the values you computed for each metric**
+
+> **Submit the values you computed for each metric**
 
 ### Exercise 1.2
 
 Consider the following scenario: a database consists of 10,000 documents in total, of which 10 are relevant.    
 
-* Is accuracy an appropriate metric for evaluating the performance of a retrieval system in this scenario?
+> Is accuracy an appropriate metric for evaluating the performance of a retrieval system in this scenario?
 Why/why not? Discuss shortly.
-* **Submit your answer**
+>
+> **Submit your answer**
 
 
 ## Exercise 2: Evaluation of a POS tagger
@@ -287,10 +302,13 @@ class for this exercise.
 That is, an entry `cm[correct_tag, predicted_tag]` is the number of times a token with true tag `correct_tag` was
 tagged with `predicted_tag`.)
 
-* Which `(correct_tag, predicted_tag)` pair was the most common error? How many times did it occur?
-* What is the overall accuracy of the HMM tagger? (Round the value to two decimal places.)
-* Compute the precision, recall, and F1-score (&beta; = 1) for the tag `'NN'`. (Round the value to two decimal places.)
-* **Submit the answers**
+> Which `(correct_tag, predicted_tag)` pair was the most common error? How many times did it occur?
+>
+> What is the overall accuracy of the HMM tagger? (Round the value to two decimal places.)
+>
+> Compute the precision, recall, and F1-score (&beta; = 1) for the tag `'NN'`. (Round the value to two decimal places.)
+>
+> **Submit the answers**
 
 
 ### Exercise 2.2: Comparison with baselines
@@ -306,9 +324,11 @@ Now, implement the following functions:
 
 Compute the overall accuracy of both baselines, and compare the values with the HMM.
 
-* Which baseline performs better?
-* What is the difference in accuracy (expressed in [percentage points](https://en.wikipedia.org/wiki/Percentage_point)) between this baseline and the HMM? (Round the value to one decimal place.)   
-* **Submit the name of baseline and accuracy difference**
+> Which baseline performs better?
+>
+> What is the difference in accuracy (expressed in [percentage points](https://en.wikipedia.org/wiki/Percentage_point)) between this baseline and the HMM? (Round the value to one decimal place.)   
+>
+> **Submit the name of baseline and accuracy difference**
 
 
 ### Exercise 2.3: Evaluation of HMM language model
@@ -321,7 +341,8 @@ Again, use the `log_probability()` method of the HMM to compute the total log-pr
 * Compute the perplexity given the log-probability (round the value to two decimal places).
 * What does the perplexity of a language model describe? Explain shortly.
 * How could we find out whether the HMM language model is 'good'? Explain shortly.
-* **Submit the perplexity value and explanations**
+
+> **Submit the perplexity value and explanations**
 
 ## Exercise 3: Text annotation
 
@@ -344,9 +365,11 @@ The tags are described [here](https://www.ling.upenn.edu/courses/Fall_2003/ling0
 (It is not the aim of the exercise to annotate exactly according to guidelines,
 so simply make your best guess of the correct tag.)       
 
-* Give an example of a word/phrase you found difficult to annotate.  
-* Why is this example difficult? Explain shortly.
-* **Submit your answer as text**
+> Give an example of a word/phrase you found difficult to annotate.  
+>
+> Why is this example difficult? Explain shortly.
+>
+> **Submit your answer as text**
 
 
 ### Exercise 3.2
@@ -359,5 +382,6 @@ tags2 = ['IN', 'DT', 'JJ', 'NN', 'EX', 'VBP', 'JJ', 'JJ', 'NNS', 'IN', 'NN', 'VB
 tags3 = ['DT', 'JJ', 'NN', 'VBZ', 'IN', 'WP', 'MD', 'VB', 'DT', 'NN', 'CC', 'VB', 'PRP$', 'JJ', 'NNS']
 ````
 
-* Compute the *raw agreement rate* between your own annotations and the tags above.
-**Submit the rate**  
+> Compute the *raw agreement rate* between your own annotations and the tags above.
+>
+> **Submit the rate**  
