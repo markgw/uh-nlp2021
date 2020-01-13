@@ -1,8 +1,6 @@
 # Week 1: Python for Java programmers, installing stuff and simple NLP
 
-**NB: The contents, including the assignments, on this page can change up until the end of the first lecture.**
-
-This day has two parts. The first is a short introduction to the Python 3 programming language. We assume a good general programming knowledge. This mean e.g. background in the Java programming language, on the level of Introduction to Programming (Ohjelmoinnin perusteet) and Advanced Programming (Ohjelmoinnin jatkokurssi) as taught at the department. For those who are already familiar with Python, this part serves as a refresher.
+This week's material has two parts. The first is a short introduction to the Python 3 programming language. We assume a good general programming knowledge. This mean e.g. background in the Java programming language, on the level of Introduction to Programming (Ohjelmoinnin perusteet) and Advanced Programming (Ohjelmoinnin jatkokurssi) as taught at the department. For those who are already familiar with Python, this part serves as a refresher.
 
 The second part is about installing some required third party libraries and verifying they work by doing some simple NLP tasks that are common as the initial stages in NLP pipelines.
 
