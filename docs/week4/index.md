@@ -3,7 +3,7 @@
 **NB: This is an old assignment. It hasn't yet been updated for this year's course!**
 
 Carry out all the exercises below and submit your answers
-[on Moodle](https://moodle.helsinki.fi/course/view.php?id=33565#section-4).
+[on Moodle](https://moodle.helsinki.fi/course/view.php?id=36809).
 Also submit a single Python file containing your full
 implementation.
 
@@ -40,18 +40,24 @@ these and NLTK's `is_flexible_chomsky_normal_form()`
 method does too.
 
 ````python
-print(small_cfg.is_flexible_chomsky_normal_form())
+print(cfg.is_flexible_chomsky_normal_form())
 ````
 
 ![Example tree 1](example_tree1.png "Example tree 1")
 
 ![Example tree 2](example_tree2.png "Example tree 2")
 
- * Look at the two example trees above, taken from the Penn Treebank.
+![Example tree 3](example_tree3.png "Example tree 3")
+
+ * Look at the three example trees above, which use
+   Penn Treebank-style expansions.
    Write a CFG using the above format that produces
-   these tree analyses for these two sentences.
+   these tree analyses for the three sentences.
    (The grammar does not yet need to be in CNF.)
- * **Submit your CFG rules in text form**
+ * Your grammar should have two ways of expanding an
+   `NP` non-terminal (NT). Why?
+ * List two other NTs that can be expanded in multiple ways.
+ * **Submit your CFG rules in text form and the answers to the other questions**
 
 
 
@@ -61,23 +67,31 @@ The NLTK CFG type has a method to check that
 all the words of the input sentence are covered
 by lexical rules in the grammar. Check now that
 you've got lexical rules in your grammar for the
-two example sentences.
+three example sentences.
 
 ````python
 # Check that all the words of the input sentence are covered
 sentences = [
-    "the purchase price includes two ancillary companies .".split(),
-    "the guild began a strike against the TV and movie industry in March 1988 .".split(),
+    "how did the blue dog fly ?".split(),
+    "the blue dog flew past .".split(),
+    "in the past the dog did not fly .".split(),
 ]
 for s in sentences:
     grammar.check_coverage(s)
 ````
 
+Note that this does not check that the grammar
+*generates* the sentence – i.e. that there exists
+a derivation tree under the grammar that produces
+the sentence. It merely checks that there are rules
+in the lexicon for all the words in the sentence.
 
  * Add some more rules to your grammar so that it can
-   also generate the sentence:
+   also generate the following sentences:
 
-   *"the guild bought one ancillary company ."*
+   * *"earlier the dog did not fly ."*
+   * *"the dog flew without past experience ."*
+
  * Check that the new, extended grammar can be loaded
    and that it covers the new sentence as well as the old
    ones.
@@ -91,11 +105,11 @@ of sentences are covered by the grammar. We haven't
 yet used the grammar to parse the sentences.
 NLTK includes implementations of a number of different
 parsing algorithms, including the bottom-up chart parsing
-algorithm introduced in the lecture (*CKY*).
+algorithm introduced in the lecture – *CKY*.
 
 The example trees include nodes with more than two
-children (e.g. the NP covering *"the TV and movie
-industry"*). This causes problems for the parsing
+children (e.g. the NP covering *"the blue dog"*).
+This causes problems for the parsing
 algorithm, but any CFG can be converted to
 **Chomsky normal form** (CNF) without
 changing the sentences it generates.
@@ -111,11 +125,17 @@ B2 -> B C
 ````
 where `B2` is a new non-terminal.
 
+Strict CNF does not allow *unary* rules – ones with only
+a single element on the RHS. However, these make writing
+the grammar easier and are not a problem for the parsing
+algorithm we are going to use.
+
  * Convert your grammar above into "flexible" CNF
    (i.e. CNF, but allowing unary rules), load it and
    verify that it's correct using
    `cfg.is_flexible_chomsky_normal_form()`.
- * **Submit the full grammar in text form.**
+ * **Submit in text form just the rules that you
+    needed to change to produce a CNF grammar.**
 
 
 
@@ -137,17 +157,19 @@ one full parse for each of the example sentences in
 exercises 1 and 2, repeated here:
 
 ````
-the purchase price includes two ancillary companies .
-the guild began a strike against the TV and movie industry in March 1988 .
-the guild bought one ancillary company .
+how did the blue dog fly ?
+the blue dog flew past .
+in the past the dog did not fly .
+earlier the dog did not fly .
+the dog flew without past experience .
 ````
 
-Confirm that the trees produced by the parser match
-the two example trees (with the exception of the
-additional nodes added in normalization of the grammar).
+You can use the method `parse.draw()` to display the
+parse result graphically.
 
-(You can use the method `parse.draw()` to display the
-parse result graphically.)
+Confirm that the trees produced by the parser match
+the three example trees (with the exception of the
+additional nodes added in normalization of the grammar).
 
  * Do you get multiple full parses for any of your
    sentences?
@@ -158,11 +180,7 @@ parse result graphically.)
 
 
 
-
-
-
 ## Section 2: Treebank parser
-
 
 ### Exercise 5: Treebank grammar
 
@@ -218,6 +236,8 @@ of the corpus.
 Use your grammar as you did in exercise 4 to parse the following
 sentences.
 
+   **TODO Change these sentences**
+
 ````
 Mr. Vinken is chairman .
 Stocks rose .
@@ -252,6 +272,8 @@ Begin by collecting counts of the many expansions of an `S`
 non-terminal and using these to estimate a probability
 distribution for `S -> ?` rules.
 
+   **TODO Change to something other than S. Maybe do for two NTs.**
+
  * Show the counts from which you estimate the probabilities
    and the probabilities of the expansions.
  * Exclude from
@@ -271,7 +293,7 @@ from nltk import induce_pcfg
 pcfg = induce_pcfg(Nonterminal("S"), productions)
 ````
 
-The probabilities are computed in the same way you did
+The probabilities are computed in the same way as you did
 in the previous exercise.
 
 NLTK's `InsideChartParser` provides a probabilistic version
@@ -311,6 +333,10 @@ They will need to be tokenized
 in the same style as the Penn Treebank. You can either do that
 manually or use NLTK's `TreebankWordTokenizer`, which
 produces PTB-style tokenization.
+
+Try to find sentences that use only words covered by the grammar
+(check using `check_coverage()` as above), so there's a chance
+the grammar will generate them.
 
  * Did you find any parsable sentences?
  * How might you extend your parser to increase its coverage, so
