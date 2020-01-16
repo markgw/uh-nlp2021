@@ -6,59 +6,59 @@
     of them might be good ideas for extensions of this year's
     assignments into a final project.
 
-Today it's time to put together various components of an NLP pipeline that
-we've seen in the course and build a bigger system that does something
-cool. There are no specific exercises: instead you will submit a short
-report.
+In the final project, you should implement an extension to one of the
+systems that you produced in the assignments. Wherever appropriate,
+the assignment instructions contain a list of ideas for possible
+extensions.
 
-**You can choose what you build.** Below are a number of possible options,
-with instructions or ideas on how you might put together a suitable
-pipeline. You don't need to follow the instructions exactly. We just
-expect you to make use of a good number of different NLP components.
-
-**If you have a great idea** for some other system that you could build,
-on a suitable scale (i.e. doable in the afternoon session), you're
-welcome to do that. Make sure to explain in your report what
-your system does and why you chose to perform the analyses you did!
+**You can choose what you build.** You do not need to choose one of
+the suggested extensions. If you do, you don't need to follow the
+instructions exactly. The main criterion is that you display an
+understanding of:
+ - the theoretical content relevant to the particular
+   task, as given in lectures;
+ - how this can be applied in practice; and
+ - what its limitations might be.
 
 
 ## Submission
 
 You should submit a **short report** containing the following:
- * The task your system addresses
- * The pipeline you used, especially any standard components
- * Some analysis of the system's performance: e.g.
+ * What does you system (extension) do?
+ * How did you tackle the task?
+ * Did it work? How well? How do you know? Give some analysis of the system's performance: e.g.
    - Any evaluation results available
    - Conclusions from manual inspection of output
-   - Problems that meant you didn't any satisfactory output
- * How you might extend or improve the system if you had more
+   - Problems that meant you didn't get any satisfactory output
+ * How you might extend or improve the system further if you had more
    time (or computing resources, or data, ...)
 
 Also submit **your code** as a single Python file.
-(Don't worry too much about cleaning it up or submitting
-production-quality code!)
+Don't worry too much about cleaning it up or submitting
+production-quality code! As with the assignments, we will
+not mark the code itself – it is only for reference when marking
+your report.
 
-We will not be grading your submission in any detail on the basis
+We will **not** be grading your submission on the basis
 of the success of your system. The main purpose of this assignment
-is for you to have putting into practice a bit of what you've learned
-for your own benefit.
+is for you to have putting into practice what you've learned
+to gain a better understanding of the challenges of building
+successful, real-world NLP systems.
 
 
-## System suggestions
+## System ideas
 
-Here are some suggestions for systems you might build. Further
-down are instructions, tips, ideas, etc. for each.
+Here are some ideas for NLP systems that could be built using the kind of
+components we have seen or developed. You could use these as the basis
+for your extension, or as inspiration: e.g. implement an extension to a
+tool that would make it more suitable for use in a system here.
 
-The first two suggestions come from the course organisers. The others
-are your own
-[ideas that you wrote in groups during day 2's lecture](https://moodle.helsinki.fi/mod/forum/view.php?id=1598902).
-They will mostly need some refinement (in particular, making them
-much less ambitious!) for this purpose.
+We do not expect you to produce a full working system for any of
+these ideas.
 
  * [Temporal information extraction system](#temporal-information-extraction)
  * [Metaphor generation system](#metaphor-generation-system)
  * [Pun generation system](#pun-generation-system)
- * [Identify similar words](#identify-similar-words)
  * [Text summarization](#text-summarization)
  * [Language generation](#language-generation)
  * [News tagging](#news-tagging)
@@ -66,12 +66,10 @@ much less ambitious!) for this purpose.
  * [Automatic medical diagnosis system](#automatic-medical-diagnosis-system)
 
 
-## Instructions and ideas
-
 ### Temporal information extraction
 
 Here we can continue working on the Temporal Information Exctraction problem,
-which we started on day 8. It is assumed that you finished Day 8 assignments
+which we started in week 7. It is assumed that you finished the W7 assignments
 and have implemented two time-expression annotators: regex-based and
 spaCy-based.
 
@@ -220,39 +218,10 @@ The goal of this exercise is to extend the pun generator you have implemented du
 * Different pronunciation measurement (have a look at [abydos](https://github.com/chrislit/abydos))
 
 
-### Identify similar words
-
-[Original suggestion](https://moodle.helsinki.fi/mod/forum/discuss.php?d=864581#p2126484)
-
-Pipeline:
- 1. Sentence level tokenization
- 2. Word level tokenization
- 3. Remove stop words and punctuation
- 4. Lemmatization
- 5. Morphological analysis
- 6. Chunking to phrases
- 7. Vectorizing words
- 8. Comparing cosine similarities
-
-There are lots of sources of ready-made word vectors out there for
-English, and many other languages. However, this could be an interesting
-thing to try because:
- * it gives you practical experience of constructing embeddings;
- * you can play around with different methods (e.g. dependency-based
-   features, phrase vectors) to see how they affect the results;
- * you could experiment with the effects of training on different
-   languages, domains, language types, etc.
-
-
-
 
 ### Text summarization
 
-[Original suggestion](https://moodle.helsinki.fi/mod/forum/discuss.php?d=864580#p2126483)
-
-Text summarizatoin accepts as input an arbitrary text (e.g. news article, conversation) and produces its short summary.
-
-**It uses**
+Text summarization accepts as input an arbitrary text (e.g. news article, conversation) and produces its short summary.
 
 Standard NLP components:
 * tokenization
@@ -290,8 +259,6 @@ choosing important phrases, constructing the summary, etc.
 
 ### Language generation
 
-[Original suggestion](https://moodle.helsinki.fi/mod/forum/discuss.php?d=864579#p2126481)
-
 *A system for generating text.*
 
  1. A large corpus is split into sentences.
@@ -315,8 +282,6 @@ Interesting things you could explore/learn from this:
 
 
 ### News tagging
-
-[Original suggestion](https://moodle.helsinki.fi/mod/forum/discuss.php?d=864577#p2126479)
 
 *The system gives tags to news articles.*
 
@@ -352,8 +317,6 @@ Here are some ideas:
 
 
 ### Recognizing politicians' stand-point through their Twitter
-
-[Original suggestion](https://moodle.helsinki.fi/mod/forum/discuss.php?d=864582)
 
 Pipeline:
  1. Extract English data from twitter messages of politicians
@@ -398,8 +361,6 @@ for example.
 
 
 ### Automatic medical diagnosis system
-
-[Original suggestion](https://moodle.helsinki.fi/mod/forum/discuss.php?d=864583#p2126489)
 
 User calls the medical hotline and describes the symptoms.
 The system tries to guess the nature of the illness based on the description.
