@@ -1,11 +1,5 @@
 # Final project: extending a system
 
-**NB: This is an old assignment. It hasn't yet been updated for this year's course!**
-
-    These were final projects for last year's course. Some
-    of them might be good ideas for extensions of this year's
-    assignments into a final project.
-
 In the final project, you should implement an extension to one of the
 systems that you produced in the assignments. Wherever appropriate,
 the assignment instructions contain a list of ideas for possible
