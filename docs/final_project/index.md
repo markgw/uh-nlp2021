@@ -23,7 +23,7 @@ understanding of:
 
 ## Submission
 
-You should submit a **short report** containing the following:
+You should submit a **short report** (2-3 pages) containing the following:
  * What does you system (extension) do?
  * How did you tackle the task?
  * Did it work? How well? How do you know? Give some analysis of the system's performance: e.g.
@@ -32,6 +32,8 @@ You should submit a **short report** containing the following:
    - Problems that meant you didn't get any satisfactory output
  * How you might extend or improve the system further if you had more
    time (or computing resources, or data, ...)
+
+The submission is due one week after the end of the course: **6.3.2020**.
 
 Also submit **your code** as a single Python file.
 Don't worry too much about cleaning it up or submitting
