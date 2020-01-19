@@ -1,7 +1,5 @@
 # Week 2: NLU Pipeline and Evaluation
 
-**NB: This is an old assignment. It hasn't yet been updated for this year's course!**
-
 Carry out all the exercises below and submit your answers
 [on Moodle](https://moodle.helsinki.fi/course/view.php?id=36809).
 Also submit a single Python file containing your full
@@ -72,16 +70,11 @@ print(stopWords)
 > **Submit your answers**
 
 ###  Exercise 1.2: Using spaCy
-In this exercise, you will install and use an a Natural Language Processing (NLP) tool other than NLTK, namely [*spaCy*](https://spacy.io/).
+In this exercise, you will install and use a Natural Language Processing (NLP) tool other than NLTK, namely [*spaCy*](https://spacy.io/).
 
-To install *spaCy*, open the terminal, load the virtual environment configured during the previous assignment and execute the following commands:
+Last week, you have installed *spaCy* and used it to recognize named entities in text. Let's see what else it has to offer.
 
-````sh
-pip install -U spacy # install the package
-python -m spacy download en # download the English model
-````
-
-Once installed, you can load and use the model as follows:
+Process the sentence in the previous example using the code below:
 
 ````python
 import spacy # import the spaCy module
@@ -95,20 +88,7 @@ for sent in doc.sents:
   print()
 ````
 
-When analyzing sentences, spaCy automatically runs the text throw an NLP pipeline (tokenizer, tagger, parser and so on). Read and try out the code snippets in [this article](https://spacy.io/usage/spacy-101) (until "Word vectors and similarity") and [this](https://spacy.io/usage/linguistic-features) (until "Tokenizer data") to familiarize yourself with spaCy (mainly: tokenization, POS tagging, lemmatization, dependency parsing, noun phrase chunking and named entity recognition).
-
-Sample code to iterate over detected named entities:
-````python
-for ent in doc.ents: # for iterating over detected entities
-  print(ent.text, ent.start_char, ent.end_char, ent.label_)
-````
-
-Sample code to iterate over noun chunks:
-````python
-for chunk in doc.noun_chunks: # for iterating over noun chunks
-  print(chunk.text, chunk.root.text, chunk.root.dep_,
-          chunk.root.head.text)
-````
+When analyzing sentences, spaCy automatically runs the text through an NLP pipeline (tokenizer, tagger, parser and so on). Read and try out the code snippets in [this article](https://spacy.io/usage/spacy-101) (until "Word vectors and similarity") and [this](https://spacy.io/usage/linguistic-features) (until "Tokenizer data") to familiarize yourself with spaCy (mainly: tokenization, POS tagging, lemmatization, dependency parsing, noun phrase chunking and named entity recognition). Once done, answer the questions below:
 
 > What is dependency parsing and how is it different than POS tagging?
 >
@@ -135,7 +115,7 @@ The goal of this exercise is to experiment with different NLP tools, know what t
 * (*optional*) NLTK, using the code you implemented.
 
 
-Try parsing a simple sentence (e.g. "I have a dog.") using the tools. Now, parse the text given in the first exercise. Do the same for "Finger Lickin' Good.", "Finger licking good.", "Think Different." and "Think different.". Compare the results by the tools.
+Try parsing a simple sentence (e.g. "I have a dog.") using the tools. Now, parse the text given in the first exercise. Do the same for "Finger Lickin' Good.", "Finger licking good."
 
 > From your observations, any differences between the results (e.g. parsed trees, POS tags, ... etc) of spaCy and CoreNLP? Briefly discuss the difference and any missing/correct/wrong results by the tools.
 >
@@ -146,80 +126,18 @@ Try parsing a simple sentence (e.g. "I have a dog.") using the tools. Now, parse
 In case you'd like to try out other NLP tools, here are some more:
 
 * [Stanford CoreNLP](https://stanfordnlp.github.io/CoreNLP/) *(Implemented in Java, follow this tutorial to use [Stanford CoreNLP from Python](https://www.khalidalnajjar.com/setup-use-stanford-corenlp-server-python/))*
+* [flair](https://github.com/flairNLP/flair)
+* [UralicNLP](https://github.com/mikahama/uralicNLP) (for processing Finnish and other Uralic languages)
 * [AllenNLP](https://allennlp.org/tutorials)
 * [Pattern](https://www.clips.uantwerpen.be/pages/pattern-en) (use `pip install pattern3` for *Python 3*)
 * [MaltParser](http://www.maltparser.org/)  (*Implemented in Java*)
-* [UralicNLP](https://github.com/mikahama/uralicNLP) (for processing Finnish and other Uralic languages)
 * Others?
 
+## Exercise 2: Evaluation
 
-## Exercise 2: Pun generation
-The goal of this exercise is to develop a simple application for generating food related puns. To do so, you will implement a method that accepts a simple expression as input, replaces a word in it with a new (punny) word and returns the new expression. You are expected to use either spaCy or your `process_text` for this exercise, in addition to NLTK's CMU library.
+In these exercises, we will be running multiple evaluation metrics that can be used in assessing the quality and performance of some NLP methods.
 
-
-To get food-related words, we will query [Thesaurus Rex](http://ngrams.ucd.ie/therex3). Thesaurus Rex mines categorical relations and adjectival modifiers of nouns from the web. To query and use Thesaurus Rex's API, install the following packages:
-
-
-````sh
-pip install requests xmltodict
-````
-
-The below function sends a request to the API to get words falling under the category "food", parsers the result and returns it. The function returns a dictionary where its keys are the words and the values are the weights (representing how related the word is to the category "food").
-
-````python
-import requests, xmltodict, pickle, os
-
-def food_words(file_path='./food_words.pkl'):
-  if os.path.isfile(file_path): # load stored results
-    with open(file_path, 'rb') as f:
-      return pickle.load(f)
-
-  url = 'http://ngrams.ucd.ie/therex3/common-nouns/head.action?head=food&ref=apple&xml=true'
-  response = requests.get(url)
-  result = xmltodict.parse(response.content)
-  _root_content = result['HeadData']
-  result_dict = dict(map(lambda r: tuple([r['#text'].replace('_', ' ').strip(), int(r['@weight'])]), _root_content['Members']['Member']))
-
-  with open(file_path, 'wb') as f: # store the results locally (as a cache)
-    pickle.dump(result_dict, f, pickle.HIGHEST_PROTOCOL)
-  return result_dict
-````
-
-Now that you have access to food-related words, implement a function `make_punny(text)` that processes the input `text`, selects a token that is either a verb or noun at random, replaces it with a similar sounding food-related word from `food_words()`. You can implement the function to return more than one punny variation (5 at most). To measure the pronunciation similarity between words, we will employ the *CMU Pronouncing Dictionary* provided in NLTK and Levenshtein edit distance.
-
-The below code loads the CMU dictionary and returns the pronunciation of a word. In case the module did not exist, run `nltk.download('cmudict')`.
-
-````python
-from nltk.corpus import cmudict
-arpabet = cmudict.dict()
-def pronounce(word):
-  return arpabet[word.lower()][0] if word.lower() in arpabet else None # make sure the word is lowercased and exists in the dictionary
-````
-
-You can use the Python existing package `editdistance` (install it using `pip install editdistance`) to measure the Levenshtein edit distance. Here is an example of how to use `editdistance` and `pronounce`:
-
-````python
-import editdistance
-distance = editdistance.eval(pronounce('pi'), pronounce('pie')) # 0 == identical pronunciation
-````
-
-Using the given code snippets, implement `make_punny(text)`. Feel free to add any custom improvements/measures to enhance the quality of puns (e.g. considering multiple punny words and presenting them to user, using the weights provided by Thesaurus Rex, ... etc).
-
-
-> What are the punny expressions for "Jurassic Park" and "Life of Pi" produced by your method. Choose two custom movie titles and report the output of your method.
->
-> **Submit your answers**
-
-
-
-
-## Exercises from day 5: Evaluation
-
-The following exercises were a separate day's exercises last year.
-
-
-## Exercise 1: Basics
-
+### Exercise 2.1
 
 Consider an information retrieval system that returns a retrieval set of 15 documents (`retrieved`).
 Each document in `retrieved` is labelled as *relevant* (`'R'`) or *non-relevant* (`'N'`):   
@@ -233,20 +151,20 @@ retrieved = ['R', 'N', 'N', 'R', 'R', 'N', 'N', 'N',
 
 ````
 
-### Exercise 1.1
-
 Continuing the snippet given above, compute the numbers of true positives, false positives, true negatives, and
 false negatives. Then, compute the values of the following metrics (round the values to two decimal places):
 
-* Precision
-* Recall
-* F-score with &beta; = 1 (also known as *F1-score*)
-* Accuracy
-
+> Precision
+>
+> Recall
+>
+> F-score with &beta; = 1 (also known as *F1-score*)
+>
+> Accuracy
+>
 > **Submit the values you computed for each metric**
 
-### Exercise 1.2
-
+### Exercise 2.2
 Consider the following scenario: a database consists of 10,000 documents in total, of which 10 are relevant.    
 
 > Is accuracy an appropriate metric for evaluating the performance of a retrieval system in this scenario?
@@ -255,25 +173,20 @@ Why/why not? Discuss shortly.
 > **Submit your answer**
 
 
-## Exercise 2: Evaluation of a POS tagger
+## Exercise 3: Evaluation of a POS tagger
+In this exercise, we will use the Penn Treebank corpus provided by NLTK to obtain POS annotations, as gold standard:
 
-In exercises 2.1-3, we evaluate a POS tagger based on a hidden Markov model (HMM), which you
-implemented on Day 3.
-
-Today, we will again use the Penn Treebank corpus that you used yesterday.
-You will already have downloaded yesterday using:
 ````python
 import nltk
 nltk.download('treebank')
 ````
 
-We use 80% of sentences for training, and the remaining 20% for testing.  
+We will use 80% of sentences for training, and the remaining 20% for testing.  
 The following code splits the corpus of sentences into training and test sentences,
 and assigns test tokens and the correct tags into separate lists.
 
-Train the HMM with `training_sents`, as in exercise 2 of Day 3.
 Download [ass5utils.py](ass5utils.py) into the same directory as
-your source code.
+your source code, then run the below code to train the HMM with `training_sents`:
 
 ````python
 from nltk.corpus import treebank
@@ -288,10 +201,9 @@ correct_tags = [t[1] for s in test_sents for t in s]
 hmm_tagger = HiddenMarkovModelTagger.train(training_sents)
 ````
 
-### Exercise 2.1: Confusion matrix
+### Exercise 3.1: Confusion matrix
 
-Use the HMM to predict the tags for `test_tokens`.
-(If you've forgotten how to do this, refer back to your code from day 3.)
+Use the HMM to predict the tags for `test_tokens`, refer to [`nltk.tag.hmm`](https://www.nltk.org/api/nltk.tag.html?#nltk.tag.hmm.HiddenMarkovModelTagger.tag) for additional details.
 
 Then, compute the confusion matrix between the predicted tags and `correct_tags`.  
 You can use the
@@ -311,77 +223,18 @@ tagged with `predicted_tag`.)
 > **Submit the answers**
 
 
-### Exercise 2.2: Comparison with baselines
+### Exercise 3.2: Comparison with baselines
 
-We would like to know whether the HMM tagger is any good compared to naive baselines.
+We would like to know whether the HMM tagger is any good compared to a naive baseline and to the `spaCy`.
 
-Now, implement the following functions:
+Implement the following function:
  * `random_tagger(tagset, tokens)`: given a list of tokens, assigns a POS tag randomly to each token.
  (The tagset is defined in [ass5utils.py](ass5utils.py).)
 
- * `majority_tagger(training_sents, tokens)`: find the tag that is most common in the training sentences,
- and tag each token with this tag.
+Compute the overall accuracy and F1-score of the random_tagger, and compare the values with the HMM and spaCy model.
 
-Compute the overall accuracy of both baselines, and compare the values with the HMM.
-
-> Which baseline performs better?
+> Which model has the best performance?
 >
-> What is the difference in accuracy (expressed in [percentage points](https://en.wikipedia.org/wiki/Percentage_point)) between this baseline and the HMM? (Round the value to one decimal place.)   
+> What is the difference in accuracy (expressed in [percentage points](https://en.wikipedia.org/wiki/Percentage_point)) between the random baseline, HMM, and spaCy? (Round the value to one decimal place.)
 >
 > **Submit the name of baseline and accuracy difference**
-
-
-### Exercise 2.3: Evaluation of HMM language model
-
-Recall exercise 5 on Day 3, where you used the HMM as a language model.
-
-Again, use the `log_probability()` method of the HMM to compute the total log-probability of test tokens.
-(The input should be given as `(token, None)` pairs.)
-
-* Compute the perplexity given the log-probability (round the value to two decimal places).
-* What does the perplexity of a language model describe? Explain shortly.
-* How could we find out whether the HMM language model is 'good'? Explain shortly.
-
-> **Submit the perplexity value and explanations**
-
-## Exercise 3: Text annotation
-
-Consider the following sentences from Penn Treebank corpus:
-````python
-s1 = ['So', 'far', 'Mr.', 'Hahn', 'is', 'trying', 'to', 'entice', 'Nekoosa', 'into', 'negotiating', 'a', 'friendly',
-'surrender', 'while', 'talking', 'tough']
-s2 = ['Despite', 'the', 'economic', 'slowdown', 'there', 'are', 'few', 'clear', 'signs', 'that', 'growth', 'is',
-'coming', 'to', 'a', 'halt']
-s3 =  ['The', 'real', 'battle', 'is', 'over', 'who', 'will', 'control', 'that', 'market', 'and', 'reap',
-'its', 'huge', 'rewards']
-````
-
-
-### Exercise 3.1
-
-Annotate the sentences with appropriate POS tags.
-The tags are described [here](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html).  
-
-(It is not the aim of the exercise to annotate exactly according to guidelines,
-so simply make your best guess of the correct tag.)       
-
-> Give an example of a word/phrase you found difficult to annotate.  
->
-> Why is this example difficult? Explain shortly.
->
-> **Submit your answer as text**
-
-
-### Exercise 3.2
-
-The corresponding gold-standard tags of the sentences are below:
-
-````python
-tags1 = ['IN', 'RB', 'NNP', 'NNP', 'VBZ', 'VBG', 'TO', 'VB', 'NNP', 'IN', 'VBG', 'DT', 'JJ', 'NN', 'IN', 'VBG', 'JJ']
-tags2 = ['IN', 'DT', 'JJ', 'NN', 'EX', 'VBP', 'JJ', 'JJ', 'NNS', 'IN', 'NN', 'VBZ', 'VBG', 'TO', 'DT', 'NN']
-tags3 = ['DT', 'JJ', 'NN', 'VBZ', 'IN', 'WP', 'MD', 'VB', 'DT', 'NN', 'CC', 'VB', 'PRP$', 'JJ', 'NNS']
-````
-
-> Compute the *raw agreement rate* between your own annotations and the tags above.
->
-> **Submit the rate**  
