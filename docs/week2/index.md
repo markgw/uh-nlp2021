@@ -10,8 +10,6 @@ implementation.
 ### Exercise 1.1: Using NLTK
 In the previous session, you have installed NLTK and used it to load a corpus. In this exercise, you will use NLTK to process sentences. More specifically, you will tokenize sentences and words, apply POS tagging on words, lemmatize them and remove any stop words in them.
 
-The following code imports the required NLTK modules for the task and calls the functions for tokenization, pos tagging and lemmatization. Run the code and answer the below questions.
-
 You might need to download the following NLTK packages:
 ````python
 import nltk
@@ -19,6 +17,8 @@ nltk.download('wordnet')
 nltk.download('stopwords')
 ````
 
+
+The following code imports the required NLTK modules for the task and calls the functions for tokenization, POS tagging and lemmatization. Run the code and answer the below questions.
 
 ````python
 from nltk.tokenize import sent_tokenize, word_tokenize
@@ -67,12 +67,13 @@ print(stopWords)
 ````
 > Implement a function (`filter_text(text)`) that uses `process_text(text)` to process a paragraph and then removes stop words and words that are not verbs, adjectives or nouns (for descriptions of POS tags, [read this](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html)).
 >
-> **Submit your answers**
+> What words are left when you run this filter on the example input text above? (Groucho Marx)
+>
+> **Submit your written answers to the questions**
 
 ###  Exercise 1.2: Using spaCy
-In this exercise, you will install and use a Natural Language Processing (NLP) tool other than NLTK, namely [*spaCy*](https://spacy.io/).
-
-Last week, you have installed *spaCy* and used it to recognize named entities in text. Let's see what else it has to offer.
+In this exercise, you will use an NLP tool other than NLTK, namely [*spaCy*](https://spacy.io/).
+Last week, you installed *spaCy* and used it to recognize named entities in text. Let's see what else it has to offer.
 
 Process the sentence in the previous example using the code below:
 
@@ -91,6 +92,8 @@ for sent in doc.sents:
 When analyzing sentences, spaCy automatically runs the text through an NLP pipeline (tokenizer, tagger, parser and so on). Read and try out the code snippets in [this article](https://spacy.io/usage/spacy-101) (until "Word vectors and similarity") and [this](https://spacy.io/usage/linguistic-features) (until "Tokenizer data") to familiarize yourself with spaCy (mainly: tokenization, POS tagging, lemmatization, dependency parsing, noun phrase chunking and named entity recognition). Once done, answer the questions below:
 
 > What is dependency parsing and how is it different than POS tagging?
+> (A short answer is enough here. This comes up in later lectures, so we'll
+< go into more detail then.)
 >
 > What is the difference between `token.pos_` and `token.tag_`?
 >
@@ -110,14 +113,17 @@ For additional reading regarding spaCy (optional):
 
 The goal of this exercise is to experiment with different NLP tools, know what they offer and compare them. The tools that you will use in this exercise are:
 
-* spaCy (Using the code above. Alternatively, you can use [https://explosion.ai/demos/displacy](https://explosion.ai/demos/displacy) to visualize the parsed dependencies. *Uncheck the merge options to see the full relations.*)
-* Stanford CoreNLP (Using [https://corenlp.run/](https://corenlp.run/))
-* (*optional*) NLTK, using the code you implemented.
+* **spaCy**: Using the code above. Alternatively, you can use [https://explosion.ai/demos/displacy](https://explosion.ai/demos/displacy) to visualize the parsed dependencies. (Uncheck *merge* options to see the full relations.)
+* **Stanford CoreNLP**: Using [https://corenlp.run/](https://corenlp.run/)
+* (*optional*) **NLTK**: Using the code you implemented above.
 
 
-Try parsing a simple sentence (e.g. "I have a dog.") using the tools. Now, parse the text given in the first exercise. Do the same for "Finger Lickin' Good.", "Finger licking good."
+Try parsing a simple sentence (e.g. "I have a dog.") using the tools. Now parse the text given in the first exercise. Do the same for:
 
-> From your observations, any differences between the results (e.g. parsed trees, POS tags, ... etc) of spaCy and CoreNLP? Briefly discuss the difference and any missing/correct/wrong results by the tools.
+ * *Finger Lickin' Good.*
+ * *Finger licking good.*
+
+> From your observations, note differences between the results (e.g. parsed trees, POS tags, ... etc) of spaCy and CoreNLP? Briefly discuss the difference and any missing/correct/wrong results by the tools.
 >
 > **Submit your answers**
 
@@ -130,8 +136,9 @@ In case you'd like to try out other NLP tools, here are some more:
 * [UralicNLP](https://github.com/mikahama/uralicNLP) (for processing Finnish and other Uralic languages)
 * [AllenNLP](https://allennlp.org/tutorials)
 * [Pattern](https://www.clips.uantwerpen.be/pages/pattern-en) (use `pip install pattern3` for *Python 3*)
-* [MaltParser](http://www.maltparser.org/)  (*Implemented in Java*)
-* Others?
+* [TextBlob](https://textblob.readthedocs.io/): simple interface to English NLP tools
+* [MaltParser](http://www.maltparser.org/): dependency parser (*implemented in Java*)
+
 
 ## Exercise 2: Evaluation
 
@@ -168,7 +175,7 @@ false negatives. Then, compute the values of the following metrics (round the va
 Consider the following scenario: a database consists of 10,000 documents in total, of which 10 are relevant.    
 
 > Is accuracy an appropriate metric for evaluating the performance of a retrieval system in this scenario?
-Why/why not? Discuss shortly.
+Why/why not? Discuss briefly.
 >
 > **Submit your answer**
 
@@ -237,4 +244,4 @@ Compute the overall accuracy and F1-score of the random_tagger, and compare the 
 >
 > What is the difference in accuracy (expressed in [percentage points](https://en.wikipedia.org/wiki/Percentage_point)) between the random baseline, HMM, and spaCy? (Round the value to one decimal place.)
 >
-> **Submit the name of baseline and accuracy difference**
+> **Submit the name of the best model and accuracy difference**
