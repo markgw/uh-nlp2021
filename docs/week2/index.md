@@ -245,3 +245,65 @@ Compute the overall accuracy and F1-score of the random_tagger, and compare the 
 > What is the difference in accuracy (expressed in [percentage points](https://en.wikipedia.org/wiki/Percentage_point)) between the random baseline, HMM, and spaCy? (Round the value to one decimal place.)
 >
 > **Submit the name of the best model and accuracy difference**
+
+
+
+## Extension/Final project suggestion: Pun generation
+The idea here would be to develop a simple application that utilizes the NLP pipeline for generating food related puns. To do so, you will implement a method that accepts a simple expression as input, replaces a word in it with a new (punny) word and returns the new expression. You are expected to use either spaCy or your `process_text` for this exercise, in addition to NLTK's CMU library.
+
+To get food-related words, we will query [Thesaurus Rex](http://ngrams.ucd.ie/therex3). Thesaurus Rex mines categorical relations and adjectival modifiers of nouns from the web. To query and use Thesaurus Rex's API, install the following packages:
+
+````sh
+pip install requests xmltodict
+````
+
+The below function sends a request to the API to get words falling under the category "food", parsers the result and returns it. The function returns a dictionary where its keys are the words and the values are the weights (representing how related the word is to the category "food").
+
+````python
+import requests, xmltodict, pickle, os
+
+def food_words(file_path='./food_words.pkl'):
+  if os.path.isfile(file_path): # load stored results
+    with open(file_path, 'rb') as f:
+      return pickle.load(f)
+
+  url = 'http://ngrams.ucd.ie/therex3/common-nouns/head.action?head=food&ref=apple&xml=true'
+  response = requests.get(url)
+  result = xmltodict.parse(response.content)
+  _root_content = result['HeadData']
+  result_dict = dict(map(lambda r: tuple([r['#text'].replace('_', ' ').strip(), int(r['@weight'])]), _root_content['Members']['Member']))
+
+  with open(file_path, 'wb') as f: # store the results locally (as a cache)
+    pickle.dump(result_dict, f, pickle.HIGHEST_PROTOCOL)
+  return result_dict
+````
+
+Now that you have access to food-related words, implement a function `make_punny(text)` that processes the input `text`, selects a token that is either a verb or noun at random, replaces it with a similar sounding food-related word from `food_words()`. You can implement the function to return more than one punny variation (5 at most). To measure the pronunciation similarity between words, we will employ the *CMU Pronouncing Dictionary* provided in NLTK and Levenshtein edit distance.
+
+The below code loads the CMU dictionary and returns the pronunciation of a word. In case the module did not exist, run `nltk.download('cmudict')`.
+
+````python
+from nltk.corpus import cmudict
+arpabet = cmudict.dict()
+def pronounce(word):
+  return arpabet[word.lower()][0] if word.lower() in arpabet else None # make sure the word is lowercased and exists in the dictionary
+````
+
+You can use the Python existing package `editdistance` (install it using `pip install editdistance`) to measure the Levenshtein edit distance. Here is an example of how to use `editdistance` and `pronounce`:
+
+````python
+import editdistance
+distance = editdistance.eval(pronounce('pi'), pronounce('pie')) # 0 == identical pronunciation
+````
+
+Using the given code snippets, implement `make_punny(text)`. Feel free to add any custom improvements/measures to enhance the quality of puns (e.g. considering multiple punny words and presenting them to user, using the weights provided by Thesaurus Rex, ... etc).
+
+> What are the punny expressions for "Jurassic Park" and "Life of Pi" produced by your method. Choose two custom movie titles and report the output of your method.
+
+Below are some suggestions that you may consider for your final project:
+
+* Build a generic pun generator (e.g. using words in `wordnet` or a dictionary of lemmatized words)
+* Consider specific prosody features (e.g. rhyme and alliteration)
+* Consider additional aesthetics when picking the replacement word (e.g. sentiment, semantic, ... etc).
+* Different pronunciation measurement (have a look at [abydos](https://github.com/chrislit/abydos))
+* Use [`eSpeak NG`](https://github.com/espeak-ng/espeak-ng) to obtain International Phonetic Alphabet (IPA) transcription of words to measure sonic similarities better.
