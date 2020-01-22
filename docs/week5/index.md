@@ -190,7 +190,7 @@ model.save("your_model_filename")
 model = Word2Vec.load("your_model_filename")
 ````
 What is the vocabulary size of your model?
-After loading your model, use the most_similar function in Gensim to find the word most similar to the following words (exlcuding itself):
+After loading your model, use the `similar_by_word()' method to find the word most similar to the following words (excluding itself):
 - system
 - human
 - trees
