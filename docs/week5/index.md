@@ -174,7 +174,7 @@ Next, train an LDA topic model for 10 topics on the pre-processed data. Read the
 What are the top 10 words for each topic?
 
 ### Exercise 5: Word embeddings
-In this exercise, we will train some word embeddings and do some simple queries on the trained model. Gensim also has modules for loading and training word embeddings, documentation [here] (https://radimrehurek.com/gensim/models/word2vec.html#module-gensim.models.word2vec). 
+In this exercise, we will train some word embeddings and do some simple queries on the trained model. Gensim also has modules for loading and training word embeddings, documentation [here](https://radimrehurek.com/gensim/models/word2vec.html#module-gensim.models.word2vec). 
 Use this code snippet to train Word2Vec embeddings from the common_texts corpus in Gensim:
 ````python
 from gensim.test.utils import common_texts
