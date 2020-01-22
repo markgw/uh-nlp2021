@@ -181,16 +181,14 @@ from gensim.test.utils import common_texts
 from gensim.models import Word2Vec
 
 model = Word2Vec(common_texts, size=100, window=5, min_count=1, workers=4)
-model.save("your_model_filename")
-````
-### Exercise 5.1: Finding similar words using word embeddings
-
-````python
-# Load your saved word embeddings
-model = Word2Vec.load("your_model_filename")
+# optional but there's no harm in saving the trained model
+model.save("word2vec.model")
 ````
 What is the vocabulary size of your model?
-After loading your model, use the `similar_by_word()` method to find the word most similar to the following words (excluding itself):
+
+### Exercise 5.1: Finding similar words using word embeddings
+
+After training your model, use the `similar_by_word()` method to find the word most similar to the following words (excluding itself):
 - system
 - human
 - trees
