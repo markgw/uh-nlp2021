@@ -1,6 +1,4 @@
-# Week 5: Vectors and Lexical Semantics
-
-**NB: This is an old assignment. It hasn't yet been updated for this year's course!**
+# Day 7: Vectors and Lexical Semantics
 
 Carry out all the exercises below
 and submit your answers on
@@ -9,7 +7,6 @@ Also submit a single Python file containing your full implementation.
 
 ## Exercise 0: Load the documents
 
-For this exercise session, we will mostly be using these five 'documents'.
 ````python
 documents = ['Wage conflict in retail business grows',
 			 'Higher wages for cafeteria employees',
@@ -23,15 +20,11 @@ documents = ['Wage conflict in retail business grows',
 In this exercise, we will build a simple document-term matrix for the documents in Exercise 0.
 
 ### Exercise 1.1: Step-by-step construction of the doc-term matrix
-For each document, convert to lowercase, tokenize, remove stopwords and then lemmatize.
+Pre-process each document by converting it to lowercase, tokenize, remove stopwords and then lemmatize each token. 
 
-You can use your code from day 2's assignment to do all of these
-things: the `filter_text()` function. (You will need to remove the
-sentence tokenizer, but otherwise you can reuse the code exactly.)
+Construct the vocabulary of your pre-processed corpus. 
 
-Construct a vocabulary for your corpus which is all the words that appear in the documents minus stopwords.
-
-Construct a document-term matrix by going through each document and checking if the vocabulary word is present or not.
+Construct a document-term matrix by going through each document and checking if a vocabulary word is present or not.
 
 The shape of the matrix will be the no. of documents by the vocabulary size `(n_docs x vocab_size)`.
 
@@ -39,7 +32,7 @@ The shape of the matrix will be the no. of documents by the vocabulary size `(n_
  * **Submit the matrix shape**
 
 
-### Exercise 1.2: Using scikit-learn to build the doc-term matrix
+### Exercise 1.2: Using scikit-learn to build the document-term matrix
 
 Try importing Scitkit-learn:
 ````python
@@ -51,7 +44,7 @@ pip install scikit-learn
 ````
 
 
-Scikit-learn actually has a class called the
+Scikit-learn has a class called the
 [CountVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html)
 to build document-term matrices easily and includes a number of options
 such as removing stopwords, tokenizing, indicating encoding (important for documents in other languages), and others.
@@ -151,7 +144,7 @@ using cosine similarity.
 
 ## Exercise 4: Topic modelling
 
-We will use the [Gensim package](https://radimrehurek.com/gensim/models/ldamodel.html) to perform topic modelling on a corpus of news articles.
+We will use the [Gensim package](https://radimrehurek.com/gensim/models/ldamodel.html) to train topic models. 
 
 Check whether Gensim is installed and importable:
 ````python
@@ -163,40 +156,52 @@ If not, install it in your virtual environment:
 pip install gensim
 ````
 
-Topic modelling works better if we have more data.
-We have provided [de-news.txt](de-news.txt),
-which consists of 9 short news stories separated with tags.
-Use the following method to separate the articles (you can also preprocess the articles to remove stopwords, punctuations, etc. if you want).
+### Exercise 4.1: Load 20 Newsgroups dataset
+
+Topic modelling is more suitable for larger corpora therefore we will use the 20 newsgroups dataset from Scikit-learn.
 ````python
-def prepare_dataset(filename):
-    articles = []
-    text = open(filename,'r').read().split()
-    index_start = list(np.where(np.array(text)=="<DOC")[0])
-    for i in range(len(index_start)-1):
-        start_art = index_start[i]+2
-        end_art = index_start[i+1]
-        article = text[start_art:end_art]
-        articles.append(article)
-    return articles
+from sklearn.datasets import fetch_20newsgroups
+data = fetch_20newsgroups(subset='train', shuffle=True, random_state=42).data
 ````
+How many documents are in the corpus?
 
-The most popular topic modelling method is LDA. The following lines will train a topic model with two topics using Gensim:
+### Exercise 4.2: Train a topic model with Gensim
+
+Once we have loaded our dataset, we need to do some standard pre-processing on each document as in the previous exercises. 
+
+Next, train an LDA topic model for 10 topics on the pre-processed data. Read the documentation on how to train an LDA topic model using Gensim. It is generally a good idea to save the trained model so you can load it afterwards to inspect the learned parameters.   
+
+What are the top 10 words for each topic?
+
+### Exercise 5: Word embeddings
+In this exercise, we will train some word embeddings and do some simple queries on the trained model. Gensim also has modules for loading and training word embeddings, documentation [here] (https://radimrehurek.com/gensim/models/word2vec.html#module-gensim.models.word2vec). 
+Use this code snippet to train Word2Vec embeddings from the common_texts corpus in Gensim:
 ````python
-from gensim.models import LdaModel
-from gensim import corpora
+from gensim.test.utils import common_texts
+from gensim.models import Word2Vec
 
-common_dictionary = corpora.Dictionary(articles)
-# Transform each doc into a bag of words
-common_corpus = [common_dictionary.doc2bow(a) for a in articles]
-# This line is the actual training part and might take a few seconds
-n_topics = 2
-lda = LdaModel(common_corpus, id2word=common_dictionary, num_topics=n_topics, passes=200)
-# After training is done, we can check the top words of each topic
-for k in range(n_topics):
-	top_words = lda.show_topic(k, topn=5)
+model = Word2Vec(common_texts, size=100, window=5, min_count=1, workers=4)
+model.save("your_model_filename")
 ````
+### Exercise 5.1: Finding similar words using word embeddings
 
- * What are the top five words for each topic?
- * Would you be able to describe in your own words what each topic is about?
- * Why or why not?
- * **Submit your answers**
+````python
+# Load your saved word embeddings
+model = Word2Vec.load("your_model_filename")
+````
+What is the vocabulary size of your model?
+After loading your model, use the most_similar function in Gensim to find the word most similar to the following words (exlcuding itself):
+- system
+- human
+- trees
+
+
+## Suggested extensions:
+1. Doc2vec is an extension of Word2vec that learns vectors vectors for each document in a corpus as well as word vectors. Another way to build document vectors is to get the weighted sum of embedding of each word in a documents. Use both methods to find similar documents and evaluate their performance.
+2. Cross-lingual word embeddings are embeddings that have been aligned for two or more languages. This means that words from different languages that have similar meanings will be close to each other in the embedding space. Use cross-lingual embeddings to match similar documents across languages. There are many pretrained cross-lingual embeddings available online, one example is from [FastText](https://fasttext.cc/docs/en/pretrained-vectors.html). To build cross-lingual document embeddings, you can sum up the embedding of each word in the document weighted by frequency or TF-IDF. You would need a multilingual dataset with some gold standard matching such as a parallel corpus. There are many available online, [Opus](http://opus.nlpl.eu/) is a good start.
+
+
+
+
+
+
