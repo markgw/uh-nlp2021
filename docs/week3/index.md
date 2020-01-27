@@ -171,7 +171,7 @@ For a time, his own soul and this brain - maggot struggled for supremacy .
 ````
 
 > * Has the unlabelled data improved the tagger?
-> * What could you do to (further) improve the tagger's performance on different domains?
+> * What else could you do to improve the tagger's performance on different domains?
 > * **Submit your answers**
 
 
