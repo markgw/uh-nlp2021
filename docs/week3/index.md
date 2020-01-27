@@ -1,7 +1,5 @@
 # Week 3: Finite-State Methods and Statistical NLP
 
-**NB: This is an old assignment. It hasn't yet been updated for this year's course!**
-
 Carry out all the exercises below and submit your answers
 [on Moodle](https://moodle.helsinki.fi/course/view.php?id=36809).
 Also submit a single Python file containing your full
@@ -16,7 +14,7 @@ a part of the Open American National Corpus (OANC) that has
 been annotated with various linguistic analyses.
 
 A POS-tagged corpus like this can be used to estimate the
-parameters of an HMM, as seen in today's lectures. The
+parameters of an HMM, as seen in the lectures. The
 trained model can then be used to POS tag new sentences.
 
 We will begin by computing some of the parameters of an HMM
@@ -53,11 +51,10 @@ for the `VB` tag (i.e. *p(w[i] | t[i] = VB)*).
 
 Compute both of these distributions.
 
- * Collect these counts and estimate the distributions for `VB`
-    using MLE.
- * **Submit the computed *p(t[i+1] = DT | t[i] = VB)* - the probability
-    of a verb being followed by a determiner.**
- * **Submit the computed *p(w[i] = 'feel' &#124; t[i] = VB)*.**
+> Collect these counts and estimate the distributions for `VB` using MLE.
+>
+> **Submit the computed *p(t[i+1] = DT | t[i] = VB)* - the probability of a verb being followed by a determiner.**
+> **Submit the computed *p(w[i] = 'feel' &#124; t[i] = VB)*.**
 
 
 
@@ -71,8 +68,7 @@ HMM training and tagging.
 
 Use the function
 [`HiddenMarkovModelTagger.train()`](https://www.nltk.org/api/nltk.tag.html#nltk.tag.hmm.HiddenMarkovModelTagger.train)
-to estimate
-all probabilities for an HMM POS tagger from the MASC corpus.
+to estimate all probabilities for an HMM POS tagger from the MASC corpus.
 
 Your HMM can now be used to tag new sentences:
 ````python
@@ -81,8 +77,7 @@ tagged_sent = hmm.tag(
 )
 ````
 
-> The POS tag set used by this corpus is the same as the Penn Treebank
-> and the same one used by the tagger in yesterday's assignment.
+> The POS tag set used by this corpus is the same as the Penn Treebank.
 > You can find a [description of each tag here](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html).
 
 Try tagging the following sentences:
@@ -110,13 +105,10 @@ Misjoggle in a gripty hifnipork .
 One fretigy kriptog is always better than several intersplicks .
 ````
 
- * What tag did the tagger assign to *understanding*? Is this correct?
- * Give one example of a sentence with unseen words where the
-   tagger, in your opinion, picks the correct tags for the unseen words.
- * Give one example where the tagger is thrown off by an
-   unseen word. What information might help it make a better guess?
-   (Other than seeing the word in its training set!)
- * **Submit your answers as text**
+> * What tag did the tagger assign to *understanding*? Is this correct?
+> * Give one example of a sentence with unseen words where the tagger, in your opinion, picks the correct tags for the unseen words.
+> * Give one example where the tagger is thrown off by an unseen word. What information might help it make a better guess? (Other than seeing the word in its training set!)
+> * **Submit your answers as text**
 
 
 
@@ -139,7 +131,7 @@ unlabelled set. The algorithm iteratively makes guesses as to the POS
 tags for words and updates the model's probability distributions from
 these guesses.
 
- * Download the text file [radio_planet_tokens.txt](radio_planet_tokens.txt)
+> Download the text file [radio_planet_tokens.txt](radio_planet_tokens.txt)
 
 This contains tokenized text from the book
 [Radio Planet, by Ralph Milne Farley](http://www.gutenberg.org/ebooks/52326).
@@ -147,8 +139,7 @@ This is quite a different domain to the original (labelled) training data.
 Load text from the file: one sentence per line, with tokens separated by
 spaces.
 
- * Download the Python file [ass3utils.py](ass3utils.py) and put it
-   in the same directory as your Python source.
+> Download the Python file [w3utils.py](w3utils.py) and put it in the same directory as your Python source.
 
 The function `train_unsupervised()` provides a small wrapper around
 NLTK's training to ensure that the unsupervised model is expanded to
@@ -179,10 +170,9 @@ Yesterday these fiends operated upon Doggo .
 For a time, his own soul and this brain - maggot struggled for supremacy .
 ````
 
- * Has the unlabelled data improved the tagger?
- * What could you do to (further) improve the tagger's performance on
-   different domains?
- * **Submit your answers**
+> * Has the unlabelled data improved the tagger?
+> * What could you do to (further) improve the tagger's performance on different domains?
+> * **Submit your answers**
 
 
 ## Exercise 4: Cross-domain tagging
@@ -192,7 +182,7 @@ output from the supervised and semi-supervised models.
 Try out sentences from a number of different domains:
 e.g. fiction, news, legal documents, ...
 
- * **Submit a few sentences reporting your observations**
+> **Submit a few sentences reporting your observations**
 
 
 ## Exercise 5: HMM as a language model
@@ -203,7 +193,7 @@ that uses the full
 generative model to assign a probability to a given input sentence.
 This allows you to use your trained model as a **language model**.
 The model is similar to the Markov language model seen in the
-lecture, except that word probabilities are conditioned on (unknown,
+lectures, except that word probabilities are conditioned on (unknown,
 inferred) POS tags.
 
 > The `log_probability()` method expects a list of `(word, pos_tag)`
@@ -217,17 +207,31 @@ using both of your HMMs.
 Also estimate the probability of some nonsense sentences you make
 up: use real words that are likely to be covered by the model.
 
- * Do the nonsense sentences tend to receive lower probabilities
-   than the real ones?
- * Is the semi-supervised model better at distinguishing between
-   real and nonsense sentences?
- * **Submit your answers**
-
-> We will carry out a similar comparison, applying better evaluation
-> techniques, on day 5.
+> * Do the nonsense sentences tend to receive lower probabilities than the real ones?
+> * Is the semi-supervised model better at distinguishing between real and nonsense sentences?
+> * **Submit your answers**
 
 
-## Exercise 6: Generating from HMMs
+## Exercise 6: Evaluating a language model
+
+Compute the perplexities of your language models using the same test set as in last week's exercise 3,
+from the Penn Treebank corpus:
+
+````
+from nltk.corpus import treebank
+from w3utils import split_corpus
+
+_, test_sents = split_corpus(treebank, 0.8)
+test_set = [(t[0], None) for s in test_sents for t in s]
+````
+(Check that [w3utils.py](w3utils.py) is in the same directory as your Python source.)
+
+> * What are perplexities of your models (round the values to two decimal places)?
+> * What does the perplexity of a language model describe? Explain briefly.
+> * How could you find out whether a language model is 'good'? Explain briefly.
+> * **Submit the perplexities and your explanations**
+
+## Exercise 7: Generating from HMMs
 
 The HMM provides a simple method to sample random sentences from the
 model,
@@ -238,18 +242,18 @@ the sentence.
 
 Try generating some sentences from your HMMs.
 
- * Do they look like real sentences?
- * Why are they (usually) incoherent?
- * Why don't they look like the sentences in the training corpus?
- * Is the unsupervised model better?
- * **Submit short answers to these questions**
+> * Do they look like real sentences?
+> * Why are they (usually) incoherent?
+> * Why don't they look like the sentences in the training corpus?
+> * Is the unsupervised model better?
+> * **Submit short answers to these questions**
 
 
-## Exercise 7: Improving generation
+## Exercise 8: Improving generation
 
 How might you improve on the sentence generator to give
 the generated sentences more coherence?
 
 Don't implement anything: just discuss (briefly).
 
- * **Submit your discussion**
+> **Submit your discussion**
