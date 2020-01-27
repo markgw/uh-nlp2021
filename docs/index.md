@@ -18,7 +18,7 @@ considering which one you would like to extend in your
 Assignments for each week:
  - [Week 1 – Python intro, pipeline & toolkits](week1/)
  - [Week 2 – Full pipeline & evaluation](week2/)
- - Week 3 – Finite-state methods and statistical NLP
+ - [Week 3 – Finite-state methods and statistical NLP](week3/)
  - Week 4 – Syntax & parsing
  - Week 5 – Vectors & lexical semantics
  - Week 6 – NLG, dialogue &discourse
