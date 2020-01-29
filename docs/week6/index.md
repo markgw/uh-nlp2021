@@ -9,9 +9,10 @@ Carry out all the exercises below and submit your answers on Moodle. Also submit
 Read the sections "Motivation" and "The Task" from the website of the [End-to-End NLG Challenge](http://www.macs.hw.ac.uk/InteractionLab/E2E/). Observe especially the MR format and the example natural language reference associated with it. Download the dataset from the website and inspect the file `devset.csv`. For the purposes of this week's assignments, the other files in the archive do not exist and you are not supposed to do anything with them.
 
 > **Submit to Moodle** your answer to the following questions:
-> 1) How difficult does the task appear to you?
-> 2) Observe the scores reported in the section "Baseline System". Are they meaningful in isolation?
-> 3) What are your thoughts on the variety of language in the references of the devset?
+>
+> 1. How difficult does the task appear to you?
+> 2. Observe the scores reported in the section "Baseline System". Are they meaningful in isolation?
+> 3. What are your thoughts on the variety of language in the references of the devset?
 
 ## Exercise 2: Trivial NLG
 
@@ -51,9 +52,9 @@ Familiarize yourself with the `MeaningRepresentation` class in `ass6utils.py`, e
 Run the code a few times (5 or so) and observe the results. Note that the `score` method called inside `evaluate` applies your NLG-method to the whole `devset` corpus, not just the ten random samples shown to you.
 
 > **Submit to Moodle** your answers to the following questions (one or two sentences per questions is enough):
-> 1) What kinds of scores is this extremely simple system achieving?
-> 2) How do they compare to the baseline results on the challenge's website?
-> 3) Do you observe any problems with the output (other than it being so short)?
+> 1. What kinds of scores is this extremely simple system achieving?
+> 2. How do they compare to the baseline results on the challenge's website?
+> 3. Do you observe any problems with the output (other than it being so short)?
 
 ## Exercise 3: Less simple NLG
 
@@ -74,9 +75,9 @@ def generate_2(mr: MeaningRepresentation) -> str:
 
 Evaluate this improved version by calling `evaluate(generate_2, meaning_representations, references)`. 
 > **Submit to Moodle** your answers to the following questions (one or two sentences per answer is sufficient):
-> 1) Did your changes improve the evaluation scores?
-> 2) Let us assume that the name is always present, but that all other features are optional. This means that if the MR consisted of only a name, there would be 2^0 = 1 variations of features being present or absent. In the above case, with name and two optional features, we had 2^2 = 4 variations of features being present or absent. How many variatations are there (i.e. how many if-statements would we need) for the full meaning representation in the `ass6utils.py` file?
-> 3) How many variations would there be if we introduced another feature into the meaning representation?
+> 1. Did your changes improve the evaluation scores?
+> 2. Let us assume that the name is always present, but that all other features are optional. This means that if the MR consisted of only a name, there would be 2^0 = 1 variations of features being present or absent. In the above case, with name and two optional features, we had 2^2 = 4 variations of features being present or absent. How many variatations are there (i.e. how many if-statements would we need) for the full meaning representation in the `ass6utils.py` file?
+> 3. How many variations would there be if we introduced another feature into the meaning representation?
 
 ## Exercise 4: Finding the popular choice
 
@@ -91,9 +92,9 @@ After obtaining the delexicalized references, use `Counter` (recall first week's
 Take the most common reference type as a starting point, and write a function that realizes an arbitrary `MeaningRepresentation` into that sentence. Do **not** overwrite your previous code. Do **not** special case `None`: having them in the output is fine. Ignore the `family_friendly` field for now.
 
 > **Submit to Moodle** your answers to the following questions:
-> 1) What is the most common delexicalized reference? How many instances of it are in the devset?
-> 2) Do you see any obvious patterns in the delexicalized references?
-> 3) Evaluate your new generation function as above, how does it perform compared to the two previous functions?
+> 1. What is the most common delexicalized reference? How many instances of it are in the devset?
+> 2. Do you see any obvious patterns in the delexicalized references?
+> 3. Evaluate your new generation function as above, how does it perform compared to the two previous functions?
 
 ## Exercise 5: Helpers for articles
 
@@ -302,13 +303,13 @@ Take care to handle all instances of "a" and "an" using the helper functions if 
 ## Exercise 8: Reflect on the complexity
 
 >**Submit to Moodle** your answers to the following questions.
-> 1) How difficult would it be to modify the system to produce a wider variety of sentences, for example by randomly ordering elements in the output?
-> 2) Think of another language you speak. How much work would it be to translate the system to that language compared to this initial implementation? Try to consider cases like the "a" vs. "an" in English. Give examples of difficult things you come up with, if any.
-> 3) Using the Gatt & Krahmer classification (Refer to slides), how would you characterize the system you built? Why?
-> 4) Think back on your answers to Exercise #1. Did the task turn out easier or more difficult than you anticipated?
-> 5) Think about the pros and cons of the neural systems as discussed in the lecture. Do you think this task is good for them (consider the data, the complexity etc.)? Do you expect them to fare better than "classical" systems?
-> 6) How do the Baseline scores on the E2E website compare to your scores? How did you compare to the other system reported in Table 3 of the [Findings of the E2E NLG Challenge -paper](https://arxiv.org/pdf/1810.01170.pdf)?
-> 7) Look at the same table. Check from the caption how the colors match the system architectures. How are the rule-based and template-based systems faring against the seq2seq and other data-driven systems? Does this match your expectation from before?
+> 1. How difficult would it be to modify the system to produce a wider variety of sentences, for example by randomly ordering elements in the output?
+> 2. Think of another language you speak. How much work would it be to translate the system to that language compared to this initial implementation? Try to consider cases like the "a" vs. "an" in English. Give examples of difficult things you come up with, if any.
+> 3. Using the Gatt & Krahmer classification (Refer to slides), how would you characterize the system you built? Why?
+> 4. Think back on your answers to Exercise #1. Did the task turn out easier or more difficult than you anticipated?
+> 5. Think about the pros and cons of the neural systems as discussed in the lecture. Do you think this task is good for them (consider the data, the complexity etc.)? Do you expect them to fare better than "classical" systems?
+> 6. How do the Baseline scores on the E2E website compare to your scores? How did you compare to the other system reported in Table 3 of the [Findings of the E2E NLG Challenge -paper](https://arxiv.org/pdf/1810.01170.pdf)?
+> 7. Look at the same table. Check from the caption how the colors match the system architectures. How are the rule-based and template-based systems faring against the seq2seq and other data-driven systems? Does this match your expectation from before?
 
 **NB:** Regarding the evaluation, note that we are running our evaluation on a different dataset than that which produced the results in the table on the E2E Challenge website. You are free to also evaluate on the larger dataset but that might take a long time and is completely optional.
 
@@ -324,10 +325,10 @@ Try out different modifications to the reference and calculate the BLEU scores b
 ## Exercise 10: Human Evaluation
 
 >**Submit to Moodle** your answers to the following questions. A few sentences each is sufficient.
-> 1) What kinds of questions would you ask if you were to conduct an intrinstic human evaluation on this task?
-> 2) Can you come up with an extrinsic human evaluation for this task?
-> 3) Read Section 4.2 from the [Findings of the E2E NLG Challenge](https://arxiv.org/pdf/1810.01170.pdf) paper. How did seq2seq systems compare to other interms of naturalness and quality?
-> 4) Do you think naturalness or quality (~correctness) is more important for a system describing (perhaps recommending) restaurants? Come up with an example of both a system where correctness is much more important than fluency, and one where the reverse holds true.
+> 1. What kinds of questions would you ask if you were to conduct an intrinstic human evaluation on this task?
+> 2. Can you come up with an extrinsic human evaluation for this task?
+> 3. Read Section 4.2 from the [Findings of the E2E NLG Challenge](https://arxiv.org/pdf/1810.01170.pdf) paper. How did seq2seq systems compare to other interms of naturalness and quality?
+> 4. Do you think naturalness or quality (~correctness) is more important for a system describing (perhaps recommending) restaurants? Come up with an example of both a system where correctness is much more important than fluency, and one where the reverse holds true.
 
 ## Possible extensions for the final project
 
