@@ -1,121 +1,154 @@
 import csv
-from typing import Any, Dict, List, Callable, Tuple
+from typing import Any, Callable, Dict, List, Optional, Tuple
 from collections import defaultdict
 from nltk.translate.bleu_score import corpus_bleu, sentence_bleu
-from nltk.translate.meteor_score import meteor_score
 from nltk.tokenize import TweetTokenizer
+
+try:
+    from nltk.translate.meteor_score import meteor_score
+    HAS_METEOR = True
+except ImportError as err:
+    print(
+        "WARNING: Your installation of NLTK does not have the meteor_score method."
+        "Try updating your NLTK installation. If this does not solve the problem, "
+        "ignore this error for now. In your submission, when discussing evaluation "
+        "results, state that you got this error.\n"
+    )
+    HAS_METEOR = False
 
 tokenizer = TweetTokenizer()
 
-class MeaningRepresentation(object):
-    def __init__(self, 
-                 eat_type: str, 
-                 price_range: str, 
-                 near: str, 
-                 name: str, 
-                 food: str, 
-                 customer_rating: str, 
-                 family_friendly: str, 
-                 area: str
-            ) -> None:
+
+class MeaningRepresentation:
+    def __init__(
+        self,
+        name: str,
+        eat_type: Optional[str],
+        price_range: Optional[str],
+        near: Optional[str],
+        food: Optional[str],
+        customer_rating: Optional[str],
+        family_friendly: Optional[str],
+        area: Optional[str],
+    ) -> None:
+        self.name = name
         self.eat_type = eat_type
         self.price_range = price_range
         self.near = near
-        self.name = name
         self.food = food
         self.customer_rating = customer_rating
         self.family_friendly = family_friendly
         self.area = area
 
     @staticmethod
-    def from_dict(d: Dict[str, str]) -> 'MeaningRepresentation':
+    def from_dict(d: Dict[str, str]) -> "MeaningRepresentation":
         return MeaningRepresentation(
-            d.get('eatType'),
-            d.get('priceRange'),
-            d.get('near'),
-            d.get('name'),
-            d.get('food'),
-            d.get('customer rating'),
-            d.get('familyFriendly'),
-            d.get('area')
+            d.get("name"),
+            d.get("eatType"),
+            d.get("priceRange"),
+            d.get("near"),
+            d.get("food"),
+            d.get("customer rating"),
+            d.get("familyFriendly"),
+            d.get("area"),
         )
-    
+
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, MeaningRepresentation):
             return NotImplemented
         return self.__dict__ == other.__dict__
 
     def __hash__(self) -> int:
-        return hash((
-            self.eat_type,
-            self.price_range,
-            self.near,
-            self.name,
-            self.food,
-            self.customer_rating,
-            self.family_friendly,
-            self.area
-        ))
+        return hash(
+            (
+                self.eat_type,
+                self.price_range,
+                self.near,
+                self.name,
+                self.food,
+                self.customer_rating,
+                self.family_friendly,
+                self.area,
+            )
+        )
 
     def __str__(self) -> str:
-        return '<' + ', '.join('{}[{}]'.format(key, val) for key, val in self.__dict__.items()) + '>'
+        return (
+            "<"
+            + ", ".join("{}[{}]".format(key, val) for key, val in self.__dict__.items())
+            + ">"
+        )
 
     def __repr__(self) -> str:
         return str(self)
 
 
 def read_file(filename: str) -> Tuple[List[MeaningRepresentation], List[List[str]]]:
-    with open(filename) as csvfile:
-        file_reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+    with open(filename) as csv_file:
+        file_reader = csv.reader(csv_file, delimiter=",", quotechar='"')
         next(file_reader)  # Skip header
 
         contents = defaultdict(list)
-        
+
         for row in file_reader:
-            mr_part = row[0].split(', ')
+            mr_part = row[0].split(", ")
             reference_text = row[1]
             mr_dict = dict()
             for key_value_pair in mr_part:
-                key_value_pair = key_value_pair.split('[')
-                key = key_value_pair[0]
-                value = key_value_pair[1][:-1]
+                key, value = key_value_pair[:-1].split("[")
                 mr_dict[key] = value
             mr = MeaningRepresentation.from_dict(mr_dict)
             contents[mr].append(reference_text)
-    return zip(*contents.items())
+    meaning_representations, reference_sets = zip(*contents.items())
+    return meaning_representations, reference_sets
 
 
 def rouge(hypotheses: List[str], references: List[List[str]]) -> float:
     scorer = RougeScore()
-    scores = [scorer.rouge_l(hyp, refs, 0.5) for hyp, refs in zip(hypotheses, references)]
+    scores = [
+        scorer.rouge_l(hyp, refs, 0.5) for hyp, refs in zip(hypotheses, references)
+    ]
     return sum(scores) / len(scores)
 
 
 def meteor(hypotheses: List[str], references: List[List[str]]) -> float:
-    scores = [meteor_score(refs, hyp) for hyp, refs in zip(hypotheses, references)]
-    return sum(scores) / len(scores)
+    if HAS_METEOR:
+        scores = [meteor_score(refs, hyp) for hyp, refs in zip(hypotheses, references)]
+        return sum(scores) / len(scores)
+    else:
+        raise NotImplementedError("nltk.translate.meteor_score not available")
 
 
 def bleu(hypotheses: List[str], references: List[List[str]]) -> float:
     hypotheses = [tokenizer.tokenize(sent) for sent in hypotheses]
-    references = [[tokenizer.tokenize(sent) for sent in ref_list] for ref_list in references]
+    references = [
+        [tokenizer.tokenize(sent) for sent in ref_list] for ref_list in references
+    ]
     return corpus_bleu(references, hypotheses)
 
 
 def bleu_single(hypothesis: str, reference: str) -> float:
-    return sentence_bleu([tokenizer.tokenize(reference)], tokenizer.tokenize(hypothesis))
+    return sentence_bleu(
+        [tokenizer.tokenize(reference)], tokenizer.tokenize(hypothesis)
+    )
 
 
-def score(generator: Callable[[MeaningRepresentation], str], 
-          meaning_representations: List[MeaningRepresentation], 
-          references: List[List[str]]) -> None:
+def score(
+    generator: Callable[[MeaningRepresentation], str],
+    meaning_representations: List[MeaningRepresentation],
+    references: List[List[str]],
+) -> None:
 
     hypotheses = [generator(mr) for mr in meaning_representations]
 
-    print('BLEU score:', bleu(hypotheses, references))
-    print('METEOR score:', meteor(hypotheses, references))
-    print('ROUGE-L score:', rouge(hypotheses, references))
-
+    print("BLEU score:", bleu(hypotheses, references))
+    print(
+        "METEOR score:",
+        meteor(hypotheses, references)
+        if HAS_METEOR
+        else "not available (no nltk.translate.meteor_score)",
+    )
+    print("ROUGE-L score:", rouge(hypotheses, references))
 
 
 class RougeScore(object):
@@ -142,6 +175,7 @@ class RougeScore(object):
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
     """
+
     import collections
 
     def _ngrams(self, words, n):
