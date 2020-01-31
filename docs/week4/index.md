@@ -91,7 +91,7 @@ in the lexicon for all the words in the sentence.
    * *"the dog flew without past experience ."*
 
 > * Check that the new, extended grammar can be loaded
->   and that it covers the new sentence as well as the old
+>   and that it covers the new sentences as well as the old
 >   ones.
 >
 > **Submit the additional rules you needed to add**
@@ -351,5 +351,5 @@ the grammar will generate them.
 > * Did you find any parsable sentences?
 > * How might you extend your parser to increase its coverage, so
 >   that it can parse more sentences?
-> * **Submit parsable sentences you managed to find (if any)
+> **Submit parsable sentences you managed to find (if any)
 >   and a short description of your ideas to extend coverage**
