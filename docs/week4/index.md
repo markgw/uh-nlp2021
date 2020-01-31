@@ -353,3 +353,67 @@ the grammar will generate them.
 >   that it can parse more sentences?
 > **Submit parsable sentences you managed to find (if any)
 >   and a short description of your ideas to extend coverage**
+
+
+
+
+## Extension/final project suggestions
+
+### Broad-domain parser
+
+Broad-domain parsing is (still) a difficult open research problem. But perhaps
+there are some extensions to this week's probabilistic parser that could
+bring it a step or two closer to a usable parser on texts outside the
+training corpus.
+
+You could consider something like the following ideas:
+ * Experiment with NLTK's other **parsing strategies**. For example, the
+   [LongestChartParser](https://www.nltk.org/api/nltk.parse.html#nltk.parse.pchart.LongestChartParser)
+   or [RandomChartParser](https://www.nltk.org/api/nltk.parse.html#nltk.parse.pchart.RandomChartParser)
+   might do a better job of finding some analyses.
+ * Perform **semi-supervised learning** to learn from more data. One
+   strategy could be to try parsing lots of (unannotated) sentences,
+   then treat those that get a sufficiently high-scoring parse as
+   gold-standard trees from which to learn a better model (together with
+   the annotated examples).
+
+
+### Random NLG
+
+Using the above models, you could implement a simple NLG system:
+a random sampler that chooses PCFG expansions using trained probabilities.
+
+This is not *real* NLG (as we'll see in later lectures), as the system
+has no idea what information it's conveying, but it is quite fun.
+
+Of course, the output depends on the training data, so training on different
+treebanks will produce different types of output.
+
+You could then consider what further processing and representations
+would be needed to turn this into a useful NLG system. You could even
+implement something, if you have time.
+
+
+### Parsing applications
+
+Syntactic parsing has many applications. Now you know something about
+how a statistical parser works, you could try using another parser,
+with a pre-trained model available, for a downstream application.
+
+For example, the [CoreNLP](https://stanfordnlp.github.io/CoreNLP/)
+parser has models for a number of different languages, or
+the [TurkuNLP parser](https://turkunlp.org/Turku-neural-parser-pipeline/)
+provides models for Finnish.
+
+Some applications to consider:
+ * Simple **information extraction** by specifying templates consisting of
+   fragments of constituency or dependency trees.
+ * **Identify events** in input sentences by finding the main verb and
+   some subset of its arguments. You can consider what information
+   you can get from a syntactic tree that is informative for different
+   types of events. Applying this to, for example, news articles might
+   tell you key information about what is being reported.
+ * Look for **typical syntactic patterns** for different words. For example,
+   looking at typical adjectives that get applied to a given noun tells
+   us something about the noun (or at least how it's used in the corpus).
+   Similarly, you might look at adverbs attached to verbs.
