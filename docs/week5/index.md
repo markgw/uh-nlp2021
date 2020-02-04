@@ -109,14 +109,6 @@ Perform the same relevance ranking that we did in Exercise 2.1 by getting the do
 Using the doc-term matrix from Exercise 2.2, use cosine similarity for each document pair to find which two documents are most similar to each other.
 You can use the `cosine_similarity()` method from Scikit-learn for this.
 
-Tip: The ````itertools```` package can produce the document pairs so you don't have to construct them yourselves.
-````python
-import itertools
-doc_count = len(documents)
-doc_list = [i for i in range(doc_count)]
-doc_pairs = list(itertools.combinations(doc_list, 2))
-# doc_pairs contain tuples where each tuple is a pair of document index numbers
-````
 
  * Which document pair are most similar to each other?
  * Does it follow your intuition?
@@ -135,8 +127,8 @@ new_docs = [
 Construct the TF-IDF matrix for these unseen documents (use `transform()` again, not `fit_transform()`) and find the documents from our original corpus that are most similar to each
 using cosine similarity.
 
- * Which document is most similar to the first new document (Doc 3a)?
- * How about the second one (Doc 3b)?
+ * Which document is most similar to Doc 3a?
+ * How about Doc 3b?
  * **Submit your answers to these questions and those above**
 
 
