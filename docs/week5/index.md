@@ -5,7 +5,11 @@ and submit your answers on
 [Moodle](https://moodle.helsinki.fi/course/view.php?id=33565#section-5).
 Also submit a single Python file containing your full implementation.  
 
-## Exercise 0: Load the documents
+
+
+## Exercise 1: Document-term matrix
+
+In this exercise, we will build a simple document-term matrix for the documents provided.
 
 ````python
 documents = ['Wage conflict in retail business grows',
@@ -15,18 +19,12 @@ documents = ['Wage conflict in retail business grows',
 			 'Five Deaths in Crash of Police Helicopter']
 ````
 
-## Exercise 1: Document-term matrix
-
-In this exercise, we will build a simple document-term matrix for the documents in Exercise 0.
-
 ### Exercise 1.1: Step-by-step construction of the doc-term matrix
 Pre-process each document by converting it to lowercase, tokenize, remove stopwords and then lemmatize each token. 
 
-Construct the vocabulary of your pre-processed corpus. 
+Construct the vocabulary of your pre-processed corpus and then construct a document-term matrix by going through each document and checking if a vocabulary word is present or not.
 
-Construct a document-term matrix by going through each document and checking if a vocabulary word is present or not.
-
-The shape of the matrix will be the no. of documents by the vocabulary size `(n_docs x vocab_size)`.
+The shape of the matrix will be the number of documents by the vocabulary size `(n_docs x vocab_size)`.
 
  * What is the shape of your matrix?
  * **Submit the matrix shape**
@@ -163,28 +161,30 @@ Topic modelling is more suitable for larger corpora therefore we will use the 20
 from sklearn.datasets import fetch_20newsgroups
 data = fetch_20newsgroups(subset='train', shuffle=True, random_state=42).data
 ````
-How many documents are in the corpus?
+ * How many documents are in the corpus?
 
 ### Exercise 4.2: Train a topic model with Gensim
 
 Once we have loaded our dataset, we need to do some standard pre-processing on each document as in the previous exercises. 
 
-Next, train an LDA topic model for 10 topics on the pre-processed data. Read the documentation on how to train an LDA topic model using Gensim. It is generally a good idea to save the trained model so you can load it afterwards to inspect the learned parameters.   
+Next, train an LDA topic model for 10 topics on the pre-processed data. Read the [documentation](https://radimrehurek.com/gensim/models/ldamodel.html) on how to train an LDA topic model using Gensim. It is generally a good idea to save the trained model so you can load it afterwards to inspect the learned parameters.   
 
-What are the top 10 words for each topic?
+ * What are the top 5 words for each topic? Tip: check out the `show_topic()` method or similar methods.
 
 ### Exercise 5: Word embeddings
-In this exercise, we will train some word embeddings and do some simple queries on the trained model. Gensim also has modules for loading and training word embeddings, documentation [here](https://radimrehurek.com/gensim/models/word2vec.html#module-gensim.models.word2vec). 
-Use this code snippet to train Word2Vec embeddings from the common_texts corpus in Gensim:
+In this exercise, we will train some word embeddings and do some simple queries on the trained model. Gensim also has modules for loading and training word embeddings. Take a look at the [documentation](https://radimrehurek.com/gensim/models/word2vec.html#module-gensim.models.word2vec). 
+
+Normally we would use very large corpora with millions of tokens to train word embeddings but since this is just an exercise, we will use the small `common_texts` corpora provided by Gensim.
+Use the following code snippet to train Word2Vec embeddings:
 ````python
 from gensim.test.utils import common_texts
 from gensim.models import Word2Vec
 
 model = Word2Vec(common_texts, size=100, window=5, min_count=1, workers=4)
 # optional but there's no harm in saving the trained model
-model.save("word2vec.model")
+model.save("word2vec.model") 
 ````
-What is the vocabulary size of your model?
+* What is the vocabulary size of your model?
 
 ### Exercise 5.1: Finding similar words using word embeddings
 
@@ -192,7 +192,7 @@ After training your model, use the `similar_by_word()` method to find the word m
 - system
 - human
 - trees
-
+* Do the similar words look reasonable to you? Discuss why or why not.
 
 ## Suggested extensions:
 1. Doc2vec is an extension of Word2vec that learns vectors vectors for each document in a corpus as well as word vectors. Another way to build document vectors is to get the weighted sum of embedding of each word in a documents. Use both methods to find similar documents and evaluate their performance.
