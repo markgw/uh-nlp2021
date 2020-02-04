@@ -187,8 +187,15 @@ After training your model, use the `similar_by_word()` method to find the word m
 * Do the similar words look reasonable to you? Discuss why or why not.
 
 ## Suggested extensions:
-1. Doc2vec is an extension of Word2vec that learns vectors vectors for each document in a corpus as well as word vectors. Another way to build document vectors is to get the weighted sum of embedding of each word in a documents. Use both methods to find similar documents and evaluate their performance.
+1. Doc2vec is an extension of Word2vec that learns document embeddings as well as word vectors. Another way to build document embeddings is to sum up the embeddings of each word in a document weighted by word frequency or TF-IDF. Another strategy is to apply clustering on the document embeddings. Use these methods to find similar documents and evaluate their performance. Whichever method(s) you want to try, you would need a dataset with documents grouped according to categories or other criteria. This dataset from [Kaggle](https://www.kaggle.com/uciml/news-aggregator-dataset#uci-news-aggregator.csv) is a good start. 
+
 2. Cross-lingual word embeddings are embeddings that have been aligned for two or more languages. This means that words from different languages that have similar meanings will be close to each other in the embedding space. Use cross-lingual embeddings to match similar documents across languages. There are many pretrained cross-lingual embeddings available online, one example is from [FastText](https://fasttext.cc/docs/en/pretrained-vectors.html). To build cross-lingual document embeddings, you can sum up the embedding of each word in the document weighted by frequency or TF-IDF. You would need a multilingual dataset with some gold standard matching such as a parallel corpus. There are many available online, [Opus](http://opus.nlpl.eu/) is a good start.
+
+#### Suggested papers on document embeddings (cross-lingual and monolingual):
+* Balikas, Georgios, et al. "Cross-lingual document retrieval using regularized wasserstein distance." European Conference on Information Retrieval. Springer, Cham, 2018.
+* Kusner, Matt, et al. "From word embeddings to document distances." International conference on machine learning. 2015.
+* Litschko, Robert, et al. "Unsupervised cross-lingual information retrieval using monolingual data only." The 41st International ACM SIGIR Conference on Research & Development in Information Retrieval. 2018.
+* Litschko, Robert, et al. "Evaluating resource-lean cross-lingual embedding models in unsupervised retrieval." Proceedings of the 42nd International ACM SIGIR Conference on Research and Development in Information Retrieval. 2019.
 
 
 
