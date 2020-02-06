@@ -94,7 +94,7 @@ into
 
 Note that you will need the original versions down the line, so don't modify them in place.
 
-To obtain the delexicalized copies, you'll need to replace words from each reference based on what values the relevant MR has. Note: this should not require tokenization. Ignore the `family_friendly` field when delexicalizing.
+To obtain the delexicalized copies, you'll need to replace words from each reference based on what values the relevant MR has. This should not require tokenization. Ignore the `family_friendly` field when delexicalizing.
 
 Hint: `for mr, refs in zip(meaning_representations, references)` might be useful, assuming `meaning_representations` is of type `List[MeaningRepresentation]` and `references` is of type `List[List[str]]`, like those obtained from calling `read_file()`.
 
@@ -241,7 +241,7 @@ def realize_referring_expressions(text: str, name: str) -> str:
 
     For the string X-NAME-POSS, the realization is the possessive form, i.e.
     "its" instead of "it". The parameter `name` is appended with an apostrophe
-    if the final letter is an "s" or a "z" and with an "'s" otherwise.
+    if the final letter is an "s" and with an "'s" otherwise.
 
     For processing, the text is split into sentences using nltk.sent_tokenize()
     and those sentences are then tokenized into words using
@@ -277,7 +277,6 @@ assert (
 )
 assert realize_referring_expressions('X-NAME-POSS', 'Dave') == "Dave's"
 assert realize_referring_expressions('X-NAME-POSS', 'Charles') == "Charles'"
-assert realize_referring_expressions('X-NAME-POSS', 'Waltz') == "Waltz'"
 
 ```
 
