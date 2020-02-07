@@ -25,9 +25,7 @@ import random
 meaning_representations, references = read_file('devset.csv')
 
 def generate_trivial(mr: MeaningRepresentation) -> str:
-    """
-    Trivial NLG
-    """
+    """Trivial NLG."""
     return "{} is a {} {}.".format(mr.name, mr.food, mr.eat_type)
 
 
@@ -86,7 +84,7 @@ Evaluate this improved version by calling `evaluate(generate_2, meaning_represen
 
 Write code that makes a delexicalized **copy** of each reference available in the devset, e.g. turning
 
-> Aromi is a coffee shop, which offers Chinese food, and has a customer rating of 5 out of 5. It is located in a riverside area
+> Aromi is a coffee shop, which offers Chinese food, and has a customer rating of 5 out of 5. It is located in a riverside area.
 
 into
 
@@ -114,9 +112,10 @@ Take the most common reference format as a starting point, and write a function 
 Create the following helper function with a working implementation:
 ```python
 def get_indefinite_article(word: str) -> str:
-    """
-    Returns either "a" or "an" depending on whether the input word's 
-    *pronunciation* starts with a vowel sound (A, E, I, O, U).
+    """Return the indefinite article for a word.
+
+    Output is either "a" or "an" depending on whether the input word's 
+    pronunciation starts with a vowel sound (A, E, I, O, U).
 
     Pronunciations are retrieved from `nltk.corpus.cmudict`. Words 
     for which there is no known pronunciation return based on the 
@@ -130,8 +129,7 @@ Use the following helper to retrieve the pronunciation of the word (you need to 
 from nltk.corpus import cmudict
 pronunciations = cmudict.dict()
 def pronounce(word: str) -> Optional[List[str]]:
-    """
-    Returns a pronunciation of the word supplied as a parameter.
+    """Return a pronunciation of a word.
 
     If the word is unknown, returns None. 
     
@@ -164,7 +162,8 @@ assert get_indefinite_article("heirloom") == "an"
 Create also the following function with a working implementation:
 ```python
 def realize_articles(text: str) -> str:
-    """
+    """Realize INDEF_ART tokens as suitable indefinite articles.
+
     Replaces instances of "INDEF_ART" in text with the suitable form of the
     indefinite article ("a" or "an") as necessitated by the following word.
 
@@ -175,8 +174,8 @@ def realize_articles(text: str) -> str:
     As nltk.tokenize.treebank.TreebankWordTokenizer.tokenize() assumes input
     is a sentence, uses nltk.sent_tokenize() to split input into sentences.
     
-    Capitalization is ignored, meaning a sentence-first INDEF_ART can be
-    realized fully lowercase. 
+    Capitalization is handled gracefully: sentence-first articles are
+    correctly capitalized.
     """
     raise NotImplementedError()
 ```
@@ -185,11 +184,16 @@ You can test your code with the followin `assert` statements:
 ```python
 assert realize_articles("This is INDEF_ART example.") == "This is an example."
 assert realize_articles("This is INDEF_ART test.") == "This is a test."
+assert realize_articles('INDEF_ART test. INDEF_ART example.') == "A test. An example."
 assert (
     realize_articles(
         "This was, truly, INDEF_ART honor Mr. Lincoln. But this is INDEF_ART complex example."
     )
     == "This was, truly, an honor Mr. Lincoln. But this is a complex example."
+)
+assert (
+    realize_articles("FBI is INDEF_ART famous organization.")
+    == "FBI is a famous organization."
 )
 ```
 
@@ -200,15 +204,13 @@ You should only create the (de)tokenizer once, storing it outside the function, 
 Create the following helper function with a working implementation:
 ```python
 def combine(components: List[Optional[str]], conjunction: str = " and ") -> Optional[str]:
-    """
-    Produces a string representation containing the non-None values in 
-    `components`.
+    """Describe list in natural language.
 
-    The string representation consists of the non-None values in the list 
-    separated by the string ", ". The exception are the last and 
-    second-to-last components which are instead separated by `conjunction`, 
-    by default the string " and ". None values in `components` are ignored. 
-    In case `components` is empty or contains only None values, returns None.
+    The output consists of the non-None values in the list separated by the 
+    string ", ". The exception are the last and second-to-last components 
+    which are instead separated by `conjunction`, by default the string 
+    " and ". None values in `components` are ignored. In case `components` 
+    is empty or contains only None values, returns None.
     """
     raise NotImplementedError()
 ```
@@ -230,10 +232,8 @@ assert combine(["a", None, "b"]) == "a and b"
 Create the following helped function with a working implementation:
 ```python
 def realize_referring_expressions(text: str, name: str) -> str:
-    """
-    Realizes the referring expressions (X-NAME and X-NAME-POSS tokens) in 
-    the input text.
-
+    """Realize X-NAME and X-NAME-POSS tokens in text.
+    
     The first X-NAME or X-NAME-POSS is replaced with the contents of the 
     name parameter. Subsequent X-NAME and X-NAME-POSS tokens are replaced 
     by the word "it". The name  parameter's capitalization is retained as-is, 
@@ -259,6 +259,7 @@ It's worth noting that the above description of the possessive is not uncontrove
 >**Optional reading**: 
 >- [Possessives in the AP and Chicago style guide](https://apvschicago.com/2011/06/apostrophe-s-vs-apostrophe-forming.html).
 >- [Merriam-Webster's take on possessives](https://www.merriam-webster.com/words-at-play/what-happens-to-names-when-we-make-them-plural-or-possessive)
+
 
 You can test your implementation with the following `assert` statements:
 ```python
@@ -382,7 +383,9 @@ Take care to handle all instances of "a" and "an" using the helper functions if 
 
 **Evaluating this implementation might take a few minutes, mainly because the pronounciation lookups are slow**. When developing the solution, consider temporarily commenting out the call to `score()` and just looking at the example outputs. When working on later exercises, consider commenting out the call to `evaluate()`.
 
-> **Submit to Moodle** the output of calling `evaluate()` on your generator, both the examples and the numerical results. You can either build your generator along the above descriptio, or do something different.
+> **Submit to Moodle** the output of calling `evaluate()` on your generator, both the examples and the numerical results. You can either build your generator along the above description, or do something different. 
+>
+> If you do something different, only assume that the `name` field is always present. Your output should be able to realize all possible combinations of fields being present or absent. Any present fields must be reflected to output.
 
 
 ## Exercise 7: Reflection
@@ -396,8 +399,7 @@ Take care to handle all instances of "a" and "an" using the helper functions if 
 > 6. How do the Baseline scores on the E2E website compare to your scores? How did you compare to the other system reported in Table 3 of the [Findings of the E2E NLG Challenge -paper](https://arxiv.org/pdf/1810.01170.pdf)?
 > 7. Look at the same table. Check from the caption how the colors match the system architectures. How are the rule-based and template-based systems faring against the seq2seq and other data-driven systems? Does this match your expectation from before?
 
-**NB:** Regarding the evaluation, note that we are running our evaluation on a different dataset than that which produced the results in the table on the E2E Challenge website. You are free to also evaluate on the larger dataset but that might take a long time and is completely optional.
-
+**NB:** Regarding the evaluation, note that we are doing the manual version to what overfitting is in machine learning: we identified our approach (~trained our model) from the same dataset we are using to test it. Our results are **not** directly comparable to those reported on the E2E website. 
 
 ## Exercise 8: Explore BLEU
 
