@@ -254,6 +254,12 @@ def realize_referring_expressions(text: str, name: str) -> str:
     raise NotImplementedError()
 ```
 
+It's worth noting that the above description of the possessive is not uncontroversial, as different style guides disagree on what the "proper" use of the possessive is. Some style guides go as far as to have different rules for names depending on whether the name is classical ('Zeus', 'Socrates') or Biblical **and** how many syllables it has. It gets really complicated and nobody agrees on what is correct, so the above is a good middle ground that everyone is going to understand.
+
+>**Optional reading**: 
+>- [Possessives in the AP and Chicago style guide](https://apvschicago.com/2011/06/apostrophe-s-vs-apostrophe-forming.html).
+>- [Merriam-Webster's take on possessives](https://www.merriam-webster.com/words-at-play/what-happens-to-names-when-we-make-them-plural-or-possessive)
+
 You can test your implementation with the following `assert` statements:
 ```python
 assert realize_referring_expressions("X-NAME is a thing.", "Bar") == "Bar is a thing."
