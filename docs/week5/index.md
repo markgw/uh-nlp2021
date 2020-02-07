@@ -1,4 +1,4 @@
-# Day 7: Vectors and Lexical Semantics
+# Week 5: Vectors, Lexical Semantics and Word Embeddings
 
 Carry out all the exercises below
 and submit your answers on
@@ -20,14 +20,14 @@ documents = ['Wage conflict in retail business grows',
 ````
 
 ### Exercise 1.1: Step-by-step construction of the doc-term matrix
-Pre-process each document by converting it to lowercase, tokenize, remove stopwords and then lemmatize each token. 
+Pre-process each document by converting it to lowercase, tokenize, remove stopwords and then lemmatize each token.
 
 Construct the vocabulary of your pre-processed corpus and then construct a document-term matrix by going through each document and checking if a vocabulary word is present or not.
 
 The shape of the matrix will be the number of documents by the vocabulary size `(n_docs x vocab_size)`.
 
- * What is the shape of your matrix?
- * **Submit the matrix shape**
+> * What is the shape of your matrix?
+> * **Submit the matrix shape**
 
 
 ### Exercise 1.2: Using scikit-learn to build the document-term matrix
@@ -59,8 +59,12 @@ dt = counts > 0       # Convert to a binary matrix
 doc_term_mat = dt * 1 # If you prefer, represent as 1s and 0s
 ````
 
-How does your doc-term matrix from 1.1 compare to your doc-term matrix from 1.2? Are they exactly the same or are their differences?
-If they are different, what could account for such difference?
+> How does your doc-term matrix from 1.1 compare to your doc-term matrix
+> from 1.2? Are they exactly the same or are their differences?
+>
+> If they are different, what could account for such difference?
+>
+> *Submit your answers*
 
 For the next exercises, we will make use the doc-term matrix with count vectors produced by the `CountVectorizer`.
 
@@ -85,8 +89,8 @@ to compute dot products.
 
 Normalize the count vectors of the doc-term matrix by the document length and perform the same relevance ranking.
 
- * Does it produce the same results?
- * **Submit your answers. Include the dot products of the query with the unnormalized and normalized doc-term matrices.**
+> * Does it produce the same results?
+> * **Submit your answers. Include the dot products of the query with the unnormalized and normalized doc-term matrices.**
 
 ### Exercise 2.2: Using TF-IDF to weight words
 
@@ -97,9 +101,9 @@ Construct a TF-IDF doc-term matrix using the [TfidfVectorizer](https://scikit-le
 
 Perform the same relevance ranking that we did in Exercise 2.1 by getting the dot product of the same query with your new TF-IDF doc-term matrix. Don't forget to convert the query string to a vector using the `transform()` method of the `TfidfVectorizer` this time.
 
- * Does the ranking change?
- * If so, what do you think could account for this?
- * **Submit your answers**
+> * Does the ranking change?
+> * If so, what do you think could account for this?
+> * **Submit your answers**
 
 
 ## Exercise 3: Finding similar documents
@@ -110,8 +114,9 @@ Using the doc-term matrix from Exercise 2.2, use cosine similarity for each docu
 You can use the `cosine_similarity()` method from Scikit-learn for this.
 
 
- * Which document pair are most similar to each other?
- * Does it follow your intuition?
+> * Which document pair are most similar to each other?
+> * Does it follow your intuition?
+> * *Submit your answers*
 
 ### Exercise 3.2
 
@@ -127,14 +132,14 @@ new_docs = [
 Construct the TF-IDF matrix for these unseen documents (use `transform()` again, not `fit_transform()`) and find the documents from our original corpus that are most similar to each
 using cosine similarity.
 
- * Which document is most similar to Doc 3a?
- * How about Doc 3b?
- * **Submit your answers to these questions and those above**
+> * Which document is most similar to Doc 3a?
+> * How about Doc 3b?
+> * **Submit your answers to these questions and those above**
 
 
 ## Exercise 4: Topic modelling
 
-We will use the [Gensim package](https://radimrehurek.com/gensim/models/ldamodel.html) to train topic models. 
+We will use the [Gensim package](https://radimrehurek.com/gensim/models/ldamodel.html) to train topic models.
 
 Check whether Gensim is installed and importable:
 ````python
@@ -153,18 +158,20 @@ Topic modelling is more suitable for larger corpora therefore we will use the 20
 from sklearn.datasets import fetch_20newsgroups
 data = fetch_20newsgroups(subset='train', shuffle=True, random_state=42).data
 ````
- * How many documents are in the corpus?
+> * How many documents are in the corpus?
+> * *Submit your answer*
 
 ### Exercise 4.2: Train a topic model with Gensim
 
-Once we have loaded our dataset, we need to do some standard pre-processing on each document as in the previous exercises. 
+Once we have loaded our dataset, we need to do some standard pre-processing on each document as in the previous exercises.
 
 Next, train an LDA topic model for 10 topics on the pre-processed data. Read the [documentation](https://radimrehurek.com/gensim/models/ldamodel.html) on how to train an LDA topic model using Gensim. It is generally a good idea to save the trained model so you can load it afterwards to inspect the learned parameters.   
 
- * What are the top 5 words for each topic? Tip: check out the `show_topic()` method or similar methods.
+> * What are the top 5 words for each topic? Tip: check out the `show_topic()` method or similar methods.
+> * *Submit your answer*
 
 ### Exercise 5: Word embeddings
-In this exercise, we will train some word embeddings and do some simple queries on the trained model. Gensim also has modules for loading and training word embeddings. Take a look at the [documentation](https://radimrehurek.com/gensim/models/word2vec.html#module-gensim.models.word2vec). 
+In this exercise, we will train some word embeddings and do some simple queries on the trained model. Gensim also has modules for loading and training word embeddings. Take a look at the [documentation](https://radimrehurek.com/gensim/models/word2vec.html#module-gensim.models.word2vec).
 
 Normally we would use very large corpora with millions of tokens to train word embeddings but since this is just an exercise, we will use the small `common_texts` corpora provided by Gensim.
 Use the following code snippet to train Word2Vec embeddings:
@@ -174,9 +181,11 @@ from gensim.models import Word2Vec
 
 model = Word2Vec(common_texts, size=100, window=5, min_count=1, workers=4)
 # optional but there's no harm in saving the trained model
-model.save("word2vec.model") 
+model.save("word2vec.model")
 ````
-* What is the vocabulary size of your model?
+
+> * What is the vocabulary size of your model?
+> * *Submit your answer*
 
 ### Exercise 5.1: Finding similar words using word embeddings
 
@@ -184,10 +193,12 @@ After training your model, use the `similar_by_word()` method to find the word m
 - system
 - human
 - trees
-* Do the similar words look reasonable to you? Discuss why or why not.
+
+> * Do the similar words look reasonable to you? Discuss why or why not.
+> * *Submit your answer*
 
 ## Suggested extensions:
-1. Doc2vec is an extension of Word2vec that learns document embeddings as well as word vectors. Another way to build document embeddings is to sum up the embeddings of each word in a document weighted by word frequency or TF-IDF. Another strategy is to apply clustering on the document embeddings. Use these methods to find similar documents and evaluate their performance. Whichever method(s) you want to try, you would need a dataset with documents grouped according to categories or other criteria. This dataset from [Kaggle](https://www.kaggle.com/uciml/news-aggregator-dataset#uci-news-aggregator.csv) is a good start. 
+1. Doc2vec is an extension of Word2vec that learns document embeddings as well as word vectors. Another way to build document embeddings is to sum up the embeddings of each word in a document weighted by word frequency or TF-IDF. Another strategy is to apply clustering on the document embeddings. Use these methods to find similar documents and evaluate their performance. Whichever method(s) you want to try, you would need a dataset with documents grouped according to categories or other criteria. This dataset from [Kaggle](https://www.kaggle.com/uciml/news-aggregator-dataset#uci-news-aggregator.csv) is a good start.
 
 2. Cross-lingual word embeddings are embeddings that have been aligned for two or more languages. This means that words from different languages that have similar meanings will be close to each other in the embedding space. Use cross-lingual embeddings to match similar documents across languages. There are many pretrained cross-lingual embeddings available online, one example is from [FastText](https://fasttext.cc/docs/en/pretrained-vectors.html). To build cross-lingual document embeddings, you can sum up the embedding of each word in the document weighted by frequency or TF-IDF. You would need a multilingual dataset with some gold standard matching such as a parallel corpus. There are many available online, [Opus](http://opus.nlpl.eu/) is a good start.
 
@@ -196,9 +207,3 @@ After training your model, use the `similar_by_word()` method to find the word m
 * Kusner, Matt, et al. "From word embeddings to document distances." International conference on machine learning. 2015.
 * Litschko, Robert, et al. "Unsupervised cross-lingual information retrieval using monolingual data only." The 41st International ACM SIGIR Conference on Research & Development in Information Retrieval. 2018.
 * Litschko, Robert, et al. "Evaluating resource-lean cross-lingual embedding models in unsupervised retrieval." Proceedings of the 42nd International ACM SIGIR Conference on Research and Development in Information Retrieval. 2019.
-
-
-
-
-
-
