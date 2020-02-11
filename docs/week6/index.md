@@ -1,7 +1,5 @@
 # Week 6: NLG and Dialogue
 
-**NB: These assignments can still change, do not start working on them yet.**
-
 Carry out all the exercises below and submit your answers on Moodle. Also submit a single Python file containing your full implementation.
 
 ## Exercise 1: The End-to-End NLG Challenge
@@ -287,6 +285,8 @@ assert realize_referring_expressions('X-NAME-POSS', 'Charles') == "Charles'"
 
 ```
 
+> **submit your code**
+
 ## Exercise 6: The big one
 
 Implement a generator function that gracefully realizes all values in the meaning representations. Ensure that there are no `None`s in your output: only the field `name` is quaranteed to be present, all other fields can be `None`
@@ -390,14 +390,13 @@ Take care to handle all instances of "a" and "an" using the helper functions if 
 
 ## Exercise 7: Reflection
 
->**Submit to Moodle** your answers to the following questions.
-> 1. How difficult would it be to modify the system to produce a wider variety of sentences, for example by randomly ordering (some) elements in the output?
-> 2. Think of another language you speak. How much work would it be to translate the system to that language compared to this initial implementation? Try to consider cases like the "a" vs. "an" in English. Give examples of difficult things you come up with, if any.
-> 3. Using the Gatt & Krahmer classification (Refer to slides), how would you characterize the system you built? Why?
-> 4. Think back on your answers to Exercise #1. Did the task turn out easier or more difficult than you anticipated?
-> 5. Think about the pros and cons of the neural systems as discussed in the lecture. Do you think this task is good for them (consider the data, the complexity etc.)? Do you expect them to fare better than "classical" systems?
-> 6. How do the Baseline scores on the E2E website compare to your scores? How did you compare to the other system reported in Table 3 of the [Findings of the E2E NLG Challenge -paper](https://arxiv.org/pdf/1810.01170.pdf)?
-> 7. Look at the same table. Check from the caption how the colors match the system architectures. How are the rule-based and template-based systems faring against the seq2seq and other data-driven systems? Does this match your expectation from before?
+>**Submit to Moodle** you answers to the following questions. Keep your answers short: a few sentences each is sufficient.
+> 1. Think of another language you speak (or atleast know a bit about). How much work would it be to translate the system to that language? Try to consider cases like the "a" vs. "an" in English. Give examples of difficult things you come up with, if any.
+> 2. Using the Gatt & Krahmer classification (Refer to slides), how would you characterize the system you built? Why?
+> 3. Think back to your answers to Exercise #1. Did the task turn out easier or more difficult than you anticipated? What didn't you anticipate?
+> 4. Think about the pros and cons of the neural systems as discussed in the lecture. Do you think this task is good for them (consider the data, the complexity etc.)? Do you expect them to fare better than "classical" systems?
+> 5. How do the Baseline scores on the E2E website compare to your scores? How did you compare to the other system reported in Table 3 of the [Findings of the E2E NLG Challenge -paper](https://arxiv.org/pdf/1810.01170.pdf)?
+> 6. Look at the same table. Check from the caption how the colors match the system architectures. How are the rule-based and template-based systems faring against the seq2seq and other data-driven systems? Does this match your expectation from before?
 
 **NB:** Regarding the evaluation, note that we are doing the manual version to what overfitting is in machine learning: we identified our approach (~trained our model) from the same dataset we are using to test it. Our results are **not** directly comparable to those reported on the E2E website. 
 
@@ -413,7 +412,7 @@ Try out different modifications to the reference and calculate the BLEU scores b
 ## Exercise 9: Human Evaluation
 
 >**Submit to Moodle** your answers to the following questions. A few sentences each is sufficient.
-> 1. What kinds of questions would you ask if you were to conduct an intrinstic human evaluation on this task?
-> 2. Can you come up with an extrinsic human evaluation for this task?
-> 3. Read Section 4.2 from the [Findings of the E2E NLG Challenge](https://arxiv.org/pdf/1810.01170.pdf) paper. How did seq2seq systems compare to other interms of naturalness and quality?
-> 4. Do you think naturalness or quality (~correctness) is more important for a system describing (perhaps recommending) restaurants? Come up with an example of both a system where correctness is much more important than fluency, and one where the reverse holds true.
+> 1. What kinds of questions would you ask if you were to conduct an intrinstic human evaluation of the restaurant description task?
+> 2. Can you come up with an extrinsic human evaluation for the task, perhaps with some minor modification but still using the same underlying meaning representations?
+> 3. Read Section 4.2 from the [Findings of the E2E NLG Challenge](https://arxiv.org/pdf/1810.01170.pdf) paper. How did seq2seq systems compare to others in terms of naturalness and quality?
+> 4. Do you think quality (~correctness) or naturalness is more important for a system describing (perhaps recommending) restaurants? Come up with an example of both a system where correctness is much more important than fluency/naturalness, and one where the reverse holds true. You don't have to limit your examples to the restaurant domain.
