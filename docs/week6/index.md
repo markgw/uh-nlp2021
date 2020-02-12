@@ -412,7 +412,8 @@ Try out different modifications to the reference and calculate the BLEU scores b
 ## Exercise 9: Human Evaluation
 
 >**Submit to Moodle** your answers to the following questions. A few sentences each is sufficient.
-> 1. What kinds of questions would you ask if you were to conduct an intrinstic human evaluation of the restaurant description task?
-> 2. Can you come up with an extrinsic human evaluation for the task, perhaps with some minor modification but still using the same underlying meaning representations?
-> 3. Read Section 4.2 from the [Findings of the E2E NLG Challenge](https://arxiv.org/pdf/1810.01170.pdf) paper. How did seq2seq systems compare to others in terms of naturalness and quality?
-> 4. Do you think quality (~correctness) or naturalness is more important for a system describing (perhaps recommending) restaurants? Come up with an example of both a system where correctness is much more important than fluency/naturalness, and one where the reverse holds true. You don't have to limit your examples to the restaurant domain.
+> 1. What kinds of questions would you ask if you were to conduct an intrinstic human evaluation of the restaurant description task? 2-3 questions is sufficient.
+> 2. You are giving human judges a generated restaurant description together with the corresponding restaurant's menu, its location on a map and a sample of its customer reviews. Each judge then tells you whether, in their opinion, the text matches the info they have. Why is this task an instrinsic evaluation?
+> 3. You modify the above procedure. Instead of one info package, you now give the judges multiple slightly different info packages of which only one is the one corresponding to the restaurant. The judges are then asked to identify which info package the generated description corresponds to. Why is this task an extrinsic evaluation?
+> 4. Read Section 4.2 from the [Findings of the E2E NLG Challenge](https://arxiv.org/pdf/1810.01170.pdf) paper. How did seq2seq systems compare to others in terms of naturalness and quality? Do these results differ from the automated evaluations?
+> 5. Come up with at least one example of both a system where correctness is much more important than fluency/naturalness, and one where the reverse holds true. You don't have to limit your examples to the restaurant domain.
