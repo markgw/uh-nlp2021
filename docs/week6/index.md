@@ -285,7 +285,7 @@ assert realize_referring_expressions('X-NAME-POSS', 'Charles') == "Charles'"
 
 ```
 
-> **submit your code**
+> **Submit to Moodle a single file containing working and correct implementations for all functions defined above.** Remember to test your implementations with the provided assert statements.
 
 ## Exercise 6: The big one
 
