@@ -21,6 +21,6 @@ Assignments for each week:
  - [Week 3 – Finite-state methods and statistical NLP](week3/)
  - [Week 4 – Syntax & parsing](week4/)
  - [Week 5 – Vectors & lexical semantics](week5/)
- - Week 6 – NLG, dialogue &discourse
+ - [Week 6 – NLG, dialogue & discourse](week6/)
  - Week 7 – Temporal IE
  - [Final project](final_project/)
