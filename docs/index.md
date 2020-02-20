@@ -22,5 +22,5 @@ Assignments for each week:
  - [Week 4 – Syntax & parsing](week4/)
  - [Week 5 – Vectors & lexical semantics](week5/)
  - [Week 6 – NLG, dialogue & discourse](week6/)
- - Week 7 – Temporal IE
+ - [Week 7 – Temporal IE](week7/)
  - [Final project](final_project/)

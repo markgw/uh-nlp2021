@@ -44,7 +44,7 @@ if __name__ == "__main__":
 	
 	month_regex = r'(January|February|March|April|May|June|July|August|September|October|November|December)'
 	month = {"TEXT": {"REGEX": month_regex}}
-	year = {"SHAPE": "dddd", "<=":"2019"}
+	year = {"SHAPE": "dddd", "<=":"2020"}
 	day = {"SHAPE": "dd", ">":"0", "<=":"31"}
 	date =[{**month, 'OP':'?'}, {**day, 'OP':'?'},{'IS_PUNCT': True, 'OP': '?'}, {**year}]
 	
