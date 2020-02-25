@@ -1,7 +1,5 @@
 # Week 7: Temporal Information Extraction
 
-**NB: This is an old assignment. It hasn't yet been updated for this year's course!**
-
 Carry out all the exercises below and submit your answers
 [on Moodle](https://moodle.helsinki.fi/course/view.php?id=33565#section-8).
 
@@ -123,7 +121,7 @@ python scorer.py train/ann/ train/sub/ train.txt
 
 The scorer outputs the evaluation measures---recall, precision and
 F1-score---which you should include into your report, and a detailed
-evaluations in a separate file.
+evaluations in a separate file (if you used the example above the name of this file should be train.txt).
 
 * Scan the scorer output trying to find the biggest problems of the annotator.
   Edit your regular expressions trying to improve F1-score.
@@ -216,7 +214,7 @@ the *development* set.
 Now you have two time-expression annotators:
 **regex-based** and **spaCy-based**, and two scorer outputs for each annotator.
 
-* Which annotator, in your opinion, is working better? Why?
+* Which annotator, in your opinion, is working better? Why? Of course, one of them has a higher score but try to understand the reason why it works better.
 * Which annotator was easier to implement, debug and modify?
 
 Compare scorer outputs obtained on *development* set.
@@ -224,7 +222,8 @@ Try to find cases correctly processed by one annotator but missed by another.
 
 * What is the main strength of the **regex** annotator? What is its main weakness?
 * What is the main strength of the **spaCy** annotator? What is its main weakness?
-  Add some examples to justify your response.
+
+Add some examples to justify your response.
 
 * **Submit your answers**
 
