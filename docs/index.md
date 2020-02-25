@@ -8,9 +8,6 @@ On this site, you will find all the assignments. Note that
 the content of each assignment may change **up until the lecture
 when it is released** (Monday of each week).
 
-> **Note that the assignments have not yet all been written/finalized.**
-> Don't start on them until the release date!
-
 Titles of all assignments are shown, so that you can start
 considering which one you would like to extend in your
 [final project](final_project/).
@@ -22,5 +19,5 @@ Assignments for each week:
  - [Week 4 – Syntax & parsing](week4/)
  - [Week 5 – Vectors & lexical semantics](week5/)
  - [Week 6 – NLG, dialogue & discourse](week6/)
- - Week 7 – Temporal IE
+ - [Week 7 – Temporal IE](week7/)
  - [Final project](final_project/)
