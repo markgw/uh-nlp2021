@@ -1,16 +1,39 @@
-Introduction to NLP 2020
-========================
+# Natural Language Processing 2021
+
+## Course
 
 Masters course at the University of Helsinki
 Department of Computer Science.
 
-On this site, you will find all the assignments. Note that
-the content of each assignment may change **up until the lecture
-when it is released** (Monday of each week).
+The course consists of hybrid teaching sessions, partly
+short lectures and partly group and individual assignments
+to be carried out during the session and instructions
+will be provided during the lecture.
 
-Titles of all assignments are shown, so that you can start
-considering which one you would like to extend in your
-[final project](final_project/).
+In addition, each week there is a short individual assignment
+to complete in your own time. These individual assignments
+can be found on the pages below.
+
+Note that the content of each assignment may change
+**up until the lecture when it is released** (Monday of each week).
+Please therefore do not start the assignment until its
+release date, or else you might end up doing to wrong thing!
+
+## Final project
+
+As well as weekly assignments, students must submit a
+[final project](final_project/)
+that puts into practice some of the principles,
+models and tools encountered in the course.
+
+You may choose your own topic. It may be an extension of
+the work done in one of the assignments, or something else.
+At the bottom of each week's assignment are some suggestions
+for how you might consider extending it.
+
+## Assignments
+
+   TODO: Update the list of assignments for the new course structure.
 
 Assignments for each week:
  - [Week 1 – Python intro, pipeline & toolkits](week1/)
