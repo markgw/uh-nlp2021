@@ -33,14 +33,12 @@ for how you might consider extending it.
 
 ## Assignments
 
-   TODO: Update the list of assignments for the new course structure.
-
 Assignments for each week:
  - [Week 1 – Python intro, pipeline & toolkits](week1/)
  - [Week 2 – Full pipeline & evaluation](week2/)
- - [Week 3 – Finite-state methods and statistical NLP](week3/)
- - [Week 4 – Syntax & parsing](week4/)
- - [Week 5 – Vectors & lexical semantics](week5/)
- - [Week 6 – NLG, dialogue & discourse](week6/)
- - [Week 7 – Temporal IE](week7/)
+ - [Weeks 3-4 – Finite-state methods and statistical NLP](week34/)
+ - [Week 5 – Syntax & parsing](week5/)
+ - [Week 6 – Vectors & lexical semantics](week6/)
+ - [Week 7 – NLG, dialogue & discourse](week7/)
+ - [Week 8 – Temporal IE](week8/)
  - [Final project](final_project/)
