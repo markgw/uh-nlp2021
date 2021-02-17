@@ -5,9 +5,37 @@ Carry out all the exercises below and submit your answers
 Also submit a single Python file containing your full
 implementation.
 
-## Exercise 1: NLP tools
+## Part 1: Questions from the lectures
 
-### Exercise 1.1: Using NLTK
+### Question 1.1
+
+You saw the following factual text and question, given respectively
+as data source (among others) and user input to a question answering system.
+
+* *A robotic co-pilot developed under DARPA’s ALIAS programme has already flown a light aircraft.*
+* *What agency has created a computer that can pilot a plane?*
+
+> **Submit a list at least 4 of steps (using formal names or just your own descriptions)
+  that must be carried out by the system to extract information from the first sentence in a suitable
+  internal/logical form for answering the question.**
+
+### Question 1.2
+
+Consider the following sentences:
+
+1. *John loves Mary.*
+2. *The number of moped-related crimes rose from 827 in 2012 to more than 23,000 last year.*
+
+> **List three challenges encountered in extracting information from sentence 2
+  that make it more difficult than sentence 1.**
+
+### Question 1.3
+
+**TODO: Something based on L3**
+
+## Part 2: NLP tools
+
+### Exercise 2.1: Using NLTK
 In the previous session, you have installed NLTK and used it to load a corpus. In this exercise, you will use NLTK to process sentences. More specifically, you will tokenize sentences and words, apply POS tagging on words, lemmatize them and remove any stop words in them.
 
 You might need to download the following NLTK packages:
@@ -71,7 +99,7 @@ print(stopWords)
 >
 > **Submit your written answers to the questions**
 
-###  Exercise 1.2: Using spaCy
+###  Exercise 2.2: Using spaCy
 In this exercise, you will use an NLP tool other than NLTK, namely [*spaCy*](https://spacy.io/).
 Last week, you installed *spaCy* and used it to recognize named entities in text. Let's see what else it has to offer.
 
@@ -109,7 +137,7 @@ For additional reading regarding spaCy (optional):
 * [A brief comparison between spaCy and other NLP tools.](https://spacy.io/usage/facts-figures)
 
 
-### Exercise 1.3: Comparing different NLP tools
+### Exercise 2.3: Comparing different NLP tools
 
 The goal of this exercise is to experiment with different NLP tools, know what they offer and compare them. The tools that you will use in this exercise are:
 
@@ -139,112 +167,6 @@ In case you'd like to try out other NLP tools, here are some more:
 * [TextBlob](https://textblob.readthedocs.io/): simple interface to English NLP tools
 * [MaltParser](http://www.maltparser.org/): dependency parser (*implemented in Java*)
 
-
-## Exercise 2: Evaluation
-
-In these exercises, we will be running multiple evaluation metrics that can be used in assessing the quality and performance of some NLP methods.
-
-### Exercise 2.1
-
-Consider an information retrieval system that returns a retrieval set of 15 documents (`retrieved`).
-Each document in `retrieved` is labelled as *relevant* (`'R'`) or *non-relevant* (`'N'`):   
-
-````python
-total_docs = 100
-total_relevant = 10
-
-retrieved = ['R', 'N', 'N', 'R', 'R', 'N', 'N', 'N',
-             'R', 'N', 'R', 'N', 'N', 'R', 'R']
-
-````
-
-Continuing the snippet given above, compute the numbers of true positives, false positives, true negatives, and
-false negatives. Then, compute the values of the following metrics (round the values to two decimal places):
-
-> Precision
->
-> Recall
->
-> F-score with &beta; = 1 (also known as *F1-score*)
->
-> Accuracy
->
-> **Submit the values you computed for each metric**
-
-### Exercise 2.2
-Consider the following scenario: a database consists of 10,000 documents in total, of which 10 are relevant.    
-
-> Is accuracy an appropriate metric for evaluating the performance of a retrieval system in this scenario?
-Why/why not? Discuss briefly.
->
-> **Submit your answer**
-
-
-## Exercise 3: Evaluation of a POS tagger
-In this exercise, we will use the Penn Treebank corpus provided by NLTK to obtain POS annotations, as gold standard:
-
-````python
-import nltk
-nltk.download('treebank')
-````
-
-We will use 80% of sentences for training, and the remaining 20% for testing.  
-The following code splits the corpus of sentences into training and test sentences,
-and assigns test tokens and the correct tags into separate lists.
-
-Download [ass5utils.py](ass5utils.py) into the same directory as
-your source code, then run the below code to train the HMM with `training_sents`:
-
-````python
-from nltk.corpus import treebank
-from nltk.tag.hmm import HiddenMarkovModelTagger
-from ass5utils import split_corpus
-
-training_sents, test_sents = split_corpus(treebank, 0.8)
-
-test_tokens = [t[0] for s in test_sents for t in s]
-correct_tags = [t[1] for s in test_sents for t in s]
-
-hmm_tagger = HiddenMarkovModelTagger.train(training_sents)
-````
-
-### Exercise 3.1: Confusion matrix
-
-Use the HMM to predict the tags for `test_tokens`, refer to [`nltk.tag.hmm`](https://www.nltk.org/api/nltk.tag.html?#nltk.tag.hmm.HiddenMarkovModelTagger.tag) for additional details.
-
-Then, compute the confusion matrix between the predicted tags and `correct_tags`.  
-You can use the
-[`nltk.metrics.ConfusionMatrix`](https://www.nltk.org/api/nltk.metrics.html#nltk.metrics.confusionmatrix.ConfusionMatrix)
-class for this exercise.
-
-(In the confusion matrix, rows are the correct tags and columns are the predicted tags.
-That is, an entry `cm[correct_tag, predicted_tag]` is the number of times a token with true tag `correct_tag` was
-tagged with `predicted_tag`.)
-
-> Which `(correct_tag, predicted_tag)` pair was the most common error? How many times did it occur?
->
-> What is the overall accuracy of the HMM tagger? (Round the value to two decimal places.)
->
-> Compute the precision, recall, and F1-score (&beta; = 1) for the tag `'NN'`. (Round the value to two decimal places.)
->
-> **Submit the answers**
-
-
-### Exercise 3.2: Comparison with baselines
-
-We would like to know whether the HMM tagger is any good compared to a naive baseline and to the `spaCy`.
-
-Implement the following function:
- * `random_tagger(tagset, tokens)`: given a list of tokens, assigns a POS tag randomly to each token.
- (The tagset is defined in [ass5utils.py](ass5utils.py).)
-
-Compute the overall accuracy and F1-score of the random_tagger, and compare the values with the HMM and spaCy model.
-
-> Which model has the best performance?
->
-> What is the difference in accuracy (expressed in [percentage points](https://en.wikipedia.org/wiki/Percentage_point)) between the random baseline, HMM, and spaCy? (Round the value to one decimal place.)
->
-> **Submit the name of the best model and accuracy difference**
 
 
 
