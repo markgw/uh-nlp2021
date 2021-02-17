@@ -1,30 +1,58 @@
 # Week 1: Python for Java programmers, installing stuff and simple NLP
 
-This week's material has two parts. The first is a short introduction to the Python 3 programming language. We assume a good general programming knowledge. This mean e.g. background in the Java programming language, on the level of Introduction to Programming (Ohjelmoinnin perusteet) and Advanced Programming (Ohjelmoinnin jatkokurssi) as taught at the department. For those who are already familiar with Python, this part serves as a refresher.
+This week's material has two parts.
+1. The first is a **short introduction to the Python 3 programming language**.
+   We assume a good general programming knowledge.
+   This means e.g. background in the Java programming language,
+   on the level of *Introduction to Programming (Ohjelmoinnin perusteet)*
+   and *Advanced Programming (Ohjelmoinnin jatkokurssi)*
+   as taught at the department.
+   For those who are **already familiar with Python**, this part serves
+   as a refresher and can be skipped if you are confident in your Python
+   programming knowledge.
+2. The second part is about installing some required third party
+   libraries and verifying they work by doing some simple NLP
+   tasks that are common as the initial stages in NLP pipelines.
 
-The second part is about installing some required third party libraries and verifying they work by doing some simple NLP tasks that are common as the initial stages in NLP pipelines.
+**Even if you are very familiar with Python, you should read and follow Part II,
+as it contains the marked assignments**.
+At the same time, skimming through Part I might be useful
+even if you've used Python before.
 
-**Even if you are very familiar with Python, you should read everything onwards from the section "Installing stuff" since the following sections contain the marked assignments of this week**. At the same time, skimming through the document might be useful even if you've used Python before.
+Most assignments will being with some questions based on the
+group work you did in the previous week's lectures. We skip this
+this week, since there is no previous week.
+
 
 > Sections that look like this designate assignments. While it's advisable to try out all examples, at the minimum work through these. This week only, some assignments that look like this are not returned to Moodle.
 
-This week only, the page also contains assignments that look like shown below. Any such assignments are graded and count towards your course outcome. In the following weeks, all assignments are marked and no distinction is made in the instructions between marked (submitted) and unmarked assignments.
+This week only, the page also contains assignments that
+look like shown below. Any such assignments are graded and
+count towards your course outcome. In the following weeks,
+all assignments are marked.
 
 > **MARKED ASSIGNMENT**
 >
 >This is an example of an assignment you are expected to return to Moodle for grading.
 
-## Part 1: Introduction to Python
 
-Note that the following is not a complete description of the Python programming language. You are expected to consult additional resources during the course. The official Python documentation is an excellent starting point. In addition, you might wish to consult the ebook [A whirlwind tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/), from which this document borrows heavily. In addition, you'll want to consult the NLTK book and NLTK documentation during the latter days.
+## Part I: Introduction to Python
+
+The following is not a complete description of the Python programming language!
+You are expected to consult additional resources during the course.
+The official Python documentation is an excellent starting point. In addition, you might wish to consult the ebook [A whirlwind tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/), from which this document borrows heavily.
+
+You'll also want to consult the [NLTK book](http://www.nltk.org/book/)
+and [NLTK documentation](http://www.nltk.org/) during the later assignments.
 
 ### On Python 2 and Python 3
 
-Python currently exists in two different flavors, Python 2 and Python 3. For all relevant purposes, **you should only be writing Python 3** unless you find yourself in exceptional circumstances. Python 2 will only receive one final update in the Summer of 2020, after which not even security patches will be released.
+Python has for a while existed in two different flavors, Python 2 and Python 3.
+**You should only be writing Python 3**, unless you find yourself in exceptional circumstances. Python 2 will no longer be updated, even with security patches.
 
-Also more specifically for NLP purposes, Python 3 simplifies the handling of non-ASCII characters singificantly by making UTF-8 strings the default. In Python 2, you must take special care when handling any language that is not expressed solely using ASCII characters.
+Also more specifically for NLP purposes, Python 3 simplifies the handling of non-ASCII characters singificantly by making UTF-8 strings the default.
 
-All examples hereafter are in Python 3 unless otherwise denoted. Any mentions of "Python" in the material will, by default, refer to Python 3. Any code you return on this day or any later day will be ran using Python 3.
+All examples hereafter are in Python 3. Any mentions of "Python" in the material will, by default, refer to Python 3. Any code you return on this day or any later day will be run using Python 3.
 
 ### Installing Python
 
@@ -331,7 +359,7 @@ Similarly, prefer `x is not None` to `x != None`.
 >```
 >The cause of the above weird behaviour is in how Python *interns* numbers and string. For example, the [documentation](https://docs.python.org/3/c-api/long.html) of the default Python implementation says this:
 >>The current implementation keeps an array of integer objects for all integers between -5 and 256, when you create an int in that range you actually just get back a reference to the existing object.
-> 
+>
 > This gets even more complicated with strings. The takehome here is that `is` might behave weird and the weirdness is not quaranteed to be consistent across various installations of Python.
 
 
@@ -895,9 +923,14 @@ You would then use the class thus:
 Per Example (deceased)
 ```
 
+
+
+
+
 ## Part II: Installing stuff, NLTK and SpaCy
 
-While Python has a good standard library, we are going to need specialized tools like the Natural Language Tool Kit (NLTK). Let's first install NLTK.
+While Python has a good standard library, we are going to need specialized tools like the
+**Natural Language Tool Kit (NLTK)**. Let's first install NLTK.
 
 ### Virtual environments
 

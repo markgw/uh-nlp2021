@@ -10,9 +10,21 @@ short lectures and partly group and individual assignments
 to be carried out during the session and instructions
 will be provided during the lecture.
 
+### Assignments
+
 In addition, each week there is a short individual assignment
 to complete in your own time. These individual assignments
 can be found on the pages below.
+
+Each assignment begins with some questions relating to the
+group work carried out during lectures. These should be
+quick and easy to answer, with the help of the notes or answers
+your group submitted during lectures.
+
+Then there are some further questions or tasks for you to carry
+out on your own.
+
+### Warning: don't start early!
 
 Note that the content of each assignment may change
 **up until the lecture when it is released** (Monday of each week).
