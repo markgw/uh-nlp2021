@@ -15,9 +15,11 @@ as data source (among others) and user input to a question answering system.
 * *A robotic co-pilot developed under DARPA’s ALIAS programme has already flown a light aircraft.*
 * *What agency has created a computer that can pilot a plane?*
 
-> **Submit a list at least 4 of steps (using formal names or just your own descriptions)
-  that must be carried out by the system to extract information from the first sentence in a suitable
-  internal/logical form for answering the question.**
+<div class="submit">
+	Submit a list at least 4 of steps (using formal names or just your own descriptions)
+  	that must be carried out by the system to extract information from the first sentence in a suitable
+  	internal/logical form for answering the question.
+</div>
 
 ### Question 1.2
 
@@ -26,12 +28,16 @@ Consider the following sentences:
 1. *John loves Mary.*
 2. *The number of moped-related crimes rose from 827 in 2012 to more than 23,000 last year.*
 
-> **List three challenges encountered in extracting information from sentence 2
-  that make it more difficult than sentence 1.**
+<div class="submit">
+	List three challenges encountered in extracting information from sentence 2
+  	that make it more difficult than sentence 1.
+</div>
 
 ### Question 1.3
 
-> **Submit short answers to each of the following questions**
+<div class="submit">
+	Submit short answers to each of the following questions
+</div>
 
 1. What is sentence tokenization?
 2. What is word tokenization?
@@ -78,8 +84,8 @@ print(stopWords)
 > What is POS tagging and why is it useful?
 >
 > What kind of words were in `stopWords`? What is the purpose of defining a set of such words?
->
-> **Submit your answers**
+
+<div class="submit">Submit your answers</div>
 
 Build your own NLP pipeline (a function named `process_text(text)`) that takes a paragraph as input, and splits the paragraph into sentences, applies word tokenization, POS tagging and lemmatization on all words. The function should return a list containing the processed sentences. The format of the returned processed text could be something like this
 ````python
@@ -95,8 +101,8 @@ Build your own NLP pipeline (a function named `process_text(text)`) that takes a
 Implement a function (`filter_text(text)`) that uses `process_text(text)` to process a paragraph and then removes stop words and words that are not verbs, adjectives or nouns (for descriptions of POS tags, [read this](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html)).
 
 > What words are left when you run this filter on the example input text above? (Groucho Marx)
->
-> **Submit your answer**
+
+<div class="submit">Submit your answers</div>
 
 
 ##  Exercise 3: Using spaCy
@@ -127,8 +133,8 @@ When analyzing sentences, spaCy automatically runs the text through an NLP pipel
 > What is noun phrase chunking?
 >
 > Describe any two types of entities that spaCy can recognize.
->
-> **Submit your answers**
+
+<div class="submit">Submit your answers</div>
 
 
 For additional reading regarding spaCy (optional):
@@ -151,8 +157,8 @@ Try parsing a simple sentence (e.g. "I have a dog.") using the tools. Now parse 
  * *Finger licking good.*
 
 > From your observations, note some differences between the results (e.g. parsed trees, POS tags)? Briefly discuss the differences and any missing/correct/wrong results by the tools.
->
-> **Submit your answers**
+
+<div class="submit">Submit your answers</div>
 
 
 ## Other NLP tools (Optional)

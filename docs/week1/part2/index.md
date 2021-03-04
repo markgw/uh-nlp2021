@@ -134,9 +134,9 @@ We can then use the `max` function and it's `key` argument to find the tuple wit
 
 Call `' '.join(longest[1])` (note the space inside quotes) to get a slightly nicer looking string representation of the longest sentence of any US presidential inaugural speech. Also check `longest[0]` for which speech this sentence is from.
 
-> **MARKED ASSIGNMENT**
->
-> Submit to Moodle who's speech contained the longest sentence, when the speech was given and what the longest sentence was.
+<div class="submit">
+    Submit to Moodle who's speech contained the longest sentence, when the speech was given and what the longest sentence was.
+</div>
 
 ## Simple NLP stuff
 
@@ -158,9 +158,10 @@ We can now use `Counter` to determine the distribution of the POS tags. Note tha
 
 Use the `most_common(n)` method of the object you just constructed to determine the 3 most common POS tags and their counts.
 
-> **MARKED ASSIGNMENT**
->Return to Moodle the 3 most common POS tags, their counts, their meanings and the code you used to obtain the result.
->
+<div class="submit">
+    Submit to Moodle the 3 most common POS tags, their counts, their meanings and the code you used to obtain the result.
+</div>
+
 > To find out what the tags mean, install the NLTK module "tagsets" and read the output of `nltk.help.upenn_tagset()`. Don't worry if you don't understand them completely, but try to get some idea by looking at the examples.
 
 
@@ -174,14 +175,16 @@ To install the English language default models, write `python -m spacy download 
 
 The above should have downloaded a model called `en_core_web_sm` and constructed a shortcut called `en`. SpaCy also allows you to define in more details which models, exactly, you want to download and use. Optionally see the SpaCy's [documentation](https://spacy.io/usage/models#download) for more details.
 
->**MARKED ASSIGNMENT**
+> Go to https://spacy.io/models/en and observe the three different English language model sets available. How much larger is `en_core_web_lg` compared to `en_core_web_sm` in terms of megabytes taken up by the model?
 >
-> Go to https://spacy.io/models/en and observe the three different English language model sets available. How much larger is `en_core_web_lg` compared to `en_core_web_sm` in terms of megabytes taken up by the model? Observe the NER F scores reported for the various English language models. A score of 100 would mean that the model was correct in all test cases, whereas a score of 0 would mean that it was wrong in all test cases. How much performance did the larger model gain for how many fold increase in model size when compared to the smallest model?
+> Observe the NER F scores reported for the various English language models. A score of 100 would mean that the model was correct in all test cases, whereas a score of 0 would mean that it was wrong in all test cases. How much performance did the larger model gain for how many fold increase in model size when compared to the smallest model?
+
+<div class="submit">Submit your answers</div>
 
 In Python, import `spacy` and then load up a module containing English language models by calling `nlp = spacy.load('en')`.
 
 Next, try out SpaCy's default **entity recognition model** by writing up a sentence with a few entities (people, places, organizations) and storing it in a variable `sent`. Then call `nlp(sent).ents` and observe the detected entities. Try out a few variations of inputs.
 
->**MARKED ASSIGNMENT**
->
 > What entities does SpaCy's `en` module detect from the sentence `"President Obama said to reporters from the Washington Post that the Federal Reserve had overstepped in its decision to decrease the margins on inter-bank loans last Wednesday"`? What about if you remove the first word?
+
+<div class="submit">Submit your answers</div>

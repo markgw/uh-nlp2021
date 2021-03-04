@@ -22,17 +22,13 @@ even if you've used Python before.
 Most assignments after this week begin with some questions based on the
 group work you did in the previous week's lectures.
 
+> For this week, sections that look like this designate assignments. While it's advisable to try out all examples, at the minimum work through these.
 
-> Sections that look like this designate assignments. While it's advisable to try out all examples, at the minimum work through these. This week only, some assignments that look like this are not returned to Moodle.
+All assignments contain instructions like the one below.
+These denote things you should submit on Moodle: these are graded and
+count towards your course outcome.
 
-This week only, the page also contains assignments that
-look like shown below. Any such assignments are graded and
-count towards your course outcome. In the following weeks,
-all assignments are marked.
-
-> **MARKED ASSIGNMENT**
->
->This is an example of an assignment you are expected to return to Moodle for grading.
+<div class="submit">This is an example of an assignment you are expected to return to Moodle for grading.</div>
 
 
  - [Part I – Introduction to Python](part1/)
