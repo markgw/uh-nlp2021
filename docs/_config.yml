@@ -5,6 +5,6 @@ defaults:
       path: "" # an empty string here means all files in the project
     values:
       layout: "default" # Use our default layout (with navigation) on all pages
-title: "NLP 2020"
-description: "Assignments for NLP course, University of Helsinki"
+title: "NLP 2021"
+description: "Assignments for NLP course, Computer Science, University of Helsinki"
 markdown: kramdown

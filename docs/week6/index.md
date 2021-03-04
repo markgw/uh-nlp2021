@@ -5,6 +5,9 @@ and submit your answers on
 [Moodle](https://moodle.helsinki.fi/course/view.php?id=33565#section-5).
 Also submit a single Python file containing your full implementation.  
 
+> TODO: Cut out word embeddings, which are in the lecture assignments now.
+> Cut out something more from here to shorten a bit.
+
 
 
 ## Exercise 1: Document-term matrix
@@ -170,32 +173,7 @@ Next, train an LDA topic model for 10 topics on the pre-processed data. Read the
 > * What are the top 5 words for each topic? Tip: check out the `show_topic()` method or similar methods.
 > * *Submit your answer*
 
-### Exercise 5: Word embeddings
-In this exercise, we will train some word embeddings and do some simple queries on the trained model. Gensim also has modules for loading and training word embeddings. Take a look at the [documentation](https://radimrehurek.com/gensim/models/word2vec.html#module-gensim.models.word2vec).
 
-Normally we would use very large corpora with millions of tokens to train word embeddings but since this is just an exercise, we will use the small `common_texts` corpora provided by Gensim.
-Use the following code snippet to train Word2Vec embeddings:
-````python
-from gensim.test.utils import common_texts
-from gensim.models import Word2Vec
-
-model = Word2Vec(common_texts, size=100, window=5, min_count=1, workers=4)
-# optional but there's no harm in saving the trained model
-model.save("word2vec.model")
-````
-
-> * What is the vocabulary size of your model?
-> * *Submit your answer*
-
-### Exercise 5.1: Finding similar words using word embeddings
-
-After training your model, use the `similar_by_word()` method to find the word most similar to the following words (excluding itself):
-- system
-- human
-- trees
-
-> * Do the similar words look reasonable to you? Discuss why or why not.
-> * *Submit your answer*
 
 ## Suggested extensions:
 1. Doc2vec is an extension of Word2vec that learns document embeddings as well as word vectors. Another way to build document embeddings is to sum up the embeddings of each word in a document weighted by word frequency or TF-IDF. Another strategy is to apply clustering on the document embeddings. Use these methods to find similar documents and evaluate their performance. Whichever method(s) you want to try, you would need a dataset with documents grouped according to categories or other criteria. This dataset from [Kaggle](https://www.kaggle.com/uciml/news-aggregator-dataset#uci-news-aggregator.csv) is a good start.

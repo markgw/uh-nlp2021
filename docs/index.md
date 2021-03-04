@@ -43,7 +43,7 @@ the work done in one of the assignments, or something else.
 At the bottom of each week's assignment are some suggestions
 for how you might consider extending it.
 
-## Assignments
+## Assignment index
 
 Assignments for each week:
  - [Week 1 – Python intro, pipeline & toolkits](week1/)
