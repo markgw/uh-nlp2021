@@ -25,13 +25,11 @@ Machine Learning models, an HMM has some advantages for our purposes:
 In Lecture 4 (Evaluation), you were asked in your group to come up
 with some details of how you could evaluate a system.
 
-<blockquote class="submit">
- * List some metrics that you considered appropriate?
- * Give an example of a **baseline** for this evaluation task.
- * Give an example of a **ceiling** for this evaluation task.
+> * List some metrics that you considered appropriate?
+> * Give an example of a **baseline** for this evaluation task.
+> * Give an example of a **ceiling** for this evaluation task.
 
-**Submit your answers**
-</blockquote>
+<div class="submit">Submit your answers</div>
 
 ### Question 1.2
 
