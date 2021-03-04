@@ -6,6 +6,8 @@ Now we get ourselves ready to do some NLP in Python.
 While Python has a good standard library, we are going to need specialized tools like the
 **Natural Language Tool Kit (NLTK)**. Let's first install NLTK.
 
+Submit answers to the marked assignments on [Moodle](https://moodle.helsinki.fi/course/view.php?id=44338).
+
 ## Virtual environments
 
 Installing a huge number of dependencies globally is a bad idea for a multitude of reasons. We'll want to set up a *virtual environment*, which is like a sandbox where we can play: Python modules you install in the virtual environment are not visible to other virtual environments. At the same time, the venv is not a virtual machine or a real sandbox: malicious code can do whatever it pleases.

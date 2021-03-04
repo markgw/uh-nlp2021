@@ -1,7 +1,7 @@
 # Week 2: NLU Pipeline and Evaluation
 
 Carry out all the exercises below and submit your answers
-[on Moodle](https://moodle.helsinki.fi/course/view.php?id=36809).
+[on Moodle](https://moodle.helsinki.fi/course/view.php?id=44338).
 Also submit a single Python file containing your full
 implementation.
 
@@ -31,7 +31,11 @@ Consider the following sentences:
 
 ### Question 1.3
 
-**TODO: Something based on L3**
+> **Submit short answers to each of the following questions**
+
+1. What is sentence tokenization?
+2. What is word tokenization?
+3. What is lemmatization and why is it useful?
 
 ## Part 2: NLP tools
 
@@ -73,17 +77,13 @@ stopWords = set(stopwords.words('english'))
 print(stopWords)
 ````
 
-> What is sentence tokenization?
->
-> What is word tokenization?
->
 > What is POS tagging and why is it useful?
->
-> What is lemmatization and why is it useful?
 >
 > What kind of words were in `stopWords`? What is the purpose of defining a set of such words?
 >
-> Build your own NLP pipeline (a function named `process_text(text)`) that takes a paragraph as input, and splits the paragraph into sentences, applies word tokenization, POS tagging and lemmatization on all words. The function should return a list containing the processed sentences. The format of the returned processed text could be something like this
+> **Submit your answers**
+
+Build your own NLP pipeline (a function named `process_text(text)`) that takes a paragraph as input, and splits the paragraph into sentences, applies word tokenization, POS tagging and lemmatization on all words. The function should return a list containing the processed sentences. The format of the returned processed text could be something like this
 ````python
 [ # sentences
 	[ # sentence 0, contains words
@@ -93,11 +93,13 @@ print(stopWords)
   ...
 ]
 ````
-> Implement a function (`filter_text(text)`) that uses `process_text(text)` to process a paragraph and then removes stop words and words that are not verbs, adjectives or nouns (for descriptions of POS tags, [read this](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html)).
->
+
+Implement a function (`filter_text(text)`) that uses `process_text(text)` to process a paragraph and then removes stop words and words that are not verbs, adjectives or nouns (for descriptions of POS tags, [read this](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html)).
+
 > What words are left when you run this filter on the example input text above? (Groucho Marx)
 >
-> **Submit your written answers to the questions**
+> **Submit your answer**
+
 
 ###  Exercise 2.2: Using spaCy
 In this exercise, you will use an NLP tool other than NLTK, namely [*spaCy*](https://spacy.io/).
@@ -119,15 +121,14 @@ for sent in doc.sents:
 
 When analyzing sentences, spaCy automatically runs the text through an NLP pipeline (tokenizer, tagger, parser and so on). Read and try out the code snippets in [this article](https://spacy.io/usage/spacy-101) (until "Word vectors and similarity") and [this](https://spacy.io/usage/linguistic-features) (until "Tokenizer data") to familiarize yourself with spaCy (mainly: tokenization, POS tagging, lemmatization, dependency parsing, noun phrase chunking and named entity recognition). Once done, answer the questions below:
 
-> What is dependency parsing and how is it different than POS tagging?
-> (A short answer is enough here. This comes up in later lectures, so we'll
-< go into more detail then.)
+> What is dependency parsing and how is it different to POS tagging?
+> (A short answer is enough here. We'll go into more detail in later lectures.)
 >
 > What is the difference between `token.pos_` and `token.tag_`?
 >
 > What is noun phrase chunking?
 >
-> What is named entity recognition? Describe any two types of entities that spaCy can recognize.
+> Describe any two types of entities that spaCy can recognize.
 >
 > **Submit your answers**
 
@@ -151,16 +152,17 @@ Try parsing a simple sentence (e.g. "I have a dog.") using the tools. Now parse 
  * *Finger Lickin' Good.*
  * *Finger licking good.*
 
-> From your observations, note differences between the results (e.g. parsed trees, POS tags, ... etc) of spaCy and CoreNLP? Briefly discuss the difference and any missing/correct/wrong results by the tools.
+> From your observations, note some differences between the results (e.g. parsed trees, POS tags)? Briefly discuss the differences and any missing/correct/wrong results by the tools.
 >
 > **Submit your answers**
 
 
-#### Other NLP tools (Optional)
+## Other NLP tools (Optional)
 In case you'd like to try out other NLP tools, here are some more:
 
 * [Stanford CoreNLP](https://stanfordnlp.github.io/CoreNLP/) *(Implemented in Java, follow this tutorial to use [Stanford CoreNLP from Python](https://www.khalidalnajjar.com/setup-use-stanford-corenlp-server-python/))*
 * [flair](https://github.com/flairNLP/flair)
+* [Turku Neural Parser](https://turkunlp.org/Turku-neural-parser-pipeline/): parsing pipeline implemented by the Turku NLP group, with models for Finnish and about 50 other languages.
 * [UralicNLP](https://github.com/mikahama/uralicNLP) (for processing Finnish and other Uralic languages)
 * [AllenNLP](https://allennlp.org/tutorials)
 * [Pattern](https://www.clips.uantwerpen.be/pages/pattern-en) (use `pip install pattern3` for *Python 3*)
