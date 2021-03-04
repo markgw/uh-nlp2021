@@ -7,6 +7,8 @@ The official Python documentation is an excellent starting point. In addition, y
 You'll also want to consult the [NLTK book](http://www.nltk.org/book/)
 and [NLTK documentation](http://www.nltk.org/) during the later assignments.
 
+When you've finished (or read) Part I, don't forget [Part II](../part2/).
+
 ## On Python 2 and Python 3
 
 Python has for a while existed in two different flavors, Python 2 and Python 3.
@@ -884,3 +886,5 @@ You would then use the class thus:
 >>> print(p)
 Per Example (deceased)
 ```
+
+[To Part II](../part2/)
