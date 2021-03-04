@@ -175,9 +175,9 @@ To install the English language default models, write `python -m spacy download 
 
 The above should have downloaded a model called `en_core_web_sm` and constructed a shortcut called `en`. SpaCy also allows you to define in more details which models, exactly, you want to download and use. Optionally see the SpaCy's [documentation](https://spacy.io/usage/models#download) for more details.
 
-> Go to https://spacy.io/models/en and observe the three different English language model sets available. How much larger is `en_core_web_lg` compared to `en_core_web_sm` in terms of megabytes taken up by the model?
+> * Go to [https://spacy.io/models/en](https://spacy.io/models/en) and observe the three different English language model sets available. How much larger is `en_core_web_lg` compared to `en_core_web_sm` in terms of megabytes taken up by the model?
 >
-> Observe the NER F scores reported for the various English language models. A score of 100 would mean that the model was correct in all test cases, whereas a score of 0 would mean that it was wrong in all test cases. How much performance did the larger model gain for how many fold increase in model size when compared to the smallest model?
+> * Observe the NER F scores reported for the various English language models. A score of 100 would mean that the model was correct in all test cases, whereas a score of 0 would mean that it was wrong in all test cases. How much performance did the larger model gain for how many fold increase in model size when compared to the smallest model?
 
 <div class="submit">Submit your answers</div>
 
@@ -185,6 +185,7 @@ In Python, import `spacy` and then load up a module containing English language 
 
 Next, try out SpaCy's default **entity recognition model** by writing up a sentence with a few entities (people, places, organizations) and storing it in a variable `sent`. Then call `nlp(sent).ents` and observe the detected entities. Try out a few variations of inputs.
 
-> What entities does SpaCy's `en` module detect from the sentence `"President Obama said to reporters from the Washington Post that the Federal Reserve had overstepped in its decision to decrease the margins on inter-bank loans last Wednesday"`? What about if you remove the first word?
+> * What entities does SpaCy's `en` module detect from the sentence `"President Obama said to reporters from the Washington Post that the Federal Reserve had overstepped in its decision to decrease the margins on inter-bank loans last Wednesday"`?
+> * What about if you remove the first word?
 
 <div class="submit">Submit your answers</div>
