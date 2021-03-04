@@ -81,9 +81,8 @@ stopWords = set(stopwords.words('english'))
 print(stopWords)
 ````
 
-> What is POS tagging and why is it useful?
->
-> What kind of words were in `stopWords`? What is the purpose of defining a set of such words?
+> * What is POS tagging and why is it useful?
+> * What kind of words were in `stopWords`? What is the purpose of defining a set of such words?
 
 <div class="submit">Submit your answers</div>
 
@@ -102,7 +101,7 @@ Implement a function (`filter_text(text)`) that uses `process_text(text)` to pro
 
 > What words are left when you run this filter on the example input text above? (Groucho Marx)
 
-<div class="submit">Submit your answers</div>
+<div class="submit">Submit your answer</div>
 
 
 ##  Exercise 3: Using spaCy
@@ -125,14 +124,11 @@ for sent in doc.sents:
 
 When analyzing sentences, spaCy automatically runs the text through an NLP pipeline (tokenizer, tagger, parser and so on). Read and try out the code snippets in [this article](https://spacy.io/usage/spacy-101) (until "Word vectors and similarity") and [this](https://spacy.io/usage/linguistic-features) (until "Tokenizer data") to familiarize yourself with spaCy (mainly: tokenization, POS tagging, lemmatization, dependency parsing, noun phrase chunking and named entity recognition). Once done, answer the questions below:
 
-> What is dependency parsing and how is it different to POS tagging?
-> (A short answer is enough here. We'll go into more detail in later lectures.)
->
-> What is the difference between `token.pos_` and `token.tag_`?
->
-> What is noun phrase chunking?
->
-> Describe any two types of entities that spaCy can recognize.
+> * What is dependency parsing and how is it different to POS tagging?
+>   (A short answer is enough here. We'll go into more detail in later lectures.)
+> * What is the difference between `token.pos_` and `token.tag_`?
+> * What is noun phrase chunking?
+> * Describe any two types of named entities that spaCy can recognize.
 
 <div class="submit">Submit your answers</div>
 
@@ -156,9 +152,9 @@ Try parsing a simple sentence (e.g. "I have a dog.") using the tools. Now parse 
  * *Finger Lickin' Good.*
  * *Finger licking good.*
 
-> From your observations, note some differences between the results (e.g. parsed trees, POS tags)? Briefly discuss the differences and any missing/correct/wrong results by the tools.
+> From your observations, note some differences between the results (e.g. parsed trees, POS tags).
 
-<div class="submit">Submit your answers</div>
+<div class="submit">Briefly discuss the differences and any missing/correct/wrong results by the tools.</div>
 
 
 ## Other NLP tools (Optional)
