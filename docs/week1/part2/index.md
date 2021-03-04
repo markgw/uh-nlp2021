@@ -135,7 +135,7 @@ We can then use the `max` function and it's `key` argument to find the tuple wit
 Call `' '.join(longest[1])` (note the space inside quotes) to get a slightly nicer looking string representation of the longest sentence of any US presidential inaugural speech. Also check `longest[0]` for which speech this sentence is from.
 
 <div class="submit">
-    Submit to Moodle who's speech contained the longest sentence, when the speech was given and what the longest sentence was.
+    Submit to Moodle whose speech contained the longest sentence, when the speech was given and what the longest sentence was.
 </div>
 
 ## Simple NLP stuff
