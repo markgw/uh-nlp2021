@@ -1,5 +1,8 @@
 # Week 1: Part II: Installing stuff, NLTK and SpaCy
 
+[Part I](../part1/) provided an intro/refresher on Python programming.
+Now we get ourselves ready to do some NLP in Python.
+
 While Python has a good standard library, we are going to need specialized tools like the
 **Natural Language Tool Kit (NLTK)**. Let's first install NLTK.
 
