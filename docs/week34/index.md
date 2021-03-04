@@ -1,12 +1,51 @@
 # Week 3: Finite-State Methods and Statistical NLP
 
 Carry out all the exercises below and submit your answers
-[on Moodle](https://moodle.helsinki.fi/course/view.php?id=36809).
+[on Moodle](https://moodle.helsinki.fi/course/view.php?id=44338).
 Also submit a single Python file containing your full
 implementation.
 
+This week, we will try out one example of the application of
+statistical models to NLU. Specifically, we will try some different
+ways of using a Hidden Markov Model (HMM) for POS tagging.
 
-## Exercise 1: HMM estimation
+Although better results can be acheived using more recent
+Machine Learning models, an HMM has some advantages for our purposes:
+ - It has relatively few parameters, so can be trained quickly.
+ - For the same reason, it may even work better than, say, an RNN if training on a small dataset.
+ - Its parameters, which define probability distributions, are somewhat **interpretable** –
+   you can inspect what the model has learned.
+ - The principles are identical, so you can easily extend what we do here to other
+   ML methods if you want.
+
+## Exercise 1: Questions from the lectures
+
+### Question 1.1
+
+In Lecture 4 (Evaluation), you were asked in your group to come up
+with some details of how you could evaluate a system.
+
+> * List some metrics that you considered appropriate?
+> * Give an example of a **baseline** for this evaluation task.
+> * Give an example of a **ceiling** for this evaluation task.
+> **Submit your answers**
+
+### Question 1.2
+
+Lecture 5 (Evaluation and Meaning), you saw this sentence:
+
+> *I like noisy, expensive restaurants that serve vegetarian dishes.*
+
+You thought about what aspects of its meaning you might want to represent
+for use in a restaurant recommendation system.
+
+> * Pick one example of a type of meaning in this sentence
+>   (describe with examples if you like) and give an example of
+>   a meaning representation that could capture this for use by a system.
+> **Submit your answer**
+
+
+## Exercise 2: HMM estimation
 
 In this exercise, we will load a corpus annotated manually with
 POS tags. NLTK provides easy access to the [MASC corpus](http://www.anc.org/data/masc/),
@@ -44,22 +83,22 @@ distribution between tags and the **emission** distribution
 from tags to words.
 By iterating over the data in MASC, collect the counts needed
 to estimate the transition distribution *from* the
-verb tag (`VB`) to all other tags (i.e. *p(t[i+1] | t[i] = VB)*).
+verb tag (`VB`) to all other tags (i.e. *p(tag[i+1] | tag[i] = VB)*).
 
 Also collect counts needed to estimate the emission distribution
-for the `VB` tag (i.e. *p(w[i] | t[i] = VB)*).
+for the `VB` tag (i.e. *p(word[i] | tag[i] = VB)*).
 
 Compute both of these distributions.
 
 > Collect these counts and estimate the distributions for `VB` using MLE.
 >
-> **Submit the computed *p(t[i+1] = DT | t[i] = VB)* - the probability of a verb being followed by a determiner.**
-> **Submit the computed *p(w[i] = 'feel' &#124; t[i] = VB)*.**
+> **Submit the computed *p(tag[i+1] = DT | tag[i] = VB)* - the probability of a verb being followed by a determiner.**
+> **Submit the computed *p(word[i] = 'feel' &#124; tag[i] = VB)*.**
 
 
 
 
-## Exercise 2: A full HMM
+## Exercise 3: A full HMM
 
 NLTK contains a function to collect all the necessary counts to
 train an HMM using MLE, exactly as you have done above.
@@ -107,12 +146,12 @@ One fretigy kriptog is always better than several intersplicks .
 
 > * What tag did the tagger assign to *understanding*? Is this correct?
 > * Give one example of a sentence with unseen words where the tagger, in your opinion, picks the correct tags for the unseen words.
-> * Give one example where the tagger is thrown off by an unseen word. What information might help it make a better guess? (Other than seeing the word in its training set!)
+> * Give one example where the tagger is confused by an unseen word. What information might help it make a better guess? (Other than seeing the word in its training set!)
 > * **Submit your answers as text**
 
 
 
-## Exercise 3: Semi-supervised learning
+## Exercise 4: Semi-supervised learning
 
 There are many well studied algorithms for working with HMMs: performing
 efficient inference (tagging), training in ways that deal better with
@@ -156,7 +195,7 @@ like to try increasing this
 > you set and the computer you're running on. You will reuse it
 > in the following exercises.
 >
-> It's a good idea to store your trained model (returned by
+> Store your trained model (returned by
 > `train_unsupervised()`) to a file using Python's
 > [`pickle` library](https://docs.python.org/3/library/pickle.html)
 > and then load it again on subsequent runs, so you don't have to
@@ -170,19 +209,11 @@ Yesterday these fiends operated upon Doggo .
 For a time, his own soul and this brain - maggot struggled for supremacy .
 ````
 
-> * Has the unlabelled data improved the tagger?
-> * What else could you do to improve the tagger's performance on different domains?
+You will probably find, perhaps surprisingly, that the results are not good!
+
+> * Can you see any ways in which the unlabelled data has improved the tagger?
+> * What else could you  do instead (or additionally) to improve the tagger's performance on different domains?
 > * **Submit your answers**
-
-
-## Exercise 4: Cross-domain tagging
-
-Try feeding some other sentences into the POS taggers, comparing the
-output from the supervised and semi-supervised models.
-Try out sentences from a number of different domains:
-e.g. fiction, news, legal documents, ...
-
-> **Submit a few sentences reporting your observations**
 
 
 ## Exercise 5: HMM as a language model
@@ -205,7 +236,8 @@ Try using your models as LMs. Measure the log probability of some
 short sentences (perhaps including some of the examples above)
 using both of your HMMs.
 Also estimate the probability of some nonsense sentences you make
-up: use real words that are likely to be covered by the model.
+up: use real words that are covered by the model's vocabulary, but in
+nonsensical combinations.
 
 > * Do the nonsense sentences tend to receive lower probabilities than the real ones?
 > * Is the semi-supervised model better at distinguishing between real and nonsense sentences?
@@ -214,46 +246,42 @@ up: use real words that are likely to be covered by the model.
 
 ## Exercise 6: Evaluating a language model
 
-Compute the perplexities of your language models using the same test set as in last week's exercise 3,
-from the Penn Treebank corpus:
+Compute the perplexities of your language models using some data from the
+Penn Treebank corpus, available using NLTK.
 
 ````
 from nltk.corpus import treebank
-from w3utils import split_corpus
 
-_, test_sents = split_corpus(treebank, 0.8)
-test_set = [(t[0], None) for s in test_sents for t in s]
+# Remove tags from sentences: we just want to use it as a LM over the words
+# The model will sum over possible tags
+unlabelled_test_set = [(t[0], None) for s in treebank.tagged_sents() for t in s]
 ````
-(Check that [w3utils.py](w3utils.py) is in the same directory as your Python source.)
+
+Use `log_probabilities()` as before. Note that this returns a single
+value per sentence, the overall sentence probability, which is the product
+of the probabilities of each word (i.e. sum of the log probabilities).
 
 > * What are perplexities of your models (round the values to two decimal places)?
 > * What does the perplexity of a language model describe? Explain briefly.
-> * How could you find out whether a language model is 'good'? Explain briefly.
+> * Why does this tell us whether a language model is 'good'? Explain briefly.
 > * **Submit the perplexities and your explanations**
 
-## Exercise 7: Generating from HMMs
+## [Optional] Exercise 7: Generating from HMMs
 
 The HMM provides a simple method to sample random sentences from the
 model,
 [`random_sample(rng, length)`](https://www.nltk.org/api/nltk.tag.html#nltk.tag.hmm.HiddenMarkovModelTagger.random_sample).
+Now that you have a trained model, you can try this out if you wish.
+
 It requires a random number
 generator (you can use Python's `random` module) and a length for
 the sentence.
 
-Try generating some sentences from your HMMs.
+Try generating some sentences from your HMMs and think about the following
+questions.
 
 > * Do they look like real sentences?
 > * Why are they (usually) incoherent?
 > * Why don't they look like the sentences in the training corpus?
 > * Is the unsupervised model better?
-> * **Submit short answers to these questions**
-
-
-## Exercise 8: Improving generation
-
-How might you improve on the sentence generator to give
-the generated sentences more coherence?
-
-Don't implement anything: just discuss (briefly).
-
-> **Submit your discussion**
+> * How might you improve on the sentence generator to give the generated sentences more coherence?

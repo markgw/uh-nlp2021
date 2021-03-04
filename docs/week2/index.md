@@ -1,11 +1,11 @@
-# Week 2: NLU Pipeline and Evaluation
+# Week 2: NLU Pipelines
 
 Carry out all the exercises below and submit your answers
 [on Moodle](https://moodle.helsinki.fi/course/view.php?id=44338).
 Also submit a single Python file containing your full
 implementation.
 
-## Part 1: Questions from the lectures
+## Exercise 1: Questions from the lectures
 
 ### Question 1.1
 
@@ -37,9 +37,7 @@ Consider the following sentences:
 2. What is word tokenization?
 3. What is lemmatization and why is it useful?
 
-## Part 2: NLP tools
-
-### Exercise 2.1: Using NLTK
+## Exercise 2: Using NLTK
 In the previous session, you have installed NLTK and used it to load a corpus. In this exercise, you will use NLTK to process sentences. More specifically, you will tokenize sentences and words, apply POS tagging on words, lemmatize them and remove any stop words in them.
 
 You might need to download the following NLTK packages:
@@ -101,7 +99,7 @@ Implement a function (`filter_text(text)`) that uses `process_text(text)` to pro
 > **Submit your answer**
 
 
-###  Exercise 2.2: Using spaCy
+##  Exercise 3: Using spaCy
 In this exercise, you will use an NLP tool other than NLTK, namely [*spaCy*](https://spacy.io/).
 Last week, you installed *spaCy* and used it to recognize named entities in text. Let's see what else it has to offer.
 
@@ -138,7 +136,7 @@ For additional reading regarding spaCy (optional):
 * [A brief comparison between spaCy and other NLP tools.](https://spacy.io/usage/facts-figures)
 
 
-### Exercise 2.3: Comparing different NLP tools
+## Exercise 4: Comparing different NLP tools
 
 The goal of this exercise is to experiment with different NLP tools, know what they offer and compare them. The tools that you will use in this exercise are:
 
@@ -172,7 +170,7 @@ In case you'd like to try out other NLP tools, here are some more:
 
 
 
-## Extension/Final project suggestion: Pun generation
+## Final project suggestion: Pun generation
 The idea here would be to develop a simple application that utilizes the NLP pipeline for generating food related puns. To do so, you will implement a method that accepts a simple expression as input, replaces a word in it with a new (punny) word and returns the new expression. You are expected to use either spaCy or your `process_text` for this exercise, in addition to NLTK's CMU library.
 
 To get food-related words, we will query [Thesaurus Rex](http://ngrams.ucd.ie/therex3). Thesaurus Rex mines categorical relations and adjectival modifiers of nouns from the web. To query and use Thesaurus Rex's API, install the following packages:
