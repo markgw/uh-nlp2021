@@ -28,6 +28,7 @@ with some details of how you could evaluate a system.
 > * List some metrics that you considered appropriate?
 > * Give an example of a **baseline** for this evaluation task.
 > * Give an example of a **ceiling** for this evaluation task.
+>
 > **Submit your answers**
 
 ### Question 1.2
@@ -42,6 +43,7 @@ for use in a restaurant recommendation system.
 > * Pick one example of a type of meaning in this sentence
 >   (describe with examples if you like) and give an example of
 >   a meaning representation that could capture this for use by a system.
+>
 > **Submit your answer**
 
 
@@ -147,7 +149,8 @@ One fretigy kriptog is always better than several intersplicks .
 > * What tag did the tagger assign to *understanding*? Is this correct?
 > * Give one example of a sentence with unseen words where the tagger, in your opinion, picks the correct tags for the unseen words.
 > * Give one example where the tagger is confused by an unseen word. What information might help it make a better guess? (Other than seeing the word in its training set!)
-> * **Submit your answers as text**
+>
+> **Submit your answers as text**
 
 
 
@@ -213,7 +216,8 @@ You will probably find, perhaps surprisingly, that the results are not good!
 
 > * Can you see any ways in which the unlabelled data has improved the tagger?
 > * What else could you  do instead (or additionally) to improve the tagger's performance on different domains?
-> * **Submit your answers**
+>
+> **Submit your answers**
 
 
 ## Exercise 5: HMM as a language model
@@ -241,7 +245,8 @@ nonsensical combinations.
 
 > * Do the nonsense sentences tend to receive lower probabilities than the real ones?
 > * Is the semi-supervised model better at distinguishing between real and nonsense sentences?
-> * **Submit your answers**
+>
+> **Submit your answers**
 
 
 ## Exercise 6: Evaluating a language model
@@ -264,7 +269,8 @@ of the probabilities of each word (i.e. sum of the log probabilities).
 > * What are perplexities of your models (round the values to two decimal places)?
 > * What does the perplexity of a language model describe? Explain briefly.
 > * Why does this tell us whether a language model is 'good'? Explain briefly.
-> * **Submit the perplexities and your explanations**
+>
+> **Submit the perplexities and your explanations**
 
 ## [Optional] Exercise 7: Generating from HMMs
 
