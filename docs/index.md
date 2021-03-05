@@ -47,7 +47,7 @@ for how you might consider extending it.
 
 Assignments for each week:
  - [Week 1 – Python intro, pipeline & toolkits](week1/)
- - [Week 2 – Full pipeline & evaluation](week2/)
+ - [Week 2 – NLP pipelines](week2/)
  - [Weeks 3-4 – Finite-state methods and statistical NLP](week34/)
  - [Week 5 – Syntax & parsing](week5/)
  - [Week 6 – Vectors & lexical semantics](week6/)
