@@ -171,17 +171,17 @@ Let us also set up another NLP library, SpaCy. Start by installing **inside your
 
 Next up, we need to install some pretrained models: training one ourselves would take large amounts of time, computation power and data, none of which we have. Also, the SpaCy default models are relatively good for our purposes here.
 
-To install the English language default models, write `python -m spacy download en` in your terminal. **Note:** if you opened a new terminal, remember to source your virtual environment first!
+To install the English language default models, write `python -m spacy download en_core_web_sm` in your terminal. **Note:** if you opened a new terminal, remember to source your virtual environment first!
 
-The above should have downloaded a model called `en_core_web_sm` and constructed a shortcut called `en`. SpaCy also allows you to define in more details which models, exactly, you want to download and use. Optionally see the SpaCy's [documentation](https://spacy.io/usage/models#download) for more details.
+The above should have downloaded a model called `en_core_web_sm`. See the SpaCy's [documentation](https://spacy.io/usage/models#download) for more details.
 
-> * Go to [https://spacy.io/models/en](https://spacy.io/models/en) and observe the three different English language model sets available. How much larger is `en_core_web_lg` compared to `en_core_web_sm` in terms of megabytes taken up by the model?
+> * Go to [https://spacy.io/models/en](https://spacy.io/models/en) and observe the different English language model sets available. How much larger is `en_core_web_lg` compared to `en_core_web_sm` in terms of megabytes taken up by the model?
 >
-> * Observe the NER F scores reported for the various English language models. A score of 100 would mean that the model was correct in all test cases, whereas a score of 0 would mean that it was wrong in all test cases. How much performance did the larger model gain for how many fold increase in model size when compared to the smallest model?
+> * Observe the ENTS_F scores reported for the various English language models. A score of 1 would mean that the model was correct in all test cases, whereas a score of 0 would mean that it was wrong in all test cases. How much performance did the larger model gain for how many fold increase in model size when compared to the smallest model?
 
 <div class="submit">Submit your answers</div>
 
-In Python, import `spacy` and then load up a module containing English language models by calling `nlp = spacy.load('en')`.
+In Python, import `spacy` and then load up a module containing English language models by calling `nlp = spacy.load('en_core_web_sm')`.
 
 Next, try out SpaCy's default **entity recognition model** by writing up a sentence with a few entities (people, places, organizations) and storing it in a variable `sent`. Then call `nlp(sent).ents` and observe the detected entities. Try out a few variations of inputs.
 
