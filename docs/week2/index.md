@@ -5,6 +5,8 @@ Carry out all the exercises below and submit your answers
 Also submit a single Python file containing your full
 implementation.
 
+> **This assignment is now finalized and you may begin working on it!**
+
 ## Exercise 1: Questions from the lectures
 
 ### Question 1.1
