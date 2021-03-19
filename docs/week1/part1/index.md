@@ -16,11 +16,11 @@ Python has for a while existed in two different flavors, Python 2 and Python 3.
 
 Also more specifically for NLP purposes, Python 3 simplifies the handling of non-ASCII characters singificantly by making UTF-8 strings the default.
 
-All examples hereafter are in Python 3. Any mentions of "Python" in the material will, by default, refer to Python 3. Any code you return on this day or any later day will be run using Python 3.
+All examples hereafter are in Python 3. Any mentions of "Python" in the material will, by default, refer to Python 3. Any code you return on this week or any later week will be run using Python 3.
 
 ## Installing Python
 
-Python 3 comes in multiple versions, the latest of which is Python 3.8.1. However, as most Linux distributions lag a bit behind in the Python 3 version they provide, Python 3.5 is currently a *de facto* "minimum version". This holds true for this course as well: the tools we are installing assume that you have at least Python 3.5.
+Python 3 comes in multiple versions, the latest of which is Python 3.9.2. However, as most Linux distributions lag a bit behind in the Python 3 version they provide, Python 3.5 is currently a *de facto* "minimum version". This holds true for this course as well: the tools we are installing assume that you have at least Python 3.5.
 
 ###  If you are using a university-provided computer with Cubbli Linux
 If you are working on either a Freshmen laptop with Linux or a computer lab desktop that has Linux, your computer should have Python 3.6.9 (or later) installed on it by default. Check by running `python3 -V` (note capital V). You should be good to go.
