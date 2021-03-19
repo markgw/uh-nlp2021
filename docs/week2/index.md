@@ -99,7 +99,9 @@ Build your own NLP pipeline (a function named `process_text(text)`) that takes a
 
 Implement a function (`filter_text(text)`) that uses `process_text(text)` to process a paragraph and then removes stop words and words that are not verbs, adjectives or nouns (for descriptions of POS tags, [read this](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html)).
 
-> What words are left when you run this filter on the example input text above? (Groucho Marx)
+> What words are left when you run this filter on the example input text by Groucho Marx?
+>
+> *One morning I shot an elephant in my pajamas. How he got into my pajamas I'll never know.*
 
 <div class="submit">Submit your answer</div>
 
