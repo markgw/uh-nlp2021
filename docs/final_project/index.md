@@ -27,7 +27,7 @@ You should submit a **short report** (2-3 pages) containing the following:
  * How you might extend or improve the system further if you had more
    time (or computing resources, or data, ...)
 
-The submission is due one week after the end of the course: **6.3.2020**.
+The submission is due one week after the end of the course (plus a weekend): **24.5.2021**.
 
 Also submit **your code** as a single Python file.
 Don't worry too much about cleaning it up or submitting
