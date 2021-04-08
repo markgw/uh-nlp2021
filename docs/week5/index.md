@@ -133,9 +133,14 @@ B2 -> B C
 ````
 where `B2` is a new non-terminal.
 
+NLTK's CFG type has a method to perform this transformation for you,
+once you have loaded a grammar.
 
-**TODO** Use the NLTK function to do this conversion. Used to be an exercise to do manually.
+Apply this to the grammar that you extended in the previous exercise.
 
+````python
+cnf_grammar = extended_grammar.chomsky_normal_form()
+````
 
 Now load a bottom-up chart parser and initialize it with
 your CNF grammar:
