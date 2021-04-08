@@ -1,20 +1,20 @@
 # Week 5: Syntax and Parsing
 
 Carry out all the exercises below and submit your answers
-[on Moodle](https://moodle.helsinki.fi/course/view.php?id=36809).
+[on Moodle](https://moodle.helsinki.fi/course/view.php?id=44338).
 Also submit a single Python file containing your full
 implementation.
 
 
-## Exercise 1: Questions from the lectures
+## 1: Questions from the lectures
 
 
 TO BE WRITTEN
 
 
-## CFGs with NLTK
+## 2: CFGs with NLTK
 
-### Exercise 2: Basic CFG use
+### 2.1: Basic CFG use
 
 NLTK contains a method for loading a CFG from a string.
 Here, for example, is the small CFG given in the lecture,
@@ -66,7 +66,7 @@ print(cfg.is_flexible_chomsky_normal_form())
 
 
 
-### Exercise 3: Extending the grammar
+### 2.2: Extending the grammar
 
 The NLTK CFG type has a method to check that
 all the words of the input sentence are covered
@@ -106,7 +106,7 @@ in the lexicon for all the words in the sentence.
 
 
 
-### Exercise 4: Parsing with the grammar
+### 2.3: Parsing with the grammar
 
 So far, we've only run sanity checks that the words
 of sentences are covered by the grammar. We haven't
@@ -188,9 +188,9 @@ additional nodes added in normalization of the grammar).
 
 
 
-## Treebank parser
+## 3: Treebank parser
 
-### Exercise 5: Treebank grammar
+### 3.1: Treebank grammar
 
 NLTK provides easy access to a 10% sample of the Penn
 Treebank. The full treebank is not available without a
@@ -259,7 +259,7 @@ Alan introduced a plan .
 <div class="submit">Submit your answers to these questions</div>
 
 
-### Exercise 6: Probabilities
+### 3.2?: Probabilities
 
 **TODO** Remove this exercise
 
@@ -292,7 +292,7 @@ distribution for `NP -> ?` rules.
 
 
 
-### Exercise 7: PCFG
+### 3.2: PCFG
 NLTK provides a tool to estimate all the probabilities of
 a PCFG from the productions in a treebank.
 
@@ -325,7 +325,7 @@ Take a look at the top parse(s) and see what you think.
 <div class="submit">Submit your answers</div>
 
 
-### Exercise 8: Out-of-domain parsing
+### 3.3: Out-of-domain parsing
 
 Now we'll try parsing some data that wasn't in the training
 corpus. Your parser can only process sentences made up of
