@@ -1,4 +1,4 @@
-# Week 4: Syntax and Parsing
+# Week 5: Syntax and Parsing
 
 Carry out all the exercises below and submit your answers
 [on Moodle](https://moodle.helsinki.fi/course/view.php?id=36809).

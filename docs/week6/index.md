@@ -1,4 +1,4 @@
-# Week 5: Vectors, Lexical Semantics and Word Embeddings
+# Week 6: Vectors, Lexical Semantics and Word Embeddings
 
 Carry out all the exercises below
 and submit your answers on

@@ -1,4 +1,4 @@
-# Week 3: Finite-State Methods and Statistical NLP
+# Weeks 3-4: Finite-State Methods and Statistical NLP
 
 Carry out all the exercises below and submit your answers
 [on Moodle](https://moodle.helsinki.fi/course/view.php?id=44338).
