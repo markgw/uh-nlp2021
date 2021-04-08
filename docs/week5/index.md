@@ -259,9 +259,8 @@ Alan introduced a plan .
 <div class="submit">Submit your answers to these questions</div>
 
 
-### 3.2?: Probabilities
 
-**TODO** Remove this exercise
+### 3.2: PCFG
 
 You will have noticed that your treebank parser produced
 a huge number of parse trees for even very short sentences.
@@ -277,22 +276,13 @@ We will now use the treebank to create a PCFG, learning
 the grammar from the corpus, as above, and estimating the
 probabilities associated with productions from the same data.
 
-Begin by collecting counts of the many expansions of an `NP`
-non-terminal and using these to estimate a probability
-distribution for `NP -> ?` rules.
+You can, for example, collect all examples in the treebank of
+where an `NP` is exanded to something and
+use these to estimate a probability distribution for `NP -> ?` rules.
 
-> * Show the counts from which you estimate the probabilities
->   and the probabilities of the expansions: the counts for the
->   numerator and the denominator.
->   Exclude from your output any expansions that only occur fewer than *200*
->   times. (But don't exclude them from the probability
->   calculations.)
+> Bonus exercise (optional):
+> Try doing this youself for NPs.
 
-<div class="submit">Submit the list of productions with probabilities and the counts needed to estimate them.</div>
-
-
-
-### 3.2: PCFG
 NLTK provides a tool to estimate all the probabilities of
 a PCFG from the productions in a treebank.
 
@@ -320,7 +310,6 @@ Take a look at the top parse(s) and see what you think.
 > * What happens if the beam size is too low?
 > * Or too high?
 > * Do the top parses look better? Are they perfect?
-
 
 <div class="submit">Submit your answers</div>
 
