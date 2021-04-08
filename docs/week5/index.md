@@ -8,8 +8,29 @@ implementation.
 
 ## 1: Questions from the lectures
 
+### 1.1: Language modelling
+
+Describe the role that a *language model* would play in an
+*automatic text recognition* (ATR, a.k.a. *OCR*) tool?
+
+(Hint: it's closely related to how it's used in *speech recognition*.)
+
+<div class="submit">Submit your answer</div>
+
+
+### 1.2: Statistical methods
 
 TO BE WRITTEN
+
+<div class="submit">Submit your answer</div>
+
+### 1.3: Syntax
+
+TO BE WRITTEN
+
+<div class="submit">Submit your answer</div>
+
+
 
 
 ## 2: CFGs with NLTK
