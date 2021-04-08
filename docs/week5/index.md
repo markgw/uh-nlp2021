@@ -11,7 +11,7 @@ implementation.
 ### 1.1: Language modelling
 
 Describe the role that a *language model* would play in an
-*automatic text recognition* (ATR, a.k.a. *OCR*) tool?
+*automatic text recognition* (ATR, a.k.a. *OCR*) tool.
 
 (Hint: it's closely related to how it's used in *speech recognition*.)
 
