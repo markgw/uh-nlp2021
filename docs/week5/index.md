@@ -20,15 +20,32 @@ Describe the role that a *language model* would play in an
 
 ### 1.2: Statistical methods
 
-TO BE WRITTEN
+A tool for *named-entity recognition* (NER) finds passages of
+text that refer to a named entity and link it to an ontology of
+known entities (such as people, organisations, etc.).
 
-<div class="submit">Submit your answer</div>
+Describe one way in which statistics derived from a corpus
+annotated with named-entity references can be used by the
+tool.
+
+Give two reasons why a data-driven, statistical approach
+may be preferable to hand-crafted rules for deciding which passages
+of text correspond to which entities in the ontology.
+
+<div class="submit">Submit your answers</div>
 
 ### 1.3: Syntax
 
-TO BE WRITTEN
+You try parsing a 15-word sentence using a broad-domain, statistical
+syntactic parser. The tool returns roughly 5k different syntactic
+trees for the sentence.
 
-<div class="submit">Submit your answer</div>
+1. Is this an error in the parsing algorithm?
+2. Does it tell us something interesting about this sentence? Or about the language?
+3. Probably, these results are not useful for us in further processing of the sentence.
+   How might we make them more useful?
+
+<div class="submit">Submit your answers</div>
 
 
 
