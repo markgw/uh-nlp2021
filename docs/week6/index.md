@@ -177,20 +177,6 @@ using cosine similarity.
 <div class="submit">Submit your answers.</div>
 
 
-## 5: Topic modelling
-
-We will use the  to train topic models.
-
-Check whether Gensim is installed and importable:
-````python
-import gensim
-````
-
-If not, install it in your virtual environment:
-````sh
-pip install gensim
-````
-
 
 
 ## Suggested extensions:
