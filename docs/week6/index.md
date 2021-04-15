@@ -1,14 +1,38 @@
 # Week 6: Vectors, Lexical Semantics and Word Embeddings
 
-Carry out all the exercises below
-and submit your answers on
-[Moodle](https://moodle.helsinki.fi/course/view.php?id=33565#section-5).
-Also submit a single Python file containing your full implementation.  
+Carry out all the exercises below and submit your answers
+[on Moodle](https://moodle.helsinki.fi/course/view.php?id=44338).
+Also submit a single Python file containing your full
+implementation.
 
 
 ## 1: Questions from the lectures
 
-TODO
+### 1.1: WSD
+
+The task of word-sense disambiguation (WSD) involves choosing one of
+a pre-defined set of *senses* for a particular usage of a word in text.
+
+Say you are applying a standard statistical classifier, like an
+SVM or a feed-forward neural network, to this task.
+
+> List three types of features that you could use as input to your
+classifier for each token.
+
+<div class="submit">Submit your answer</div>
+
+
+### 1.2: Distributional semantics
+
+Count-based distributional representations of word meaning (word embeddings)
+are often derived from a matrix of feature counts for each term, where
+the features are simply words that have been observed within a fixed
+window of tokens around usages of the term in a training corpus.
+
+> List two other types of features you could use for each term, from which
+to derive a vector capturing its meaning.
+
+<div class="submit">Submit your answer</div>
 
 
 ## 2: Document-term matrix
