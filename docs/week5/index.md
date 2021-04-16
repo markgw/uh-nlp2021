@@ -193,7 +193,7 @@ The results are tree structures.
 
 If your grammar is correct, you should get at least
 one full parse for each of the example sentences in
-exercises 1 and 2, repeated here:
+exercise 2.2, repeated here:
 
 ````
 how did the blue dog fly ?
@@ -284,7 +284,7 @@ of those used in the list of productions.
 Build a treebank grammar from all the trees in this sample
 of the corpus.
 
-Use your grammar as you did in exercise 4 to parse the following
+Use your grammar as you did in exercise 2.3 to parse the following
 sentences.
 
 ````
