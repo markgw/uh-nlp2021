@@ -1,9 +1,9 @@
 # Week 7: Temporal Information Extraction
 
 Carry out all the exercises below and submit your answers
-[on Moodle](https://moodle.helsinki.fi/course/view.php?id=33565#section-8).
+[on Moodle](https://moodle.helsinki.fi/course/view.php?id=44338).
 
-Also submit a zip archive containing your code for exercises 1 and 2, and
+Also submit a zip archive containing your code and
 scorer outputs. Give the files meaningful names.
 
 ----
@@ -12,7 +12,7 @@ scorer outputs. Give the files meaningful names.
 is finding temporal expressions in a natural language text.
 "Monday", "last summer", "next year", "May 29, 2019", "today" are all examples of temporal expressions.
 
-## Exercise 1: Temporal IE with regural expressions
+## Exercise: Temporal IE with regural expressions
 
 This is an example code that uses a regular expression to find temporal expressions in the given sentences.
 
@@ -40,7 +40,7 @@ Many of the local religious leaders who led the <TIMEX>1992</TIMEX> protests hav
 ````
 
 
-### Exercise 1.1
+### Exercise 1
 
 * Write regular expressions that would capture temporal expressions in
   the following sentences.
@@ -77,13 +77,13 @@ For <TIMEX>the quarter</TIMEX> ended <TIMEX>Sept. 30</TIMEX>, Delta posted net i
 ````
 
 Try to make your regular expressions as general as possible, so that
-they would capture not only given examples but also some other possible
-temporal expressions.
+they would capture not only given examples but also some other
+possible temporal expressions.
 
 *(Do not submit anything yet...)*
 
 
-### Exercise 1.2
+### Exercise 2
 
 * Download and unpack training data [train.zip](train.zip)
 
@@ -99,7 +99,7 @@ temporal expressions in each of them using regular expressions and
 output the result into a new folder called `sub`.
 
 * Extend `process_folder.py` script so that it capture more time
-  expressions. Use regular expressions made in Exercise 1.1.
+  expressions. Use regular expressions made in Exercise 1
 
 * Run your script on the training data like this:
 
@@ -136,102 +136,12 @@ Repeat that process as many times as you like until you are satisfied with the s
 * **Submit evaluation measures for the training and development sets**
 * **Create a zip archive to contain your code and scorer outputs**
 
-
-## Exercise 2: Temporal IE with spaCy
-
-In this exercise we will solve the same problem using a pipeline of NLP
-tools.
-
-First, the document is proccessed by spaCy to tokenize text and to assign each token with additional information, such as part of speech tags. Then, a matcher is used to find patterns in text. Patterns are similar to regular expressions but operate on tokens instead of characters.
-
-* Install spaCy if you have not done that before:
-
-````sh
-python -m venv .env
-source .env/bin/activate
-pip install -U spacy
-python -m spacy download en
-````
-
-> See [spaCy documentation](https://spacy.io/usage) for more details regarding installation.
-
-
-### Exercise 2.1
-
-Download example code [spacy_timex.py](spacy_timex.py).  
-This programme processes three sentences that there used in Exercise 1 and outputs the same result using spaCy pattern matcher.
-
-You do not need to understand everything that is going on in the code. Focus on the main function and try to understand how spaCy patterns work.
-
-> For more details on the pattern syntax consult [spaCy documentation](https://spacy.io/usage/rule-based-matching).
-
-* Using spaCy pattern matching make patterns that would capture temporal expressions in
-the same sentences that we used in Exercise 1.1.
-
-
-### Exercise 2.2
-
-
-* Download [process_folder_spacy.py](process_folder_spacy.py).
-
-This is a script, that process `raw` documents one by one, annotates them with temporal expressions using spaCy pattern matcher and prints output to another folder called `sub2`.
-
-* Extend `process_folder_spacy.py` script so that it captures more
-  time expressions.  Use patterns made in Exercise 2.1.
-
-
-* Run your script on the training data like this:
-
-````sh
-python process_folder_spacy.py train/raw
-````
-
-Now you have an output folder `train/sub2`. The documents in the new
-folder are named `<no>_sub.txt`, where `<no>` is the same document
-number as in `raw` folder.
-
-* Run scorer script, as before, on the output of the previous step,
-  evaluating using the *training* set only.
-* Scan briefly over the scorer's output trying to find the biggest
-  problems. Edit your code trying to improve F1-score.
-* Process documents again and get new scores.
-
-Repeat that process as many times as you like, until you are satisfied with the scores.
-
-Note that this process is a form of model training -- you are updating the
-model's parameters as you refine your matcher. Therefore, you use only the
-*training* set to do it, so that you are not influenced by the data in
-the *development* set.
-
-* Run your code and the scorer on the development set.
-
-* **Submit evaluations measures for the training and development sets**
-* **Add your code and scorer outputs to the zip archive and submit it**
-
-
-## Exercise 3: Model comparison
-
-Now you have two time-expression annotators:
-**regex-based** and **spaCy-based**, and two scorer outputs for each annotator.
-
-* Which annotator, in your opinion, is working better? Why? Of course, one of them has a higher score but try to understand the reason why it works better.
-* Which annotator was easier to implement, debug and modify?
-
-Compare scorer outputs obtained on *development* set.
-Try to find cases correctly processed by one annotator but missed by another.
-
-* What is the main strength of the **regex** annotator? What is its main weakness?
-* What is the main strength of the **spaCy** annotator? What is its main weakness?
-
-Add some examples to justify your response.
-
-* **Submit your answers**
-
+*(The best F-score will be announced in the class)*
 
 ## Acknowledgements
 
 The data used in this assignment are taken from
 [TempEval-3 Temporal Annotation Shared Task](https://www.cs.york.ac.uk/semeval-2013/task1/index.html).
-The shared task used much mpre elaborated annotation schema and consisted
+The shared task used much more elaborated annotation schema and consisted
 of several sub-tasks. More details on the tasks and the results can be
 found in the [organizers' paper](https://www.aclweb.org/anthology/S13-2001).
