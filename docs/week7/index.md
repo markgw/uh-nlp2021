@@ -1,4 +1,4 @@
-# Week 6: NLG and Dialogue
+# Week 7: NLG and Dialogue
 
 Carry out all the exercises below and submit your answers on Moodle. Also submit a single Python file containing your full implementation.
 
@@ -13,10 +13,10 @@ Read the sections "Motivation" and "The Task" from the website of the [End-to-En
 
 ## Exercise 2: Trivial NLG
 
-Download [week6utils.py](/week6utils.py) and store it in the same directory as `devset.csv`. In the same directory set up a python file with the following contents:
+Download [week7utils.py](/week7utils.py) and store it in the same directory as `devset.csv`. In the same directory set up a python file with the following contents:
 
 ```python
-from week6utils import read_file, score, MeaningRepresentation
+from week7utils import read_file, score, MeaningRepresentation
 from typing import Callable, List, Optional
 import random
 
@@ -42,7 +42,7 @@ def evaluate(
 evaluate(generate_trivial, meaning_representations, references)
 ```
 
-Familiarize yourself with the `MeaningRepresentation` class in `week6utils.py`, especially in terms of what fields it contains. 
+Familiarize yourself with the `MeaningRepresentation` class in `week7utils.py`, especially in terms of what fields it contains. 
 
 If the code looks weird, it's probably because it contains type hints. In case you are unfamiliar with Python type hints, `foo: str` designates a variable `foo` that **should** be of type `str`. Many editors can then warn you if you are doing something that doesn't make sense according to the type hints. The type `Optional[str]` means the value can be either a string or `None`. `List[str]` is a list of strings, etc. You can read more about type hints in [the official documentation](https://docs.python.org/3.6/library/typing.html) if you want, but you are free to ignore them. You do **not** have to add type hints to your own code.
 
@@ -75,7 +75,7 @@ def generate_2(mr: MeaningRepresentation) -> str:
 Evaluate this improved version by calling `evaluate(generate_2, meaning_representations, references)`. 
 > **Submit to Moodle** your answers to the following questions (one or two sentences per answer is sufficient):
 > 1. Did your changes improve the evaluation scores?
-> 2. Let us assume that the name is always present, but that all other features are optional. This means that if the MR consisted of only a name, there would be 2^0 = 1 variations of features being present or absent. In the above case, with name and two optional features, we had 2^2 = 4 variations of features being present or absent. How many variatations are there (i.e. how many if-statements would we need) for the full meaning representation in the `week6utils.py` file?
+> 2. Let us assume that the name is always present, but that all other features are optional. This means that if the MR consisted of only a name, there would be 2^0 = 1 variations of features being present or absent. In the above case, with name and two optional features, we had 2^2 = 4 variations of features being present or absent. How many variatations are there (i.e. how many if-statements would we need) for the full meaning representation in the `week7utils.py` file?
 > 3. How many variations would there be if we introduced another feature into the meaning representation?
 
 ## Exercise 4: Finding the popular choice
@@ -402,7 +402,7 @@ Take care to handle all instances of "a" and "an" using the helper functions if 
 
 ## Exercise 8: Explore BLEU
 
-Import the `bleu_single` method from `week6utils.py`. Pick some NL realisation, either from those you generated or from the `devset.csv`. Call it the *reference*.
+Import the `bleu_single` method from `week7utils.py`. Pick some NL realisation, either from those you generated or from the `devset.csv`. Call it the *reference*.
 
 Try out different modifications to the reference and calculate the BLEU scores between the original and the modified reference. Try to come up with a pair of modifications where candidate #1 has the same logical content (i.e. same information) as the reference and candidate #2 contains some falsehood, but the BLEU scores rank candidate #2 higher than candidate #1.
 
@@ -414,6 +414,6 @@ Try out different modifications to the reference and calculate the BLEU scores b
 >**Submit to Moodle** your answers to the following questions. A few sentences each is sufficient.
 > 1. What kinds of questions would you ask if you were to conduct an intrinstic human evaluation of the restaurant description task? 2-3 questions is sufficient.
 > 2. You are giving human judges a generated restaurant description together with the corresponding restaurant's menu, its location on a map and a sample of its customer reviews. Each judge then tells you whether, in their opinion, the text matches the info they have. Why is this task an instrinsic evaluation?
-> 3. You modify the above procedure. Instead of one info package, you now give the judges multiple slightly different info packages of which only one is the one corresponding to the restaurant. The judges are then asked to identify which info package the generated description corresponds to. Why is this task an extrinsic evaluation?
+> 3. Come up with some kind of an extrinsic evaluation task for the restaurant data. Explain both the task and why it is extrinsic.
 > 4. Read Section 4.2 from the [Findings of the E2E NLG Challenge](https://arxiv.org/pdf/1810.01170.pdf) paper. How did seq2seq systems compare to others in terms of naturalness and quality? Do these results differ from the automated evaluations?
 > 5. Come up with at least one example of both a system where correctness is much more important than fluency/naturalness, and one where the reverse holds true. You don't have to limit your examples to the restaurant domain.
