@@ -133,10 +133,12 @@ Repeat that process as many times as you like until you are satisfied with the s
   Run your code to annotate the texts with temporal expression markup.
   Then run the scorer to evaluate to result, comparing it to the gold-standard
   annotated development set.
-* **Submit evaluation measures for the training and development sets**
-* **Create a zip archive to contain your code and scorer outputs**
 
-*(The best F-score will be announced in the class)*
+<div class="submit">Submit evaluation measures for the training and development sets</div>
+
+<div class="submit">When submitting your code, include scorer outputs with it</div>
+
+*A table of the best F-scores will be posted on Moodle*
 
 ## Acknowledgements
 
