@@ -1,4 +1,4 @@
-# Week 7: Temporal Information Extraction
+# Week 8: Temporal Information Extraction
 
 Carry out all the exercises below and submit your answers
 [on Moodle](https://moodle.helsinki.fi/course/view.php?id=44338).
